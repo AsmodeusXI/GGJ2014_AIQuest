@@ -39,7 +39,8 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	void Spawn(float charge){
-		// ... instantiate the rocket facing right and set it's velocity to the right. 
-		Instantiate(monster, buttonPostion.position, Quaternion.identity);
+		GameObject temp = (GameObject)Instantiate(monster, buttonPostion.position, Quaternion.identity);
+		Monster currMonster = temp.GetComponent<Monster>();
+		currMonster.setCharge(charge);
 	}
 }

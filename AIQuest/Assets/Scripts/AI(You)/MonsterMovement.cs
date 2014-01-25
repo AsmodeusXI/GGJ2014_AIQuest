@@ -10,6 +10,7 @@ public class MonsterMovement : MonoBehaviour {
 	void Start () {
 		//destroys after 3 seconds
 		Destroy(gameObject, 3);
+		Monster temp = gameObject.GetComponent<Monster>();
 	}
 	
 	// Update is called once per frame
