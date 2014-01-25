@@ -535,6 +535,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   mood: 100
+  yourLvl: 1
+  kills: 0
 --- !u!114 &1306765724
 MonoBehaviour:
   m_ObjectHideFlags: 0

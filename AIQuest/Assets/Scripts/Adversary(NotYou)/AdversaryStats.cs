@@ -5,6 +5,8 @@ public class AdversaryStats : MonoBehaviour {
 
 	public float health = 100;
 	public float mood   = 100;
+	public float yourLvl= 1;
+	public float kills  = 0;
 
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private Vector3 	   healthScale;			// The local scale of the health bar initially (with full health).
@@ -13,7 +15,7 @@ public class AdversaryStats : MonoBehaviour {
 	void Start () {
 		
 	}
-
+ 
 	// Update is called once per frame
 	void Update () {
 		//health can't go above 100
@@ -41,14 +43,22 @@ public class AdversaryStats : MonoBehaviour {
 		}
 		
 		Debug.Log ("Mood: " + mood);
+		
+		yourLvl = 1 + (kills/5);
 	}
 	//goes to new scene where the game could be restarted or quit out of
 	public void goToGameOver(){
-
+		
 	}
 
-	public void UpdateHealthBar ()
-	{
+	// Describes how a monster harms/improves the player when affecteds
+	public void monsterAffects(float damage, float fun, float level){
+		health = health - damage * (yourLvl/level);
+		mood   = mood + fun * (level/yourLvl);
+		kills++;
+	}
+
+	public void UpdateHealthBar (){
 		// Set the health bar's colour to proportion of the way between green and red based on the player's health.
 		healthBar.material.color = Color.Lerp(Color.green, Color.red, 100 - health * 0.01f);
 		
