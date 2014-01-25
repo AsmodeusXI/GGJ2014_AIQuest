@@ -19,7 +19,7 @@ public class AdversaryStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//if you get the guy's mood to 0 or 200 you lose
-		if (mood == 0 || mood >= 100) {
+		if (mood <= 0 || mood >= 100) {
 			goToGameOver ();
 		}
 		lastMood = mood;
@@ -44,6 +44,8 @@ public class AdversaryStats : MonoBehaviour {
 
 	public void PlayClip(string clipName){
 		audio.Stop();
+		audio.Pause();
+		audio.clip = null;
 		audio.clip = Resources.Load(clipName)as AudioClip;
 		audio.Play();
 	}
