@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/OnGameLaunchScene.unity
+    path: Assets/Scenes/OnGameLaunchScene.unity
   - enabled: 1
-    path: Assets/StartScene.unity
+    path: Assets/Scenes/StartScene.unity
   - enabled: 1
-    path: Assets/CreditScene.unity
+    path: Assets/Scenes/CreditScene.unity
