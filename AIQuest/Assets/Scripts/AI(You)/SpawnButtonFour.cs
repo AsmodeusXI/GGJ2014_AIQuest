@@ -20,6 +20,6 @@ public class SpawnButtonFour : MonoBehaviour {
 	
 	void Spawn(){
 		// ... instantiate the rocket facing right and set it's velocity to the right. 
-		Instantiate(monsterFour, new Vector2(-10, 0), transform.rotation);
+		Instantiate(monsterFour, new Vector3(5f, -2.5f, 0f), Quaternion.identity);
 	}
 }

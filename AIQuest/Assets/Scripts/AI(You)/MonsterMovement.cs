@@ -3,6 +3,9 @@ using System.Collections;
 
 public class MonsterMovement : MonoBehaviour {
 
+	public float ySpeedModifier;
+	public float zSpeedModifier;
+
 	// Use this for initialization
 	void Start () {
 		//destroys after 3 seconds
@@ -11,7 +14,7 @@ public class MonsterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		//monsters move
-		rigidbody2D.velocity = new Vector2(transform.localScale.x * 6, rigidbody2D.velocity.y);
+		//monsters move	
+		rigidbody.velocity = new Vector3(rigidbody.velocity.x, transform.localScale.y * ySpeedModifier, transform.localScale.z * zSpeedModifier);
 	}
 }
