@@ -5,8 +5,8 @@ public class AdversaryStats : MonoBehaviour {
 
 	public float health = 100;
 	public float mood   = 100;
-	public float yourLvl= 1;
-	public float kills  = 0;
+	private float yourLvl= 1;
+	private float kills  = 0;
 
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private Vector3 	   healthScale;			// The local scale of the health bar initially (with full health).
@@ -42,9 +42,10 @@ public class AdversaryStats : MonoBehaviour {
 			mood = (mood - (2f * (Time.deltaTime)));
 		}
 		
-		Debug.Log ("Mood: " + mood);
+		Debug.Log ("Mood: " + mood + " Health: " + health + " Level: " + yourLvl);
 		
 		yourLvl = 1 + (kills/5);
+
 	}
 	//goes to new scene where the game could be restarted or quit out of
 	public void goToGameOver(){
@@ -54,7 +55,7 @@ public class AdversaryStats : MonoBehaviour {
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(float damage, float fun, float level){
 		health = health - damage * (yourLvl/level);
-		mood   = mood + fun * (level/yourLvl);
+		mood = mood + fun * (level/yourLvl);
 		kills++;
 	}
 

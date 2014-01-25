@@ -10,7 +10,13 @@ public class MonsterMovement : MonoBehaviour {
 	void Start () {
 		//destroys after 3 seconds
 		Destroy(gameObject, 3);
+	}
+	
+	void OnDestroy() {
 		Monster temp = gameObject.GetComponent<Monster>();
+		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+		advStats.monsterAffects((float)temp.getDamage(), (float)temp.getFun(), (float)temp.getLevel());
 	}
 	
 	// Update is called once per frame
