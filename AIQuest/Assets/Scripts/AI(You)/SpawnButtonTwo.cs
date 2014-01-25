@@ -11,7 +11,9 @@ public class SpawnButtonTwo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(Input.GetKeyDown("w")) {
+			Spawn();
+		}
 	}
 	
 	void OnMouseDown(){

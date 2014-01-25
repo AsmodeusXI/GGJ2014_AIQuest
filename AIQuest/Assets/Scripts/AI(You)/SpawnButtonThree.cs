@@ -11,7 +11,9 @@ public class SpawnButtonThree : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(Input.GetKeyDown("e")) {
+			Spawn();
+		}
 	}
 	
 	void OnMouseDown(){
