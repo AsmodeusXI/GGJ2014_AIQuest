@@ -659,8 +659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3be9d8f47886e4f85760cb94faa9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  mood: 100
 --- !u!114 &1306765724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,6 +863,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1476567561}
   - 212: {fileID: 1476567560}
+  - 114: {fileID: 1476567562}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -902,10 +901,23 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1476567559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.51594353, y: .39592278, z: 0}
+  m_LocalPosition: {x: 5.35806274, y: .406697184, z: 7.63372231}
   m_LocalScale: {x: .127964363, y: .127964228, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1476567562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1476567559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f30a67e1336a974a9c571ef20c6604d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPos: -1.91457999
+  maxPos: 2.90062189
 --- !u!1 &1616716149
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,8 +995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3be9d8f47886e4f85760cb94faa9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  mood: 100
 --- !u!4 &1739573438
 Transform:
   m_ObjectHideFlags: 0
@@ -992,7 +1002,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1739573436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7124753, y: .550118029, z: 0}
+  m_LocalPosition: {x: 3.30280328, y: 4.92230654, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

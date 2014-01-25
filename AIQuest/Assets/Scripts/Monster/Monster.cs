@@ -13,19 +13,14 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
 	
-	public int damage;
-	public int fun;
+	public float fun;
 	public int level;
 	private float charge;
 	
 
 	public void Start() {}
-	
-	public int getDamage() {
-		return damage;
-	}
 
-	public int getFun() {
+	public float getFun() {
 		return fun;
 	}
 

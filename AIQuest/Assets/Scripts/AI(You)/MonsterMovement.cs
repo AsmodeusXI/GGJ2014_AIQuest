@@ -16,7 +16,7 @@ public class MonsterMovement : MonoBehaviour {
 		Monster temp = gameObject.GetComponent<Monster>();
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-		advStats.monsterAffects((float)temp.getDamage(), (float)temp.getFun(), (float)temp.getLevel());
+		advStats.monsterAffects(temp.getFun(), (float)temp.getLevel());
 	}
 	
 	// Update is called once per frame

@@ -15,7 +15,9 @@ public class Meter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+		UpdateMeter(advStats.getMood());
 	}
 	
 	// Takes a value 0-100.  This is translated into the mood bar.
@@ -25,7 +27,7 @@ public class Meter : MonoBehaviour {
 		
 		Vector3 newPos = new Vector3 (transform.position.x, minPos + ((maxPos - minPos) * ratio), transform.position.z);
 		Debug.Log ("delta: " + (maxPos - minPos).ToString());
-		Debug.Log (newPos.ToString ());
+		Debug.Log (newPos.ToString());
 		transform.position = newPos;
 		
 	}

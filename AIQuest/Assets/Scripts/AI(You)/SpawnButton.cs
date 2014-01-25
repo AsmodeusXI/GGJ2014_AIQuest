@@ -39,7 +39,7 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	void Spawn(float charge){
-		GameObject temp = (GameObject)Instantiate(monster, buttonPostion.position, Quaternion.identity);
+		Transform temp = (Transform)Instantiate(monster, buttonPostion.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
 		currMonster.setCharge(charge);
 	}
