@@ -20,22 +20,22 @@ public class OnStartExecute : MonoBehaviour
 		if(story1)
 		{
 			screenSize = GUI.Window (1, screenSize, Story, "PH");
-			StartCoroutine (WaitAndChange (10, 1));
+			StartCoroutine (WaitAndChange (2, 1));
 		}
 		if(story2)
 		{
 			screenSize1 = GUI.Window (2, screenSize1, Story, "PH1");
-			StartCoroutine (WaitAndChange (10, 2));
+			StartCoroutine (WaitAndChange (2, 2));
 		}
 		if(story3)
 		{
 			screenSize2 = GUI.Window (3, screenSize2, Story, "PH2");
-			StartCoroutine (WaitAndChange (20, 3));
+			StartCoroutine (WaitAndChange (2, 3));
 		}
 		if(story4)
 		{
 			screenSize3 = GUI.Window (4, screenSize3, Story, "PH3");
-			StartCoroutine (WaitAndChange (10, 4));
+			StartCoroutine (WaitAndChange (2, 4));
 		}
 	}
 

@@ -7,15 +7,16 @@ public class SpawnButton : MonoBehaviour {
 	public float chargeLevel;
 	public bool timerOn;
 	public Transform monster;
+	public Transform particleEffect;
     public string keyboardInput;
 
 
     KeyCode keyboardButton;
 
-    private Transform buttonPostion;
+    private Transform buttonPosition;
 	void Start () {
 
-        buttonPostion = GetComponent<Transform>();
+        buttonPosition = GetComponent<Transform>();
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
 	}
 	
@@ -39,8 +40,10 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	void Spawn(float charge){
-		Transform temp = (Transform)Instantiate(monster, buttonPostion.position, Quaternion.identity);
+		Transform temp = (Transform)Instantiate(monster, buttonPosition.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
 		currMonster.setCharge(charge);
+		// ... instantiate the rocket facing right and set it's velocity to the right. 
+		Instantiate(monster, buttonPosition.position, Quaternion.identity);
 	}
 }

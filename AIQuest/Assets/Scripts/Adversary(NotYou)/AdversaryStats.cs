@@ -4,6 +4,7 @@ using System.Collections;
 public class AdversaryStats : MonoBehaviour {
 
 	private float mood = 50;
+	private float lastMood = 50;
 	private int yourLvl= 1;
 	private int kills  = 0;
 
@@ -17,31 +18,38 @@ public class AdversaryStats : MonoBehaviour {
  
 	// Update is called once per frame
 	void Update () {
-
-		//mood can't go above 200
-		if (mood > 100) {
-			mood = 100;
-		}
-		//mood can't go below 0
-		if (mood < 0) {
-			mood = 0;
-		}
 		//if you get the guy's mood to 0 or 200 you lose
-		if (mood == 0 || mood == 100) {
+		if (mood == 0 || mood >= 100) {
 			goToGameOver ();
 		}
-		else{
-			mood = (mood - (2f * (Time.deltaTime)));
-		}
-		
-		Debug.Log ("Mood: " + mood + " Level: " + yourLvl);
+		lastMood = mood;
+		mood = (mood - (2f * (Time.deltaTime)));
 		
 		yourLvl = 1 + (kills/5);
+		checkMusic();
+	}
 
+	public void checkMusic() {
+		Debug.Log ("Mood: " + mood);
+		if (mood <35 && lastMood >= 35) {
+			PlayClip("Music/FrusteratedPlayerState");
+		} else if (mood > 65 && lastMood <= 65) {
+			PlayClip("Music/BoredPlayerState");
+		} else if (mood < 65 && lastMood >= 65) {
+			PlayClip ("Music/NormalPlayerStateRevamped");
+		} else if (mood > 30 && lastMood <= 30) {
+			PlayClip ("Music/NormalPlayerStateRevamped");
+		}
+	}
+
+	public void PlayClip(string clipName){
+		audio.Stop();
+		audio.clip = Resources.Load(clipName)as AudioClip;
+		audio.Play();
 	}
 	//goes to new scene where the game could be restarted or quit out of
 	public void goToGameOver(){
-		
+		Application.LoadLevel("OnGameLaunchScene");
 	}
 	
 	public float getMood() {
@@ -50,8 +58,11 @@ public class AdversaryStats : MonoBehaviour {
 
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(float fun, float level) {
-		mood = mood + fun * (level/yourLvl);
+		lastMood = mood;
+		//temporarily disabling effects of the affect.
+		mood += 5;
 		kills++;
+		checkMusic();
 	}
 
 }
