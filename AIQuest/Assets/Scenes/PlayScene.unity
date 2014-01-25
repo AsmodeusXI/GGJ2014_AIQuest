@@ -368,10 +368,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 930196449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b71e4bc01de6d6f4b8f424c5b72448eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterOne: {fileID: 400000, guid: 4e53c13ee166758408ebb11cd616bd4a, type: 2}
+  chargeLevel: 0
+  timerOn: 0
+  monster: {fileID: 400000, guid: 4e53c13ee166758408ebb11cd616bd4a, type: 2}
+  keyboardInput: q
 --- !u!23 &930196451
 Renderer:
   m_ObjectHideFlags: 0
@@ -587,10 +590,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1327741662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e2a146d0b5b4424f9c3543df322ca83, type: 3}
+  m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterThree: {fileID: 400000, guid: c4d5960820fb0d74880b984b4f10d5d0, type: 2}
+  chargeLevel: 0
+  timerOn: 0
+  monster: {fileID: 400000, guid: c4d5960820fb0d74880b984b4f10d5d0, type: 2}
+  keyboardInput: e
 --- !u!23 &1327741664
 Renderer:
   m_ObjectHideFlags: 0
@@ -722,10 +728,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1353438284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc22a863209c76645880439bd7005dff, type: 3}
+  m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterTwo: {fileID: 400000, guid: 3c753b28c4e1f4747b8da2ebc6ff52a9, type: 2}
+  chargeLevel: 0
+  timerOn: 0
+  monster: {fileID: 400000, guid: 3c753b28c4e1f4747b8da2ebc6ff52a9, type: 2}
+  keyboardInput: w
 --- !u!1 &1616716149
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,10 +812,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2145047277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e27f835abd75a45bbd2c753c381c4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterFour: {fileID: 400000, guid: 8858a8a1dda73814aa67f8ef5dc8fa13, type: 2}
+  chargeLevel: 0
+  timerOn: 0
+  monster: {fileID: 400000, guid: 8858a8a1dda73814aa67f8ef5dc8fa13, type: 2}
+  keyboardInput: r
 --- !u!23 &2145047279
 Renderer:
   m_ObjectHideFlags: 0
