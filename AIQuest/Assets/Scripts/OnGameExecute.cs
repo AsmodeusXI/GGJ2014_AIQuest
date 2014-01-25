@@ -15,13 +15,20 @@ public class OnGameExecute : MonoBehaviour
 		GUI.enabled = startEnabled;
 		if (GUI.Button (new Rect (Screen.width/2-40, Screen.height/2-30, 80, 20), "Start")) 
 		{
-			//Load new scene here for game to commence
+			startEnabled = false;
+			creditsEnabled = false;
+			exitEnabled = false;
+			AutoFade.LoadLevel("StartScene",3,1,Color.black);
 		}
 
+		//GUI enabled causes button to disable/enable
 		GUI.enabled = creditsEnabled;
 		if (GUI.Button (new Rect (Screen.width / 2 - 40, Screen.height / 2, 80, 20), "Credits")) 
 		{
-
+			startEnabled = false;
+			creditsEnabled = false;
+			exitEnabled = false;
+			Application.LoadLevel("CreditScene");
 		}
 
 		//GUI enabled causes button to disable/enable
@@ -45,13 +52,13 @@ public class OnGameExecute : MonoBehaviour
 	private void ExitConfirm(int windowID)
 	{
 		//Closes application
-		if (GUILayout.Button("Confirm Exit") )
+		if (GUI.Button(new Rect(10,35,180,25), "Confirm Exit") )
 		{
 			Application.Quit();
 		}
 
 		//Cancels confirm window and re-enables main buttons
-		if (GUILayout.Button("Cancel Exit") )
+		if (GUI.Button(new Rect(10,75,180,25), "Cancel Exit") )
 		{
 			ExitGame = false;
 			startEnabled = true;
