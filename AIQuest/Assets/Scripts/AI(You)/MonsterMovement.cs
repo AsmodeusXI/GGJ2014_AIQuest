@@ -34,8 +34,11 @@ public class MonsterMovement : MonoBehaviour {
 		Monster temp = gameObject.GetComponent<Monster>();
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-		advStats.decrementMonsterQ(temp);
-		advStats.monsterAffects(temp);
+		if(advStats != null)
+		{
+			advStats.decrementMonsterQ(temp);
+			advStats.monsterAffects(temp);
+		}
 	}
 	
     public void Update()
