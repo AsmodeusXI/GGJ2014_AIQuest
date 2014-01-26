@@ -14,7 +14,7 @@ public class OnCreditExecute : MonoBehaviour
 
 		//Creates a button to display "Back" button
 		//TODO REPLACE BACK WITH BACK IMAGE
-		if (GUI.Button(new Rect(Screen.width * .8f, Screen.height * .85f, Screen.width * .2f, Screen.height*.2f), backTex, buttonStyle)) 
+		if (GUI.Button(new Rect(Screen.width * .725f, Screen.height * .9f, Screen.width * .15f, Screen.height * .07f), backTex, buttonStyle)) 
 		{
 			AutoFade.LoadLevel("OnGameLaunchScene",0,.5f,Color.black);
 		}
