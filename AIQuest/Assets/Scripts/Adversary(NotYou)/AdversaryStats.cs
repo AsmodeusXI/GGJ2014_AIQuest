@@ -19,7 +19,8 @@ public class AdversaryStats : MonoBehaviour {
 	void Update () {
 		if (gameOver) return;
 		timeBetweenSpawns += Time.deltaTime;
-		//if you get the guy's mood to 0 or 200 you lose
+
+//		Debug.Log ("mood: " + mood + " relative: " + getRelativeMood() + " max: " + (100 * yourLvl));
 		if (mood <= 0 || mood >= (100 * yourLvl)) {
 			gameOver = true;
 			goToGameOver ();
@@ -57,6 +58,10 @@ public class AdversaryStats : MonoBehaviour {
 
 	public float getMood() {
 		return mood;
+	}
+
+	public float getRelativeMood() {
+		return (mood / (yourLvl * 100)) * 100;
 	}
 
 	// Describes how a monster harms/improves the player when affecteds
