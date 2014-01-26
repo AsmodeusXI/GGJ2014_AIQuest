@@ -11,6 +11,11 @@ public class AdversaryStats : MonoBehaviour {
 	private int orcKills = 0;
 	private int lichKills = 0;
 	private int dragonKills = 0;
+	private int totalInQ = 0;
+	private int skeletonsInQ;
+	private int orcsInQ;
+	private int dragonsInQ;
+	private int lichInQ;
 	private bool gameOver;
 	private float timeBetweenSpawns;
  
@@ -82,7 +87,7 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	public bool tooLowLevel(Monster monster) {
-		return (monsterKills(monster) > monster.getLevel() * 10);
+		return (monsterKills(monster) + monsterQueued(monster) > monster.getLevel() * 10);
 	}
 
 	private int monsterKills(Monster monster) {
@@ -95,6 +100,20 @@ public class AdversaryStats : MonoBehaviour {
 				return dragonKills;
 		case Monster.MonsterType.lich:
 				return lichKills;
+		}
+		return 0;
+	}
+	
+	private int monsterQueued(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
+			return skeletonsInQ;
+		case Monster.MonsterType.orc:
+			return orcsInQ;
+		case Monster.MonsterType.dragon:
+			return dragonsInQ;
+		case Monster.MonsterType.lich:
+			return lichInQ;
 		}
 		return 0;
 	}
@@ -113,6 +132,40 @@ public class AdversaryStats : MonoBehaviour {
 		case Monster.MonsterType.lich:
 			lichKills++;
 			break;
-		}		
+		}
+	}
+	
+	public void incrementMonsterQ(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
+			skeletonsInQ++;
+			break;
+		case Monster.MonsterType.orc:
+			orcsInQ++;
+			break;
+		case Monster.MonsterType.dragon:
+			dragonsInQ++;
+			break;
+		case Monster.MonsterType.lich:
+			lichInQ++;
+			break;
+		}
+	}
+	
+	public void decrementMonsterQ(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
+			skeletonsInQ--;
+			break;
+		case Monster.MonsterType.orc:
+			orcsInQ--;
+			break;
+		case Monster.MonsterType.dragon:
+			dragonsInQ--;
+			break;
+		case Monster.MonsterType.lich:
+			lichInQ--;
+			break;
+		}
 	}
 }
