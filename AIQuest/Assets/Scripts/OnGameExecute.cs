@@ -10,15 +10,18 @@ public class OnGameExecute : MonoBehaviour
 
 	void OnGUI()
 	{
+		Texture backgroundTex = (Texture)Resources.Load ("main_screen");
 		GUIStyle buttonStyle = new GUIStyle ();
-		Texture startTex = (Texture)Resources.Load ("orcbutton");
+		Texture startTex = (Texture)Resources.Load ("startbutton");
 		Texture creditTex = (Texture)Resources.Load ("lichbutton");
 		Texture exitTex = (Texture)Resources.Load ("dragonbutton");
 
 		Rect windowRect = new Rect(Screen.width/2-100, Screen.height/2-60, 200, 120);
+		GUI.DrawTexture (new Rect(0,0,Screen.width,Screen.height), backgroundTex);
+
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = startEnabled;
-		if (GUI.Button (new Rect (Screen.width/2-40, Screen.height/2-75, 150, 50), startTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width-400, Screen.height-200, 300, 100), startTex, buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
