@@ -5,7 +5,11 @@ public class AdversaryStats : MonoBehaviour {
 
 	private float mood = 50;
 	private int yourLvl= 1;
-	private int kills  = 0;
+	private int totalKills  = 0;
+	private int skeletonKills = 0;
+	private int orcKills = 0;
+	private int lichKills = 0;
+	private int dragonKills = 0;
 
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private Vector3 	   healthScale;			// The local scale of the health bar initially (with full health).
@@ -21,14 +25,13 @@ public class AdversaryStats : MonoBehaviour {
 		if (mood <= 0 || mood >= 100) {
 			goToGameOver ();
 		}
-		mood = (mood - (2f * (Time.deltaTime)));
+		mood = (mood - (4f * (Time.deltaTime)));
 		
-		yourLvl = 1 + (kills/5);
+		yourLvl = 1 + (totalKills/5);
 		checkMusic();
 	}
 
 	public void checkMusic() {
-		Debug.Log ("Mood: " + audio.clip.name);
 		if (mood <35 && !audio.clip.name.Equals("FrusteratedPlayerState")) {
 			PlayClip("Music/FrusteratedPlayerState");
 		} else if (mood > 65 && !audio.clip.name.Equals("BoredPlayerState")) {
@@ -55,10 +58,35 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	// Describes how a monster harms/improves the player when affecteds
-	public void monsterAffects(float fun, float level) {
-		//temporarily disabling effects of the affect.
-		mood += 5;
-		kills++;
+	public void monsterAffects(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
+			if (skeletonKills > monster.level *100) {
+				return;
+			}
+			skeletonKills++;
+			if (mood > 65) {
+				mood += 5;
+			} else if (mood < 35) {
+
+			} else {
+
+			}
+			break;
+		case Monster.MonsterType.orc:
+			orcKills++;
+			mood += 5;
+			break;
+		case Monster.MonsterType.dragon:
+			dragonKills++;
+			mood += 5;
+			break;
+		case Monster.MonsterType.lich:
+			lichKills++;
+			mood += 5;
+			break;
+			}
+		totalKills++;
 		checkMusic();
 	}
 

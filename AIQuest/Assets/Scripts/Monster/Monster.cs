@@ -12,9 +12,10 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-	
+	public enum MonsterType {skeleton, orc, dragon, lich}
 	public float fun;
 	public int level;
+	public MonsterType type;
 	private float charge;
 	
 
@@ -25,6 +26,7 @@ public class Monster : MonoBehaviour
 	}
 
 	public int getLevel() {
+		Debug.Log ("monster level: " + level * charge);
 		return (int)(level * charge);
 	}
 	
