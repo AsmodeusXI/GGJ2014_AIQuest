@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class AdversaryStats : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class AdversaryStats : MonoBehaviour {
 	private int orcKills = 0;
 	private int lichKills = 0;
 	private int dragonKills = 0;
+	private bool gameOver;
 
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private Vector3 	   healthScale;			// The local scale of the health bar initially (with full health).
@@ -21,8 +23,10 @@ public class AdversaryStats : MonoBehaviour {
  
 	// Update is called once per frame
 	void Update () {
+		if (gameOver) return;
 		//if you get the guy's mood to 0 or 200 you lose
 		if (mood <= 0 || mood >= 100) {
+			gameOver = true;
 			goToGameOver ();
 		}
 		mood = (mood - (4f * (Time.deltaTime)));
