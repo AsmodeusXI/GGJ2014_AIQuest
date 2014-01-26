@@ -33,11 +33,12 @@ public class Scoring : MonoBehaviour {
 	
 	private void setScoreText(GameObject scoreArea, string ppKey, string returnType) {
 		GUIText scoreText = (GUIText)scoreArea.GetComponent<GUIText>();
+		scoreText.fontSize = 40;
 		if(returnType.Equals("int")) {
-			scoreText.text = scoreText.text + " " + PlayerPrefs.GetInt(ppKey);
+			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString();
 		} else if (returnType.Equals ("float")) {
 			decimal decCast = (decimal) PlayerPrefs.GetFloat(ppKey);
-			scoreText.text = scoreText.text + " " + decCast.ToString("n2");
+			scoreText.text = decCast.ToString("n2");
 		}
 	}
 }
