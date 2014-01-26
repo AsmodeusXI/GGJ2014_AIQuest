@@ -49,9 +49,9 @@ public class AdversarySwapper : MonoBehaviour {
 			spriter.sprite = rageSprite;
 		} else if (currentMood <= melancholyVal && currentMood > asleepVal) {
 			spriter.sprite = melancholySprite;
-		} else if (currentMood == quitVal) {
+		} else if (currentMood >= quitVal) {
 			spriter.sprite = quitSprite;
-		} else if (currentMood == asleepVal) {
+		} else if (currentMood <= asleepVal) {
 			spriter.sprite = asleepSprite;
 		}
 

@@ -50,6 +50,11 @@ public class AdversaryStats : MonoBehaviour {
 	}
 	//goes to new scene where the game could be restarted or quit out of
 	public void goToGameOver() {
+		StartCoroutine(Wait (3));
+	}
+	
+	IEnumerator Wait(int seconds) {
+		yield return new WaitForSeconds(seconds);
 		Application.LoadLevel("OnGameLaunchScene");
 	}
 
