@@ -23,7 +23,7 @@ public class SpawnButton : MonoBehaviour {
 			timerOn = true;
             }
 		if (timerOn) {
-			chargeLevel++;
+			chargeLevel += Time.deltaTime;
 		}
 		if (Input.GetKeyUp (keyboardButton)) {
 			Spawn (chargeLevel);
