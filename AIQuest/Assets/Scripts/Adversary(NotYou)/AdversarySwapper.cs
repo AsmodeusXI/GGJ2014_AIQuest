@@ -64,9 +64,9 @@ public class AdversarySwapper : MonoBehaviour {
 				timerOn = true;
 			} else {
 				timeValue += Time.deltaTime;
-				if(timeValue > 30) {
+				if(timeValue > 7) {
 					spriter.sprite = enjoyingSprite;
-				} else if (timeValue > 180) {
+				} else if (timeValue > 18) {
 					spriter.sprite = euphoriaSprite;
 				}
 			}
