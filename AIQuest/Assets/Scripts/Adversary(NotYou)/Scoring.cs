@@ -18,17 +18,11 @@ public class Scoring : MonoBehaviour {
 		setScoreText(dragonScore, "Dragon Spawns", "int");
 		setScoreText(lichScore, "Lich Spawns", "int");
 		setScoreText(timeScore, "Happy Time", "float");
-		StartCoroutine(Wait (6));
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-	}
-	
-	IEnumerator Wait(int seconds) {
-		yield return new WaitForSeconds(seconds);
-		Application.LoadLevel("OnGameLaunchScene");
 	}
 	
 	private void setScoreText(GameObject scoreArea, string ppKey, string returnType) {
