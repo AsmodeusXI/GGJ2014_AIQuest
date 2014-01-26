@@ -20,6 +20,9 @@ public class AdversarySwapper : MonoBehaviour {
 	public Sprite rageSprite;
 	public Sprite quitSprite;
 	public Sprite asleepSprite;
+	
+	private bool timerOn = false;
+	private float timeValue = 0;
 
 
 	// Use this for initialization
@@ -41,18 +44,40 @@ public class AdversarySwapper : MonoBehaviour {
 		
 		if (currentMood >= perturbedVal && currentMood < rageVal) {
 			spriter.sprite = perturbedSprite;
+			timerOn = false;
+			timeValue = 0;
 		} else if (currentMood <= boredVal && currentMood > melancholyVal) {
 			spriter.sprite = boredSprite;
+			timerOn = false;
+			timeValue = 0;
 		} else if (currentMood > boredVal && currentMood < perturbedVal) {
-			spriter.sprite = engagedSprite;
+			if(!timerOn) {
+				spriter.sprite = engagedSprite;
+				timerOn = true;
+			} else {
+				timeValue += Time.deltaTime;
+				if(timeValue > 30) {
+					spriter.sprite = enjoyingSprite;
+				} else if (timeValue > 180) {
+					spriter.sprite = euphoriaSprite;
+				}
+			}
 		} else if (currentMood >= rageVal && currentMood < quitVal) {
 			spriter.sprite = rageSprite;
+			timerOn = false;
+			timeValue = 0;
 		} else if (currentMood <= melancholyVal && currentMood > asleepVal) {
 			spriter.sprite = melancholySprite;
+			timerOn = false;
+			timeValue = 0;
 		} else if (currentMood >= quitVal) {
 			spriter.sprite = quitSprite;
+			timerOn = false;
+			timeValue = 0;
 		} else if (currentMood <= asleepVal) {
 			spriter.sprite = asleepSprite;
+			timerOn = false;
+			timeValue = 0;
 		}
 
 	}
