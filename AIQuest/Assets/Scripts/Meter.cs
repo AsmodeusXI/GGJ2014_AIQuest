@@ -18,7 +18,7 @@ public class Meter : MonoBehaviour {
 	void Update () {
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-		UpdateMeter(advStats.getMood());
+		UpdateMeter(advStats.getRelativeMood());
 	}
 	
 	// Takes a value 0-100.  This is translated into the mood bar.
