@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Meter : MonoBehaviour {
 	
@@ -23,11 +24,12 @@ public class Meter : MonoBehaviour {
 	// Takes a value 0-100.  This is translated into the mood bar.
 	// 0 being the bottom and 10 being the top.
 	void UpdateMeter(float mood){
+		mood = Math.Min(Math.Max(0, mood), 100);
 		float ratio = mood / 100;
 		
 		Vector3 newPos = new Vector3 (transform.position.x, minPos + ((maxPos - minPos) * ratio), transform.position.z);
-//		Debug.Log ("delta: " + (maxPos - minPos).ToString());
-//		Debug.Log (newPos.ToString());
+		Debug.Log ("delta: " + (maxPos - minPos).ToString());
+		Debug.Log (newPos.ToString());
 		transform.position = newPos;
 		
 	}
