@@ -63,7 +63,7 @@ public class AdversaryStats : MonoBehaviour {
 	public void monsterAffects(Monster monster) {
 		checkMusic();
 		if (tooLowLevel (monster)) return;
-		mood += (((int)monster.type + 1) * monster.level) * 3;
+		mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
 		incrementMonsterKills (monster);
 		totalKills++;
 	}
