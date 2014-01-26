@@ -13,13 +13,6 @@ public class AdversaryStats : MonoBehaviour {
 	private int dragonKills = 0;
 	private bool gameOver;
 
-	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
-	private Vector3 	   healthScale;			// The local scale of the health bar initially (with full health).
-
-	// Use this for initialization
-	void Start () {
-		
-	}
  
 	// Update is called once per frame
 	void Update () {
@@ -70,13 +63,13 @@ public class AdversaryStats : MonoBehaviour {
 	public void monsterAffects(Monster monster) {
 		checkMusic();
 		if (tooLowLevel (monster)) return;
-		mood += 5;
+		mood += (((int)monster.type + 1) * monster.level) * 3;
 		incrementMonsterKills (monster);
 		totalKills++;
 	}
 
 	private bool tooLowLevel(Monster monster) {
-		return (monsterKills(monster) > monster.getLevel() * 20);
+		return (monsterKills(monster) > monster.getLevel() * 10);
 	}
 
 	private int monsterKills(Monster monster) {
