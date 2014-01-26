@@ -48,7 +48,7 @@ public class AdversarySwapper : MonoBehaviour {
 	
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-		float currentMood = advStats.getMood();
+		float currentMood = advStats.getRelativeMood();
 		
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		
