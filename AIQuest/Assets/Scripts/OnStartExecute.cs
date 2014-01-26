@@ -10,32 +10,28 @@ public class OnStartExecute : MonoBehaviour
 
 	void OnGUI()
 	{
+		Texture slide1 = (Texture)Resources.Load ("slide1");
+		Texture slide2 = (Texture)Resources.Load ("slide2");
+		Texture slide3 = (Texture)Resources.Load ("slide3");
+
 		//Start Coroutine to Wait for next story image
 		Rect screenSize = new Rect (0, 0, Screen.width, Screen.height);
-		Rect screenSize1 = new Rect (0, 0, Screen.width, Screen.height);
-		Rect screenSize2 = new Rect (0, 0, Screen.width, Screen.height);
-		Rect screenSize3 = new Rect (0, 0, Screen.width, Screen.height);
 
 		//TODO REPLACE PH WITH STORY IMAGE
 		if(story1)
 		{
-			screenSize = GUI.Window (1, screenSize, Story, "PH");
-			StartCoroutine (WaitAndChange (2, 1));
+			GUI.DrawTexture( screenSize, slide1, ScaleMode.StretchToFill);
+			StartCoroutine (WaitAndChange (5, 1));
 		}
 		if(story2)
 		{
-			screenSize1 = GUI.Window (2, screenSize1, Story, "PH1");
-			StartCoroutine (WaitAndChange (2, 2));
+			GUI.DrawTexture( screenSize, slide2, ScaleMode.StretchToFill);
+			StartCoroutine (WaitAndChange (5, 2));
 		}
 		if(story3)
 		{
-			screenSize2 = GUI.Window (3, screenSize2, Story, "PH2");
-			StartCoroutine (WaitAndChange (2, 3));
-		}
-		if(story4)
-		{
-			screenSize3 = GUI.Window (4, screenSize3, Story, "PH3");
-			StartCoroutine (WaitAndChange (2, 4));
+			GUI.DrawTexture( screenSize, slide3, ScaleMode.StretchToFill);
+			StartCoroutine (WaitAndChange (5, 3));
 		}
 	}
 
@@ -54,18 +50,8 @@ public class OnStartExecute : MonoBehaviour
 		}
 		if (story == 3) 
 		{
-			story3 = false;
-			story4 = true;
-		}
-		if (story == 4) 
-		{
-			story4 = false;
 			AutoFade.LoadLevel ("PlayScene", 5, 1, Color.black);
 		}
-	}
-
-	private void Story(int windowID)
-	{
 
 	}
 }
