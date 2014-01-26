@@ -43,18 +43,14 @@ public class SpawnButton : MonoBehaviour {
         
 		if (timerOn) {
 			chargeLevel += Time.deltaTime;
-			
-			
-			flashingColors();
-			GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
-			AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-			Monster currMonster = monster.GetComponent<Monster>();
-			currMonster.setCharge(chargeLevel);	
+			flashingColors();	
 		}
 		
 		if (Input.GetKeyUp (keyboardButton)) {
 			Spawn (chargeLevel);
 			chargeLevel = 0;
+			timeBetweenSwaps = 0;
+			maxSwapTime = 0.5f;
 			chargeMarker = 0.5f;
 			timerOn = false;
 			spriter.color = Color.white;
@@ -76,21 +72,20 @@ public class SpawnButton : MonoBehaviour {
 		Monster currMonster = monster.GetComponent<Monster>();
 		currMonster.setCharge(chargeLevel);	
 		
-		if(chargeLevel <= 0.5 && chargeLevel > 0 && !advStats.tooLowLevel(currMonster)) {
-			Debug.Log ("high enough level");
+		if(!advStats.tooLowLevel(currMonster)) {
 			spriter.color = Color.red;
 		}
 		else if(maxSwapTime <= timeBetweenSwaps && buttonLit == false){
 			spriter.color = Color.yellow;
 			timeBetweenSwaps = 0;
 			buttonLit = true;
-			maxSwapTime = maxSwapTime - 0.05f;
+			maxSwapTime = Math.Max(maxSwapTime - 0.05f, 0.05f);
 		}
 		else if(maxSwapTime <= timeBetweenSwaps && buttonLit == true){
 			spriter.color = Color.white;
 			timeBetweenSwaps = 0;
 			buttonLit = false;
-			maxSwapTime = maxSwapTime - 0.05f;
+			maxSwapTime = Math.Max(maxSwapTime - 0.05f, 0.05f);
 		}
 	}
 }
