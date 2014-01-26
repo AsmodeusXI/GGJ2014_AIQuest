@@ -4,6 +4,10 @@
 TagManager:
   tags:
   - Adversary
+  - AdversaryBored
+  - AdversaryEngaged
+  - AdversaryIrate
+  - AdversaryEmotion
   - MonsterTarget
   - 
   Builtin Layer 0: Default

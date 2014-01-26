@@ -936,28 +936,29 @@ Transform:
   m_LocalScale: {x: .71423471, y: .755937517, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!1 &1616716149
+--- !u!1 &1510818240
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1616716151}
-  - 212: {fileID: 1616716150}
+  - 4: {fileID: 1510818242}
+  - 212: {fileID: 1510818241}
+  - 114: {fileID: 1510818243}
   m_Layer: 0
-  m_Name: playerBored
-  m_TagString: Untagged
+  m_Name: AdversaryEmotions
+  m_TagString: AdversaryEmotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!212 &1616716150
+--- !u!212 &1510818241
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1616716149}
+  m_GameObject: {fileID: 1510818240}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -973,19 +974,39 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 935444a9e5bb04a59a2f45dd1a183521, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95018aa92987cd34f853ee7a1179a5a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!4 &1616716151
+--- !u!4 &1510818242
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1616716149}
+  m_GameObject: {fileID: 1510818240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.29999995, y: 2.0999999, z: 18}
+  m_LocalScale: {x: 1.43520594, y: 1.7101841, z: 1.7101841}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1510818243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1510818240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9388135b3e243d8b883660d230a5d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perturbedSprite: {fileID: 21300000, guid: 6f19691b21adf274d898598d786de814, type: 3}
+  engagedSprite: {fileID: 21300000, guid: 95018aa92987cd34f853ee7a1179a5a6, type: 3}
+  boredSprite: {fileID: 21300000, guid: 6c1d346c7a3bec842b9ac09116e60909, type: 3}
+  enjoyingSprite: {fileID: 21300000, guid: 70c7dc77ede607d4993a0fca8b4a06b8, type: 3}
+  euphoriaSprite: {fileID: 21300000, guid: 4751656a899496b4cae8ad3150c03a18, type: 3}
+  melancholySprite: {fileID: 21300000, guid: 61490f6843c7c23468f78bfae5e9bb86, type: 3}
+  rageSprite: {fileID: 21300000, guid: 115f7c38dc195104593aaa3f03bb8700, type: 3}
+  quitSprite: {fileID: 21300000, guid: 9cf4034bcc546ee4a80032e5de7f074c, type: 3}
+  asleepSprite: {fileID: 21300000, guid: ab87b7f52be4373498c676dba87f2c46, type: 3}
 --- !u!1 &1656924353
 GameObject:
   m_ObjectHideFlags: 0

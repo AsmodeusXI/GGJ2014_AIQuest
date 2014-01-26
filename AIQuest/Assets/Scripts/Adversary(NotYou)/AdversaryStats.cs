@@ -49,10 +49,10 @@ public class AdversaryStats : MonoBehaviour {
 		audio.Play();
 	}
 	//goes to new scene where the game could be restarted or quit out of
-	public void goToGameOver(){
+	public void goToGameOver() {
 		Application.LoadLevel("OnGameLaunchScene");
 	}
-	
+
 	public float getMood() {
 		return mood;
 	}
