@@ -429,10 +429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeLevel: 0
-  timerOn: 0
   monster: {fileID: 400000, guid: 4e53c13ee166758408ebb11cd616bd4a, type: 2}
   keyboardInput: q
+  button: {fileID: 1488547696}
 --- !u!64 &930196451
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -555,7 +554,7 @@ GameObject:
   - 212: {fileID: 1261607778}
   m_Layer: 0
   m_Name: OrcButton (Two/W)
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,10 +622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeLevel: 0
-  timerOn: 0
   monster: {fileID: 400000, guid: c4d5960820fb0d74880b984b4f10d5d0, type: 2}
   keyboardInput: e
+  button: {fileID: 1656924353}
 --- !u!64 &1327741665
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -718,10 +716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeLevel: 0
-  timerOn: 0
   monster: {fileID: 400000, guid: 3c753b28c4e1f4747b8da2ebc6ff52a9, type: 2}
   keyboardInput: w
+  button: {fileID: 1261607777}
 --- !u!1 &1476567559
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +794,7 @@ GameObject:
   - 212: {fileID: 1488547697}
   m_Layer: 0
   m_Name: SkeletonButton (One/Q)
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -847,7 +844,7 @@ GameObject:
   - 212: {fileID: 1503438988}
   m_Layer: 0
   m_Name: LichButton (Four/R)
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -873,7 +870,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 9329c2ad58024dc4ea22156a65152f21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2244965c1f06164fbe97534e0caa515, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1503438989
 Transform:
@@ -968,7 +965,7 @@ GameObject:
   - 212: {fileID: 1656924354}
   m_Layer: 0
   m_Name: DragonButton (Three/E)
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1133,10 +1130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7301a03af72cc424482a88ea8e92b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeLevel: 0
-  timerOn: 0
   monster: {fileID: 400000, guid: 8858a8a1dda73814aa67f8ef5dc8fa13, type: 2}
   keyboardInput: r
+  button: {fileID: 1503438987}
 --- !u!64 &2145047280
 MeshCollider:
   m_ObjectHideFlags: 0
