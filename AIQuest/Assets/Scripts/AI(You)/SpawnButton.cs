@@ -77,6 +77,20 @@ public class SpawnButton : MonoBehaviour {
 				firstRed = true;
 				maxSwapTime = 0.5f;
 				spriter.color = Color.red;
+				switch (currMonster.type) {
+				case Monster.MonsterType.skeleton:
+					PlayClip("SoundFX/Skeleton");
+					break;
+				case Monster.MonsterType.orc:
+					PlayClip("SoundFX/Orc");
+					break;
+				case Monster.MonsterType.dragon:
+					PlayClip("SoundFX/Dragon");
+					break;
+				case Monster.MonsterType.lich:
+					PlayClip("SoundFX/Lich");
+					break;
+				}
 				return;
 			}
 			if(maxSwapTime <= timeBetweenSwaps && buttonLit == false){
@@ -104,5 +118,13 @@ public class SpawnButton : MonoBehaviour {
 			buttonLit = false;
 			maxSwapTime = Math.Max(maxSwapTime - 0.05f, 0.05f);
 		}
+	}
+
+	public void PlayClip(string clipName){
+		audio.Stop();
+		audio.Pause();
+		audio.clip = null;
+		audio.clip = Resources.Load(clipName)as AudioClip;
+		audio.Play();
 	}
 }
