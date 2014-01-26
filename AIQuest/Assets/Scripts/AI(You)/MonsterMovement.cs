@@ -12,7 +12,7 @@ public class MonsterMovement : MonoBehaviour {
 
     private Vector3 anchor;
 
-    public Vector3 goal;
+    private Vector3 goal;
     private Transform me;
 
 	// Use this for initialization
