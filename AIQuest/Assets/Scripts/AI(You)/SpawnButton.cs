@@ -6,6 +6,8 @@ public class SpawnButton : MonoBehaviour {
 
 	private float chargeLevel;
 	private bool timerOn;
+    public GameObject lvlIndicator;
+    private MonsterLevelIndicator lvlSign;
 	public Transform monster;
     public string keyboardInput;
     public GameObject button;
@@ -13,22 +15,34 @@ public class SpawnButton : MonoBehaviour {
     private bool colorSwitch;
     
     KeyCode keyboardButton;
-    
+
+    private int lastLevel;
+
     private Transform buttonPosition;
 	void Start () {
         buttonPosition = GetComponent<Transform>();    
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
+        lvlSign = lvlIndicator.GetComponent<MonsterLevelIndicator>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(keyboardButton) ){
+            lvlSign.increment();
 			timerOn = true;
+            lastLevel = 0;
         }
         
 		if (timerOn) {
 			chargeLevel += Time.deltaTime;
+
+            int effectiveLevel = Mathf.FloorToInt(chargeLevel);
+            if(effectiveLevel != lastLevel)
+            {
+                lastLevel = effectiveLevel;
+                lvlSign.increment();
+            }
 
 			GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 			AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
@@ -44,6 +58,7 @@ public class SpawnButton : MonoBehaviour {
 		}
 		
 		if (Input.GetKeyUp (keyboardButton)) {
+            lvlSign.hide();
 			Spawn (chargeLevel);
 			chargeLevel = 0;
 			timerOn = false;
@@ -52,11 +67,14 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
+        lvlSign.unhide();
 		timerOn = true;
+        lastLevel = 0;
 		spriter.color = Color.red;
 	}
 
 	void OnMouseUp(){
+        lvlSign.hide();
 		Spawn (chargeLevel);
 		chargeLevel = 0;
 		timerOn = false;
