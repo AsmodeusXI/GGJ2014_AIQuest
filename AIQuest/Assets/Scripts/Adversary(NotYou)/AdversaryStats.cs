@@ -36,9 +36,9 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	public void checkMusic() {
-		if (mood <35 && !audio.clip.name.Equals("FrusteratedPlayerState")) {
+		if (mood > 65 && !audio.clip.name.Equals("FrusteratedPlayerState")) {
 			PlayClip("Music/FrusteratedPlayerState");
-		} else if (mood > 65 && !audio.clip.name.Equals("BoredPlayerState")) {
+		} else if (mood < 35 && !audio.clip.name.Equals("BoredPlayerState")) {
 			PlayClip("Music/BoredPlayerState");
 		} else if ((mood < 65 && mood > 35) && !audio.clip.name.Equals("NormalPlayerStateRevamped")) {
 			PlayClip ("Music/NormalPlayerStateRevamped");
