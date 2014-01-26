@@ -6,7 +6,6 @@ public class OnStartExecute : MonoBehaviour
 	private bool story1 = true;
 	private bool story2 = false;
 	private bool story3 = false;
-	private bool story4 = false;
 
 	void OnGUI()
 	{
