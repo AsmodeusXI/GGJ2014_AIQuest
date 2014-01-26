@@ -10,12 +10,15 @@ public class OnGameExecute : MonoBehaviour
 
 	void OnGUI()
 	{
+		GUIStyle buttonStyle = new GUIStyle ();
 		Texture startTex = (Texture)Resources.Load ("orcbutton");
+		Texture creditTex = (Texture)Resources.Load ("lichbutton");
+		Texture exitTex = (Texture)Resources.Load ("dragonbutton");
 
 		Rect windowRect = new Rect(Screen.width/2-100, Screen.height/2-60, 200, 120);
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = startEnabled;
-		if (GUI.Button (new Rect (Screen.width/2-40, Screen.height/2-30, 80, 20), startTex)) 
+		if (GUI.Button (new Rect (Screen.width/2-40, Screen.height/2-75, 150, 50), startTex, buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -25,7 +28,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = creditsEnabled;
-		if (GUI.Button (new Rect (Screen.width / 2 - 40, Screen.height / 2, 80, 20), "Credits")) 
+		if (GUI.Button (new Rect (Screen.width / 2 - 40, Screen.height / 2, 150, 50), creditTex, buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -35,7 +38,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = exitEnabled;
-		if (GUI.Button (new Rect (Screen.width/2-40, Screen.height/2+30, 80, 20), "Quit")) 
+		if (GUI.Button (new Rect (Screen.width/2-40, Screen.height/2+75, 150, 50), exitTex, buttonStyle)) 
 		{
 			//ExitGame to true for Window Pop-up
 			ExitGame = true;

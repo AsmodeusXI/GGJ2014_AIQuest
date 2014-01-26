@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3e3b71c6f1145e7b4c812cb9d95547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
   fun: 30
-  level: 15
+  level: 1
+  type: 2
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
