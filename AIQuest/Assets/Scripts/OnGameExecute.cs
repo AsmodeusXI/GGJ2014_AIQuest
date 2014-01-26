@@ -4,7 +4,6 @@ using System.Collections;
 public class OnGameExecute : MonoBehaviour 
 {
 	private bool startEnabled = true;
-	private bool exitEnabled = true;
 	private bool creditsEnabled = true;
 	private bool tutorialEnabled = true;
 
@@ -12,6 +11,7 @@ public class OnGameExecute : MonoBehaviour
 	{
 		Texture backgroundTex = (Texture)Resources.Load ("main_screen");
 		GUIStyle buttonStyle = new GUIStyle ();
+		buttonStyle.border = new RectOffset (0, 0, 0, 0);
 		Texture startTex = (Texture)Resources.Load ("startbutton");
 		Texture creditTex = (Texture)Resources.Load ("creditsbutton");
 		Texture tutorialTex = (Texture)Resources.Load ("tutorialbutton");
@@ -26,36 +26,32 @@ public class OnGameExecute : MonoBehaviour
 		{
 			startEnabled = false;
 			creditsEnabled = false;
-			exitEnabled = false;
 			tutorialEnabled = false;
 			AutoFade.LoadLevel("StartScene",2,1,Color.black);
 		}
 
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = creditsEnabled;
-		if (GUI.Button (new Rect (Screen.width * .04f, Screen.height * .65f, Screen.width * .2f, Screen.height * .2f), creditTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .06f, Screen.height * .65f, Screen.width * .15f, Screen.height * .07f), creditTex, buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
-			exitEnabled = false;
 			tutorialEnabled =false;
 			Application.LoadLevel("CreditScene");
 		}
 
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = tutorialEnabled;
-		if (GUI.Button (new Rect (Screen.width * .04f, Screen.height * .75f, Screen.width * .2f, Screen.height * .2f), tutorialTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .06f, Screen.height * .75f, Screen.width * .15f, Screen.height * .07f), tutorialTex, buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
-			exitEnabled = false;
 			tutorialEnabled = false;
 			Application.LoadLevel("TutorialScene");
 		}
 
 		//GUI enabled causes button to disable/enable
-		GUI.enabled = exitEnabled;
-		if (GUI.Button (new Rect (Screen.width * .04f, Screen.height * .85f, Screen.width * .2f, Screen.height * .2f), exitTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .06f, Screen.height * .85f, Screen.width * .15f, Screen.height * .07f), exitTex, buttonStyle)) 
 		{
 			Application.Quit();
 		}
