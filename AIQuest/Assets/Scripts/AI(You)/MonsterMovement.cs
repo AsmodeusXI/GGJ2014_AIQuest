@@ -39,7 +39,7 @@ public class MonsterMovement : MonoBehaviour {
         percentComplete += Time.deltaTime * percentPerSecond;
         
         
-        Debug.Log(string.Format("percentConvered: {0}: {1},{2}", percentComplete,this.gameObject.transform.position, /*anchor.transform.position,*/ goal ));
+//        Debug.Log(string.Format("percentConvered: {0}: {1},{2}", percentComplete,this.gameObject.transform.position, /*anchor.transform.position,*/ goal ));
 
 
         me.transform.position = Vector3.Lerp(anchor, goal, percentComplete);

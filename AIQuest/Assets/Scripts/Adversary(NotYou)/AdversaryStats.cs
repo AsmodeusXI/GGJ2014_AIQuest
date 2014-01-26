@@ -12,28 +12,28 @@ public class AdversaryStats : MonoBehaviour {
 	private int lichKills = 0;
 	private int dragonKills = 0;
 	private bool gameOver;
+	private float timeBetweenSpawns;
 
  
 	// Update is called once per frame
 	void Update () {
 		if (gameOver) return;
+		timeBetweenSpawns += Time.deltaTime;
 		//if you get the guy's mood to 0 or 200 you lose
-		if (mood <= 0 || mood >= 100) {
+		if (mood <= 0 || mood >= (100 * yourLvl)) {
 			gameOver = true;
 			goToGameOver ();
 		}
-		mood = (mood - (4f * (Time.deltaTime)));
-		
-		yourLvl = 1 + (totalKills/5);
+		mood = (mood - ((4f*(0.5f+ timeBetweenSpawns)) * (Time.deltaTime)));
 		checkMusic();
 	}
 
 	public void checkMusic() {
-		if (mood > 65 && !audio.clip.name.Equals("FrusteratedPlayerState")) {
+		if (mood > (.65 * (yourLvl*100)) && !audio.clip.name.Equals("FrusteratedPlayerState")) {
 			PlayClip("Music/FrusteratedPlayerState");
-		} else if (mood < 35 && !audio.clip.name.Equals("BoredPlayerState")) {
+		} else if (mood < (.35*(yourLvl*100)) && !audio.clip.name.Equals("BoredPlayerState")) {
 			PlayClip("Music/BoredPlayerState");
-		} else if ((mood < 65 && mood > 35) && !audio.clip.name.Equals("NormalPlayerStateRevamped")) {
+		} else if ((mood < (.65 * (yourLvl*100)) && mood > (.35*(yourLvl*100))) && !audio.clip.name.Equals("NormalPlayerStateRevamped")) {
 			PlayClip ("Music/NormalPlayerStateRevamped");
 		} 
 	}
@@ -61,14 +61,18 @@ public class AdversaryStats : MonoBehaviour {
 
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(Monster monster) {
+		if (gameOver) return;
+		timeBetweenSpawns = 0;
 		checkMusic();
 		if (tooLowLevel (monster)) return;
 		mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
 		incrementMonsterKills (monster);
 		totalKills++;
+		yourLvl = Math.Max (1, totalKills / 50);
+		Debug.Log ("total spawned: " + totalKills);
 	}
 
-	private bool tooLowLevel(Monster monster) {
+	public bool tooLowLevel(Monster monster) {
 		return (monsterKills(monster) > monster.getLevel() * 10);
 	}
 

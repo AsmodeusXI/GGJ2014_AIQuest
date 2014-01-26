@@ -9,8 +9,8 @@ public class Meter : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		Debug.Log ("Min Pos: " + minPos);
-		Debug.Log ("Max Pos: " + maxPos);
+//		Debug.Log ("Min Pos: " + minPos);
+//		Debug.Log ("Max Pos: " + maxPos);
 
 	}
 	
@@ -28,8 +28,8 @@ public class Meter : MonoBehaviour {
 		float ratio = mood / 100;
 		
 		Vector3 newPos = new Vector3 (transform.position.x, minPos + ((maxPos - minPos) * ratio), transform.position.z);
-		Debug.Log ("delta: " + (maxPos - minPos).ToString());
-		Debug.Log (newPos.ToString());
+//		Debug.Log ("delta: " + (maxPos - minPos).ToString());
+//		Debug.Log (newPos.ToString());
 		transform.position = newPos;
 		
 	}

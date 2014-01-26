@@ -30,17 +30,26 @@ public class SpawnButton : MonoBehaviour {
         
 		if (timerOn) {
 			chargeLevel += Time.deltaTime;
+
+			GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+			AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+			Monster currMonster = monster.GetComponent<Monster>();
+			currMonster.setCharge(chargeLevel);
+			if (!advStats.tooLowLevel(currMonster)) {
+				Debug.Log ("high enough level");
+				spriter.color = Color.red;
+			}
 			
 			if (chargeLevel >= chargeMarker) {
 				colorSwitch = !colorSwitch;
 				chargeMarker += chargeMarker;
 			}
 			
-			if(colorSwitch) {
-				spriter.color = Color.yellow;
-			} else {
-				spriter.color = Color.white;
-			}
+//			if(colorSwitch) {
+//				spriter.color = Color.yellow;
+//			} else {
+//				spriter.color = Color.white;
+//			}
 		}
 		
 		if (Input.GetKeyUp (keyboardButton)) {
