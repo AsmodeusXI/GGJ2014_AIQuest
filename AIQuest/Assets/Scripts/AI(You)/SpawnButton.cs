@@ -37,6 +37,8 @@ public class SpawnButton : MonoBehaviour {
 			if (!advStats.tooLowLevel(currMonster)) {
 				Debug.Log ("high enough level");
 				spriter.color = Color.red;
+			} else {
+				spriter.color = Color.yellow;
 			}
 			
 		}
