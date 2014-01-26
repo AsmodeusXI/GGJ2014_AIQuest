@@ -6,6 +6,8 @@ public class SpawnButton : MonoBehaviour {
 
 	private float chargeLevel;
 	private bool timerOn;
+    public GameObject lvlIndicator;
+    private MonsterLevelIndicator lvlSign;
 	public Transform monster;
     public string keyboardInput;
     public GameObject button;
@@ -16,19 +18,26 @@ public class SpawnButton : MonoBehaviour {
     private float maxSwapTime = 0.5f;
     
     KeyCode keyboardButton;
-    
+
+    private int lastLevel;
+
     private Transform buttonPosition;
 	void Start () {
         buttonPosition = GetComponent<Transform>();    
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
+        lvlSign = lvlIndicator.GetComponent<MonsterLevelIndicator>();
     }
     
-	void OnMouseDown(){
-		timerOn = true;
+
+    void OnMouseDown(){
+        timerOn = true;
+        lvlSign.unhide();
+        lastLevel = 0;
 	}
 	
-	void OnMouseUp(){
+    void OnMouseUp(){
+        lvlSign.hide();
 		Spawn (chargeLevel);
 		chargeLevel = 0;
 		timerOn = false;
@@ -38,15 +47,25 @@ public class SpawnButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(keyboardButton) ){
+            lvlSign.increment();
 			timerOn = true;
+            lastLevel = 0;
         }
         
 		if (timerOn) {
 			chargeLevel += Time.deltaTime;
 			flashingColors();	
+            
+            int effectiveLevel = Mathf.FloorToInt(chargeLevel);
+            if(effectiveLevel != lastLevel)
+            {
+                lastLevel = effectiveLevel;
+                lvlSign.increment();
+            }
 		}
 		
 		if (Input.GetKeyUp (keyboardButton)) {
+            lvlSign.hide();
 			Spawn (chargeLevel);
 			chargeLevel = 0;
 			timeBetweenSwaps = 0;
@@ -57,6 +76,11 @@ public class SpawnButton : MonoBehaviour {
 		}
 	}
 	
+
+
+
+
+    
 	void Spawn(float charge){
 		Transform temp = (Transform)Instantiate(monster, buttonPosition.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
