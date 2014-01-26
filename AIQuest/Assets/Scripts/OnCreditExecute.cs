@@ -5,15 +5,18 @@ public class OnCreditExecute : MonoBehaviour
 {
 	void OnGUI()
 	{
+		Texture backgroundTex = (Texture)Resources.Load ("credits");
+		Texture backTex = (Texture)Resources.Load ("backbutton");
+		GUIStyle buttonStyle = new GUIStyle ();
 		Rect sceneRect = new Rect (0, 0, Screen.width, Screen.height);
-		//TODO REPLACE PH WITH CREDITS ART
-		GUI.Box (sceneRect, "PH");
+
+		GUI.DrawTexture (sceneRect, backgroundTex);
 
 		//Creates a button to display "Back" button
 		//TODO REPLACE BACK WITH BACK IMAGE
-		if (GUI.Button(new Rect(sceneRect.width-100,sceneRect.height-60,70,30), "Back")) 
+		if (GUI.Button(new Rect(Screen.width * .8f, Screen.height * .85f, Screen.width * .2f, Screen.height*.2f), backTex, buttonStyle)) 
 		{
-			Application.LoadLevel("OnGameLaunchScene");
+			AutoFade.LoadLevel("OnGameLaunchScene",0,.5f,Color.black);
 		}
 	}
 }

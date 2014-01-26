@@ -35,7 +35,7 @@ public class OnStartExecute : MonoBehaviour
 			thisColor.a = 0.2f;
 			GUI.color = thisColor;
 			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), "Press Spacebar to skip");
-			StartCoroutine (WaitAndChange (5, 1));
+			StartCoroutine (WaitAndChange (6, 1));
 		}
 		if(story2)
 		{
@@ -44,7 +44,7 @@ public class OnStartExecute : MonoBehaviour
 			thisColor.a = 0.2f;
 			GUI.color = thisColor;
 			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), "Press Spacebar to skip");
-			StartCoroutine (WaitAndChange (5, 2));
+			StartCoroutine (WaitAndChange (6, 2));
 		}
 		if(story3)
 		{
@@ -53,7 +53,7 @@ public class OnStartExecute : MonoBehaviour
 			thisColor.a = 0.2f;
 			GUI.color = thisColor;
 			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), "Press Spacebar to skip");
-			StartCoroutine (WaitAndChange (5, 3));
+			StartCoroutine (WaitAndChange (7, 3));
 		}
 	}
 
