@@ -10,7 +10,6 @@ public class SpawnButton : MonoBehaviour {
     public string keyboardInput;
     public GameObject button;
     private SpriteRenderer spriter;
-    private float chargeMarker = 0.5f;
     private bool colorSwitch;
     
     KeyCode keyboardButton;
@@ -40,22 +39,11 @@ public class SpawnButton : MonoBehaviour {
 				spriter.color = Color.red;
 			}
 			
-			if (chargeLevel >= chargeMarker) {
-				colorSwitch = !colorSwitch;
-				chargeMarker += chargeMarker;
-			}
-			
-//			if(colorSwitch) {
-//				spriter.color = Color.yellow;
-//			} else {
-//				spriter.color = Color.white;
-//			}
 		}
 		
 		if (Input.GetKeyUp (keyboardButton)) {
 			Spawn (chargeLevel);
 			chargeLevel = 0;
-			chargeMarker = 0;
 			timerOn = false;
 			spriter.color = Color.white;
 		}

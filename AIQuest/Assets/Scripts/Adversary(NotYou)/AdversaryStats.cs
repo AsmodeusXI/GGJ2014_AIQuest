@@ -13,7 +13,6 @@ public class AdversaryStats : MonoBehaviour {
 	private int dragonKills = 0;
 	private bool gameOver;
 	private float timeBetweenSpawns;
-
  
 	// Update is called once per frame
 	void Update () {
@@ -47,12 +46,17 @@ public class AdversaryStats : MonoBehaviour {
 	}
 	//goes to new scene where the game could be restarted or quit out of
 	public void goToGameOver() {
+		PlayerPrefs.SetInt("Total Spawns", totalKills);
+		PlayerPrefs.SetInt("Skeleton Spawns", skeletonKills);
+		PlayerPrefs.SetInt("Orc Spawns", orcKills);
+		PlayerPrefs.SetInt("Dragon Spawns", dragonKills);
+		PlayerPrefs.SetInt("Lich Spawns", lichKills);
 		StartCoroutine(Wait (3));
 	}
 	
 	IEnumerator Wait(int seconds) {
 		yield return new WaitForSeconds(seconds);
-		Application.LoadLevel("OnGameLaunchScene");
+		Application.LoadLevel("ScoreScene");
 	}
 
 	public float getMood() {
