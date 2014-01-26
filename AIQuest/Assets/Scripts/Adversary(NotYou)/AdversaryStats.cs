@@ -4,7 +4,6 @@ using System.Collections;
 public class AdversaryStats : MonoBehaviour {
 
 	private float mood = 50;
-	private float lastMood = 50;
 	private int yourLvl= 1;
 	private int kills  = 0;
 
@@ -22,7 +21,6 @@ public class AdversaryStats : MonoBehaviour {
 		if (mood <= 0 || mood >= 100) {
 			goToGameOver ();
 		}
-		lastMood = mood;
 		mood = (mood - (2f * (Time.deltaTime)));
 		
 		yourLvl = 1 + (kills/5);
@@ -58,7 +56,6 @@ public class AdversaryStats : MonoBehaviour {
 
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(float fun, float level) {
-		lastMood = mood;
 		//temporarily disabling effects of the affect.
 		mood += 5;
 		kills++;
