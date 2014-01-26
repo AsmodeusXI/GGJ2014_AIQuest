@@ -7,24 +7,21 @@ public class SpawnButton : MonoBehaviour {
 	public float chargeLevel;
 	public bool timerOn;
 	public Transform monster;
-	public Transform particleEffect;
     public string keyboardInput;
-
-
+    
     KeyCode keyboardButton;
-
+    
     private Transform buttonPosition;
 	void Start () {
-
-        buttonPosition = GetComponent<Transform>();
+        buttonPosition = GetComponent<Transform>();    
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
-	}
+        }
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(keyboardButton) ){
 			timerOn = true;
-		}
+            }
 		if (timerOn) {
 			chargeLevel += Time.deltaTime;
 		}
