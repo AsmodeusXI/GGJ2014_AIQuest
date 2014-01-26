@@ -11,6 +11,7 @@ public class SpawnButton : MonoBehaviour {
     public GameObject button;
     private SpriteRenderer spriter;
     private bool buttonLit;
+	private bool firstRed;
     private float timeBetweenSwaps;
     private float maxSwapTime = 0.5f;
     
@@ -50,6 +51,7 @@ public class SpawnButton : MonoBehaviour {
 			chargeLevel = 0;
 			timeBetweenSwaps = 0;
 			maxSwapTime = 0.5f;
+			firstRed = false;
 			timerOn = false;
 			spriter.color = Color.white;
 		}
@@ -71,7 +73,24 @@ public class SpawnButton : MonoBehaviour {
 		currMonster.setCharge(chargeLevel);	
 		
 		if(!advStats.tooLowLevel(currMonster)) {
-			spriter.color = Color.red;
+			if (!firstRed) {
+				firstRed = true;
+				maxSwapTime = 0.5f;
+				spriter.color = Color.red;
+				return;
+			}
+			if(maxSwapTime <= timeBetweenSwaps && buttonLit == false){
+				spriter.color = Color.red;
+				timeBetweenSwaps = 0;
+				buttonLit = true;
+				maxSwapTime = Math.Max(maxSwapTime - 0.05f, 0.05f);
+			}
+			else if(maxSwapTime <= timeBetweenSwaps && buttonLit == true){
+				spriter.color = Color.white;
+				timeBetweenSwaps = 0;
+				buttonLit = false;
+				maxSwapTime = Math.Max(maxSwapTime - 0.05f, 0.05f);
+			}
 		}
 		else if(maxSwapTime <= timeBetweenSwaps && buttonLit == false){
 			spriter.color = Color.yellow;
