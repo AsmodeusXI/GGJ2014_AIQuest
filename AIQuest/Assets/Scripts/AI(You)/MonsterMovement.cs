@@ -9,7 +9,7 @@ public class MonsterMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//destroys after 3 seconds
-		Destroy(gameObject, 3);
+		Destroy(gameObject, 1);
 	}
 	
 	void OnDestroy() {

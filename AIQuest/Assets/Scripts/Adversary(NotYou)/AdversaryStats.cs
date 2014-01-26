@@ -30,16 +30,14 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	public void checkMusic() {
-		Debug.Log ("Mood: " + mood);
-		if (mood <35 && lastMood >= 35) {
+		Debug.Log ("Mood: " + audio.clip.name);
+		if (mood <35 && !audio.clip.name.Equals("FrusteratedPlayerState")) {
 			PlayClip("Music/FrusteratedPlayerState");
-		} else if (mood > 65 && lastMood <= 65) {
+		} else if (mood > 65 && !audio.clip.name.Equals("BoredPlayerState")) {
 			PlayClip("Music/BoredPlayerState");
-		} else if (mood < 65 && lastMood >= 65) {
+		} else if ((mood < 65 && mood > 35) && !audio.clip.name.Equals("NormalPlayerStateRevamped")) {
 			PlayClip ("Music/NormalPlayerStateRevamped");
-		} else if (mood > 30 && lastMood <= 30) {
-			PlayClip ("Music/NormalPlayerStateRevamped");
-		}
+		} 
 	}
 
 	public void PlayClip(string clipName){
