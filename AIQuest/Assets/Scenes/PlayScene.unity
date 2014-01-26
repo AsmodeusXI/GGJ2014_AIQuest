@@ -1271,6 +1271,8 @@ GameObject:
   - 4: {fileID: 1510818242}
   - 212: {fileID: 1510818241}
   - 114: {fileID: 1510818243}
+  - 82: {fileID: 1510818245}
+  - 114: {fileID: 1510818244}
   m_Layer: 0
   m_Name: AdversaryEmotions
   m_TagString: AdversaryEmotion
@@ -1332,6 +1334,79 @@ MonoBehaviour:
   rageSprite: {fileID: 21300000, guid: 39908935f91ee1b46b7bf532b2abf146, type: 3}
   quitSprite: {fileID: 21300000, guid: 9cf4034bcc546ee4a80032e5de7f074c, type: 3}
   asleepSprite: {fileID: 21300000, guid: ab87b7f52be4373498c676dba87f2c46, type: 3}
+  adversaryPlayer: {fileID: 1510818244}
+--- !u!114 &1510818244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1510818240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c6ed64ae771474592e4754edccf575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adversarySounds:
+  - {fileID: 8300000, guid: 95b5bde8690f60c45914a9ce8f22f1ee, type: 3}
+  - {fileID: 8300000, guid: 2e226036e59060345a8e15d7f486ef15, type: 3}
+--- !u!82 &1510818245
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1510818240}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: .988700569
+      inSlope: .0707699955
+      outSlope: .0707699955
+      tangentMode: 0
+    - time: 1
+      value: 1
+      inSlope: .240112931
+      outSlope: .240112931
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1656924353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1467,7 @@ GameObject:
   - 4: {fileID: 1739573438}
   - 114: {fileID: 1739573437}
   - 82: {fileID: 1739573439}
+  - 114: {fileID: 1739573440}
   m_Layer: 0
   m_Name: Adversary
   m_TagString: Adversary
@@ -1474,6 +1550,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1739573440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739573436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c6ed64ae771474592e4754edccf575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adversarySounds: []
 --- !u!1 &1852372686
 GameObject:
   m_ObjectHideFlags: 0
