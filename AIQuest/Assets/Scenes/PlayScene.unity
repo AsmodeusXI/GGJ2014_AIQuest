@@ -84,7 +84,7 @@ GameObject:
   - 4: {fileID: 44663948}
   - 212: {fileID: 44663947}
   m_Layer: 0
-  m_Name: game_BG3
+  m_Name: game_BG2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 54e2828befd7e5e4da002244fd8672aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09bff7b91e825dd4b9878cbff60806b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &44663948
 Transform:
