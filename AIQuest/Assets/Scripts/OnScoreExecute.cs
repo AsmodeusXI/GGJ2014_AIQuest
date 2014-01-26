@@ -36,7 +36,7 @@ public class OnScoreExecute : MonoBehaviour {
 		
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = exitEnabled;
-		if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .87f, Screen.width * .17f, Screen.height * .17f), exitTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), exitTex, buttonStyle)) 
 		{
 			Application.Quit ();
 		}
