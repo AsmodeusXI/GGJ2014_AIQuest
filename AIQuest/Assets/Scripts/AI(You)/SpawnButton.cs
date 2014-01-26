@@ -36,14 +36,19 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	void OnMouseDown(){
-		Spawn(0f);
+		timerOn = true;
 	}
+
+	void OnMouseUp(){
+		Spawn (chargeLevel);
+		chargeLevel = 0;
+		timerOn = false;
+		}
 	
 	void Spawn(float charge){
 		Transform temp = (Transform)Instantiate(monster, buttonPosition.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
 		currMonster.setCharge(charge);
-		// ... instantiate the rocket facing right and set it's velocity to the right. 
 		Instantiate(monster, buttonPosition.position, Quaternion.identity);
 	}
 }
