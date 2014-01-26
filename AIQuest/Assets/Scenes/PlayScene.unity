@@ -808,7 +808,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: a1a37b89b5de34ca4915107a20f8ef39, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1001,10 +1001,10 @@ MonoBehaviour:
   perturbedSprite: {fileID: 21300000, guid: 6f19691b21adf274d898598d786de814, type: 3}
   engagedSprite: {fileID: 21300000, guid: 95018aa92987cd34f853ee7a1179a5a6, type: 3}
   boredSprite: {fileID: 21300000, guid: 6c1d346c7a3bec842b9ac09116e60909, type: 3}
-  enjoyingSprite: {fileID: 21300000, guid: 70c7dc77ede607d4993a0fca8b4a06b8, type: 3}
+  enjoyingSprite: {fileID: 21300000, guid: 59ac29958410ac4499f8dd8bc79e5821, type: 3}
   euphoriaSprite: {fileID: 21300000, guid: 4751656a899496b4cae8ad3150c03a18, type: 3}
   melancholySprite: {fileID: 21300000, guid: 61490f6843c7c23468f78bfae5e9bb86, type: 3}
-  rageSprite: {fileID: 21300000, guid: 115f7c38dc195104593aaa3f03bb8700, type: 3}
+  rageSprite: {fileID: 21300000, guid: 39908935f91ee1b46b7bf532b2abf146, type: 3}
   quitSprite: {fileID: 21300000, guid: 9cf4034bcc546ee4a80032e5de7f074c, type: 3}
   asleepSprite: {fileID: 21300000, guid: ab87b7f52be4373498c676dba87f2c46, type: 3}
 --- !u!1 &1656924353
