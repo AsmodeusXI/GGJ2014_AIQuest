@@ -59,35 +59,45 @@ public class AdversaryStats : MonoBehaviour {
 
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(Monster monster) {
+		checkMusic();
+		if (tooLowLevel (monster)) return;
+		mood += 5;
+		incrementMonsterKills (monster);
+		totalKills++;
+	}
+
+	private bool tooLowLevel(Monster monster) {
+		return (monsterKills(monster) > monster.getLevel() * 20);
+	}
+
+	private int monsterKills(Monster monster) {
 		switch (monster.type) {
 		case Monster.MonsterType.skeleton:
-			if (skeletonKills > monster.level *100) {
-				return;
-			}
+				return skeletonKills;
+		case Monster.MonsterType.orc:
+				return orcKills;
+		case Monster.MonsterType.dragon:
+				return dragonKills;
+		case Monster.MonsterType.lich:
+				return lichKills;
+		}
+		return 0;
+	}
+
+	private void incrementMonsterKills(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
 			skeletonKills++;
-			if (mood > 65) {
-				mood += 5;
-			} else if (mood < 35) {
-
-			} else {
-
-			}
 			break;
 		case Monster.MonsterType.orc:
 			orcKills++;
-			mood += 5;
 			break;
 		case Monster.MonsterType.dragon:
 			dragonKills++;
-			mood += 5;
 			break;
 		case Monster.MonsterType.lich:
 			lichKills++;
-			mood += 5;
 			break;
-			}
-		totalKills++;
-		checkMusic();
+		}		
 	}
-
 }

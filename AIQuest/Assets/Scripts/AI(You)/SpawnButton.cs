@@ -26,7 +26,7 @@ public class SpawnButton : MonoBehaviour {
 			timerOn = true;
 		}
 		if (timerOn) {
-			chargeLevel++;
+			chargeLevel += Time.deltaTime;
 		}
 		if (Input.GetKeyUp (keyboardButton)) {
 			Spawn (chargeLevel);
@@ -49,6 +49,5 @@ public class SpawnButton : MonoBehaviour {
 		Transform temp = (Transform)Instantiate(monster, buttonPosition.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
 		currMonster.setCharge(charge);
-		Instantiate(monster, buttonPosition.position, Quaternion.identity);
 	}
 }

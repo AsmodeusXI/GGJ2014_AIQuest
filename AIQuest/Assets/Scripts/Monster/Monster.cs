@@ -26,8 +26,7 @@ public class Monster : MonoBehaviour
 	}
 
 	public int getLevel() {
-		Debug.Log ("monster level: " + level * charge);
-		return (int)(level * charge);
+		return (int)(level * Math.Max(1,Math.Round(charge)));
 	}
 	
 	public void setCharge(float setCharge) {
