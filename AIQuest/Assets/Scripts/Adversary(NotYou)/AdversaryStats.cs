@@ -4,9 +4,12 @@ using System.Collections;
 public class AdversaryStats : MonoBehaviour {
 
 	private float mood = 50;
-	private float lastMood = 50;
 	private int yourLvl= 1;
-	private int kills  = 0;
+	private int totalKills  = 0;
+	private int skeletonKills = 0;
+	private int orcKills = 0;
+	private int lichKills = 0;
+	private int dragonKills = 0;
 
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private Vector3 	   healthScale;			// The local scale of the health bar initially (with full health).
@@ -22,15 +25,13 @@ public class AdversaryStats : MonoBehaviour {
 		if (mood <= 0 || mood >= 100) {
 			goToGameOver ();
 		}
-		lastMood = mood;
-		mood = (mood - (2f * (Time.deltaTime)));
+		mood = (mood - (4f * (Time.deltaTime)));
 		
-		yourLvl = 1 + (kills/5);
+		yourLvl = 1 + (totalKills/5);
 		checkMusic();
 	}
 
 	public void checkMusic() {
-		Debug.Log ("Mood: " + audio.clip.name);
 		if (mood <35 && !audio.clip.name.Equals("FrusteratedPlayerState")) {
 			PlayClip("Music/FrusteratedPlayerState");
 		} else if (mood > 65 && !audio.clip.name.Equals("BoredPlayerState")) {
@@ -57,12 +58,46 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	// Describes how a monster harms/improves the player when affecteds
-	public void monsterAffects(float fun, float level) {
-		lastMood = mood;
-		//temporarily disabling effects of the affect.
-		mood += 5;
-		kills++;
+	public void monsterAffects(Monster monster) {
 		checkMusic();
+		if (tooLowLevel (monster)) return;
+		mood += 5;
+		incrementMonsterKills (monster);
+		totalKills++;
 	}
 
+	private bool tooLowLevel(Monster monster) {
+		return (monsterKills(monster) > monster.getLevel() * 20);
+	}
+
+	private int monsterKills(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
+				return skeletonKills;
+		case Monster.MonsterType.orc:
+				return orcKills;
+		case Monster.MonsterType.dragon:
+				return dragonKills;
+		case Monster.MonsterType.lich:
+				return lichKills;
+		}
+		return 0;
+	}
+
+	private void incrementMonsterKills(Monster monster) {
+		switch (monster.type) {
+		case Monster.MonsterType.skeleton:
+			skeletonKills++;
+			break;
+		case Monster.MonsterType.orc:
+			orcKills++;
+			break;
+		case Monster.MonsterType.dragon:
+			dragonKills++;
+			break;
+		case Monster.MonsterType.lich:
+			lichKills++;
+			break;
+		}		
+	}
 }

@@ -12,9 +12,10 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-	
+	public enum MonsterType {skeleton, orc, dragon, lich}
 	public float fun;
 	public int level;
+	public MonsterType type;
 	private float charge;
 	
 
@@ -25,7 +26,7 @@ public class Monster : MonoBehaviour
 	}
 
 	public int getLevel() {
-		return (int)(level * charge);
+		return (int)(level * Math.Max(1,Math.Round(charge)));
 	}
 	
 	public void setCharge(float setCharge) {
