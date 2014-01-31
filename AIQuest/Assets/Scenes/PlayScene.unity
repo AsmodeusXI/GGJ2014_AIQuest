@@ -504,6 +504,7 @@ MonoBehaviour:
   lvlIndicator: {fileID: 461027975}
   monster: {fileID: 400000, guid: 4e53c13ee166758408ebb11cd616bd4a, type: 2}
   keyboardInput: q
+  buttonInput: Fire1
   button: {fileID: 1488547696}
 --- !u!64 &930196451
 MeshCollider:
@@ -894,6 +895,7 @@ MonoBehaviour:
   lvlIndicator: {fileID: 955668794}
   monster: {fileID: 400000, guid: c4d5960820fb0d74880b984b4f10d5d0, type: 2}
   keyboardInput: e
+  buttonInput: Fire3
   button: {fileID: 1656924353}
 --- !u!82 &1327741664
 AudioSource:
@@ -1096,6 +1098,7 @@ MonoBehaviour:
   lvlIndicator: {fileID: 1852372686}
   monster: {fileID: 400000, guid: 3c753b28c4e1f4747b8da2ebc6ff52a9, type: 2}
   keyboardInput: w
+  buttonInput: Fire2
   button: {fileID: 1261607777}
 --- !u!1 &1476567559
 GameObject:
@@ -1666,6 +1669,7 @@ MonoBehaviour:
   lvlIndicator: {fileID: 1020697570}
   monster: {fileID: 400000, guid: 8858a8a1dda73814aa67f8ef5dc8fa13, type: 2}
   keyboardInput: r
+  buttonInput: Fire4
   button: {fileID: 1503438987}
 --- !u!82 &2145047279
 AudioSource:

@@ -9,6 +9,7 @@ public class OnGameExecute : MonoBehaviour
 
 	void OnGUI()
 	{
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 		Texture backgroundTex = (Texture)Resources.Load ("main_screen");
 		GUIStyle buttonStyle = new GUIStyle ();
 		buttonStyle.border = new RectOffset (0, 0, 0, 0);

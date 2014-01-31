@@ -15,7 +15,7 @@ public class OnStartExecute : MonoBehaviour
 		Texture slide2 = (Texture)Resources.Load ("slide2");
 		Texture slide3 = (Texture)Resources.Load ("slide3");
 
-		if (Input.GetKeyDown (KeyCode.Space)) 
+		if (Input.GetKeyDown (KeyCode.Space) || Input.touches.Length > 0) 
 		{
 			if(!normalFading)
 			{
@@ -27,6 +27,12 @@ public class OnStartExecute : MonoBehaviour
 		//Start Coroutine to Wait for next story image
 		Rect screenSize = new Rect (0, 0, Screen.width, Screen.height);
 
+		string text = "Press Spacebar to skip";
+
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			text = "Tap to skip";
+		}
+
 		//TODO REPLACE PH WITH STORY IMAGE
 		if(story1)
 		{
@@ -34,7 +40,7 @@ public class OnStartExecute : MonoBehaviour
 			Color thisColor = GUI.color;
 			thisColor.a = 0.2f;
 			GUI.color = thisColor;
-			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), "Press Spacebar to skip");
+			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
 			StartCoroutine (WaitAndChange (6, 1));
 		}
 		if(story2)
@@ -43,7 +49,7 @@ public class OnStartExecute : MonoBehaviour
 			Color thisColor = GUI.color;
 			thisColor.a = 0.2f;
 			GUI.color = thisColor;
-			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), "Press Spacebar to skip");
+			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
 			StartCoroutine (WaitAndChange (6, 2));
 		}
 		if(story3)
@@ -52,7 +58,7 @@ public class OnStartExecute : MonoBehaviour
 			Color thisColor = GUI.color;
 			thisColor.a = 0.2f;
 			GUI.color = thisColor;
-			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), "Press Spacebar to skip");
+			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
 			StartCoroutine (WaitAndChange (7, 3));
 		}
 	}

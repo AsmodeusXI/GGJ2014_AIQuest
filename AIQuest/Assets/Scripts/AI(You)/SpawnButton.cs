@@ -10,6 +10,7 @@ public class SpawnButton : MonoBehaviour {
     private MonsterLevelIndicator lvlSign;
 	public Transform monster;
     public string keyboardInput;
+	public string buttonInput;
     public GameObject button;
     private SpriteRenderer spriter;
     private bool buttonLit;
@@ -28,7 +29,6 @@ public class SpawnButton : MonoBehaviour {
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
         lvlSign = lvlIndicator.GetComponent<MonsterLevelIndicator>();
     }
-    
 
     void OnMouseDown(){
         timerOn = true;
@@ -37,16 +37,20 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
     void OnMouseUp(){
-        lvlSign.hide();
+		lvlSign.hide();
 		Spawn (chargeLevel);
 		chargeLevel = 0;
+		timeBetweenSwaps = 0;
+		maxSwapTime = 0.5f;
+		firstRed = false;
 		timerOn = false;
 		spriter.color = Color.white;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown(keyboardButton) ){
+
+		if(Input.GetKeyDown(keyboardButton)){
             lvlSign.increment();
 			timerOn = true;
             lastLevel = 0;
@@ -76,11 +80,6 @@ public class SpawnButton : MonoBehaviour {
 		}
 	}
 	
-
-
-
-
-    
 	void Spawn(float charge){
 		Transform temp = (Transform)Instantiate(monster, buttonPosition.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
