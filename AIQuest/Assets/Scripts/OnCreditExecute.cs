@@ -5,8 +5,8 @@ public class OnCreditExecute : MonoBehaviour
 {
 	void OnGUI()
 	{
-		Texture backgroundTex = (Texture)Resources.Load ("credits");
-		Texture backTex = (Texture)Resources.Load ("backbutton");
+		Texture backgroundTex = (Texture)Resources.Load ("FullScreenImages/credits");
+		Texture backTex = (Texture)Resources.Load ("ButtonImages/backbutton");
 		GUIStyle buttonStyle = new GUIStyle ();
 		Rect sceneRect = new Rect (0, 0, Screen.width, Screen.height);
 

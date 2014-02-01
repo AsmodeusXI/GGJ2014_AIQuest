@@ -12,13 +12,13 @@ public class SpawnButton : MonoBehaviour {
     public string keyboardInput;
 	public string buttonInput;
     public GameObject button;
-//	public Transform particleEffect;
     private SpriteRenderer spriter;
     private bool buttonLit;
 	private bool firstRed;
     private float timeBetweenSwaps;
     private float maxSwapTime = 0.5f;
 	public int minimumSpawnToShow;
+	private bool firstShown;
     
     KeyCode keyboardButton;
 
@@ -26,7 +26,6 @@ public class SpawnButton : MonoBehaviour {
 
     private Transform buttonPosition;
 	void Start () {
-//		particleEffect.particleSystem.renderer.sortingLayerName = "Foreground";
         buttonPosition = GetComponent<Transform>();    
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
@@ -58,7 +57,9 @@ public class SpawnButton : MonoBehaviour {
 			button.SetActive (false);
 			button.renderer.enabled = false;
 			return;
-		} else {
+		} else if (!firstShown && minimumSpawnToShow > 0) {
+			PlayClip("SoundFX/Kraken");
+			firstShown = true;
 			button.renderer.enabled = true;
 			button.SetActive (true);
 		}
@@ -83,7 +84,13 @@ public class SpawnButton : MonoBehaviour {
 		
 		if (Input.GetKeyUp (keyboardButton)) {
             lvlSign.hide();
-			Spawn (chargeLevel);
+
+			Monster currMonster = monster.GetComponent<Monster>();
+			currMonster.setCharge(chargeLevel);	
+			
+			if(!advStats.tooLowLevel(currMonster)) {
+				Spawn (chargeLevel);
+			}
 			chargeLevel = 0;
 			timeBetweenSwaps = 0;
 			maxSwapTime = 0.5f;
@@ -110,13 +117,6 @@ public class SpawnButton : MonoBehaviour {
 		
 		if(!advStats.tooLowLevel(currMonster)) {
 			if (!firstRed) {
-//				if (particleEffect != null) {
-//					Vector3 vector = new Vector3();
-//					vector.x = lvlIndicator.transform.position.x;
-//					vector.y = lvlIndicator.transform.position.y;
-//					vector.z = lvlIndicator.transform.position.z - 10;
-//					Instantiate(particleEffect, vector, Quaternion.identity);
-//				}
 				firstRed = true;
 				maxSwapTime = 0.5f;
 				spriter.color = Color.red;
@@ -132,6 +132,9 @@ public class SpawnButton : MonoBehaviour {
 					break;
 				case Monster.MonsterType.lich:
 					PlayClip("SoundFX/Lich");
+					break;
+				case Monster.MonsterType.kraken:
+					PlayClip("SoundFX/Kraken");
 					break;
 				}
 				return;

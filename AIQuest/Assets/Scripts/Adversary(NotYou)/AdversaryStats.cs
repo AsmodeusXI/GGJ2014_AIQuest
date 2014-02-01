@@ -11,11 +11,12 @@ public class AdversaryStats : MonoBehaviour {
 	private int orcKills = 0;
 	private int lichKills = 0;
 	private int dragonKills = 0;
-	private int totalInQ = 0;
+	private int krakenKills = 0;
 	private int skeletonsInQ;
 	private int orcsInQ;
 	private int dragonsInQ;
 	private int lichInQ;
+	private int krakenInQ;
 	private bool gameOver;
 	private float timeBetweenSpawns;
 	private Vector3 originPosition;
@@ -130,6 +131,8 @@ public class AdversaryStats : MonoBehaviour {
 				return dragonKills;
 		case Monster.MonsterType.lich:
 				return lichKills;
+		case Monster.MonsterType.kraken:
+			return krakenKills;
 		}
 		return 0;
 	}
@@ -144,6 +147,8 @@ public class AdversaryStats : MonoBehaviour {
 			return dragonsInQ;
 		case Monster.MonsterType.lich:
 			return lichInQ;
+		case Monster.MonsterType.kraken:
+			return krakenInQ;
 		}
 		return 0;
 	}
@@ -162,6 +167,9 @@ public class AdversaryStats : MonoBehaviour {
 		case Monster.MonsterType.lich:
 			lichKills++;
 			break;
+		case Monster.MonsterType.kraken:
+			krakenKills++;
+			break;
 		}
 	}
 	
@@ -179,6 +187,9 @@ public class AdversaryStats : MonoBehaviour {
 		case Monster.MonsterType.lich:
 			lichInQ++;
 			break;
+		case Monster.MonsterType.kraken:
+			krakenInQ++;
+			break;
 		}
 	}
 	
@@ -195,6 +206,9 @@ public class AdversaryStats : MonoBehaviour {
 			break;
 		case Monster.MonsterType.lich:
 			lichInQ--;
+			break;
+		case Monster.MonsterType.kraken:
+			krakenInQ--;
 			break;
 		}
 	}

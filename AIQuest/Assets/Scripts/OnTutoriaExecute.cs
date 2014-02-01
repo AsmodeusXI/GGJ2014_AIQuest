@@ -5,9 +5,9 @@ public class OnTutoriaExecute : MonoBehaviour {
 
 	void OnGUI()
 	{
-		Texture backgroundTex = (Texture)Resources.Load ("tutorialScreen");
+		Texture backgroundTex = (Texture)Resources.Load ("FullScreenImages/tutorialScreen");
 		GUIStyle buttonStyle = new GUIStyle ();
-		Texture backTex = (Texture)Resources.Load ("backbutton");
+		Texture backTex = (Texture)Resources.Load ("ButtonImages/backbutton");
 
 		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTex);
 

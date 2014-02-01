@@ -10,9 +10,9 @@ public class OnScoreExecute : MonoBehaviour {
 	void OnGUI() {
 	
 		GUIStyle buttonStyle = new GUIStyle ();
-		Texture exitTex = (Texture)Resources.Load ("exitbutton");
-		Texture replayTex = (Texture)Resources.Load ("replay");
-		Texture menuTex = (Texture)Resources.Load ("menubutton");
+		Texture exitTex = (Texture)Resources.Load ("ButtonImages/exitbutton");
+		Texture replayTex = (Texture)Resources.Load ("ButtonImages/replay");
+		Texture menuTex = (Texture)Resources.Load ("ButtonImages/menubutton");
 		
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = replayEnabled;
