@@ -12,11 +12,13 @@ public class SpawnButton : MonoBehaviour {
     public string keyboardInput;
 	public string buttonInput;
     public GameObject button;
+//	public Transform particleEffect;
     private SpriteRenderer spriter;
     private bool buttonLit;
 	private bool firstRed;
     private float timeBetweenSwaps;
     private float maxSwapTime = 0.5f;
+	public int minimumSpawnToShow;
     
     KeyCode keyboardButton;
 
@@ -24,6 +26,7 @@ public class SpawnButton : MonoBehaviour {
 
     private Transform buttonPosition;
 	void Start () {
+//		particleEffect.particleSystem.renderer.sortingLayerName = "Foreground";
         buttonPosition = GetComponent<Transform>();    
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
@@ -49,6 +52,16 @@ public class SpawnButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+		if (advStats.totalKills < minimumSpawnToShow) {
+			button.SetActive (false);
+			button.renderer.enabled = false;
+			return;
+		} else {
+			button.renderer.enabled = true;
+			button.SetActive (true);
+		}
 
 		if(Input.GetKeyDown(keyboardButton)){
             lvlSign.increment();
@@ -97,6 +110,13 @@ public class SpawnButton : MonoBehaviour {
 		
 		if(!advStats.tooLowLevel(currMonster)) {
 			if (!firstRed) {
+//				if (particleEffect != null) {
+//					Vector3 vector = new Vector3();
+//					vector.x = lvlIndicator.transform.position.x;
+//					vector.y = lvlIndicator.transform.position.y;
+//					vector.z = lvlIndicator.transform.position.z - 10;
+//					Instantiate(particleEffect, vector, Quaternion.identity);
+//				}
 				firstRed = true;
 				maxSwapTime = 0.5f;
 				spriter.color = Color.red;

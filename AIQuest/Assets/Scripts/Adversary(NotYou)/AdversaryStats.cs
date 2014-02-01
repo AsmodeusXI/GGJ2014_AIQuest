@@ -6,7 +6,7 @@ public class AdversaryStats : MonoBehaviour {
 
 	private float mood = 50;
 	private int yourLvl= 1;
-	private int totalKills  = 0;
+	public int totalKills  = 0;
 	private int skeletonKills = 0;
 	private int orcKills = 0;
 	private int lichKills = 0;
@@ -18,10 +18,35 @@ public class AdversaryStats : MonoBehaviour {
 	private int lichInQ;
 	private bool gameOver;
 	private float timeBetweenSpawns;
+	private Vector3 originPosition;
+	private Quaternion originRotation;
+	public float shake_decay;
+	public float shake_intensity;
+	public Transform camera;
+
+
+	void Start() {
+		originPosition = camera.position;
+		originRotation = camera.rotation;
+		shake_decay = 0.002f;
+	}
  
 	// Update is called once per frame
 	void Update () {
 		if (gameOver) return;
+		if (shake_intensity > 0){
+			camera.position = originPosition + UnityEngine.Random.insideUnitSphere * shake_intensity;
+			camera.rotation = new Quaternion(
+				originRotation.x + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
+				originRotation.y + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
+				originRotation.z + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
+				originRotation.w + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f);
+			shake_intensity -= shake_decay;
+			if (shake_intensity <= 0) {
+				camera.position = originPosition;
+				camera.rotation = originRotation;
+			}
+		}
 		timeBetweenSpawns += Time.deltaTime;
 
 //		Debug.Log ("mood: " + mood + " relative: " + getRelativeMood() + " max: " + (100 * yourLvl));
@@ -31,6 +56,10 @@ public class AdversaryStats : MonoBehaviour {
 		}
 		mood = (mood - ((4f*(0.5f+ timeBetweenSpawns)) * (Time.deltaTime)));
 		checkMusic();
+	}
+
+	void shake(int intensity){
+		shake_intensity += intensity * 0.002f;
 	}
 
 	public void checkMusic() {
@@ -79,6 +108,7 @@ public class AdversaryStats : MonoBehaviour {
 		timeBetweenSpawns = 0;
 		checkMusic();
 		if (tooLowLevel (monster)) return;
+		shake ((((int)monster.type + 1) * monster.getLevel()) * 3);
 		mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
 		incrementMonsterKills (monster);
 		totalKills++;
