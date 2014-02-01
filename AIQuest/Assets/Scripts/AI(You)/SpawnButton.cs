@@ -87,7 +87,6 @@ public class SpawnButton : MonoBehaviour {
 
 			Monster currMonster = monster.GetComponent<Monster>();
 			currMonster.setCharge(chargeLevel);	
-			
 			if(!advStats.tooLowLevel(currMonster)) {
 				Spawn (chargeLevel);
 			}
