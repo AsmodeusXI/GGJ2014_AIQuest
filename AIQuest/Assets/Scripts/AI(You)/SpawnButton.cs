@@ -19,6 +19,7 @@ public class SpawnButton : MonoBehaviour {
     private float maxSwapTime = 0.5f;
 	public int minimumSpawnToShow;
 	private bool firstShown;
+	private AdversaryStats advStats;
     
     KeyCode keyboardButton;
 
@@ -30,73 +31,99 @@ public class SpawnButton : MonoBehaviour {
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
         lvlSign = lvlIndicator.GetComponent<MonsterLevelIndicator>();
+		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
     }
 
     void OnMouseDown(){
-        timerOn = true;
-        lvlSign.unhide();
-        lastLevel = 0;
+		downAction();
 	}
 	
     void OnMouseUp(){
+		upAction();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		bool returnFast = checkToUnlockButton ();
+		if (!returnFast) return;
+
+		if(Input.GetKeyDown(keyboardButton)){
+			downAction();
+        }
+        
+		checkChargingActions();
+		
+		if (Input.GetKeyUp (keyboardButton)) {
+			upAction ();
+		}
+	}
+
+	private void checkChargingActions() {
+		if (timerOn) {
+			chargeLevel += Time.deltaTime;
+			flashingColors();	
+			
+			int effectiveLevel = Mathf.FloorToInt(chargeLevel);
+			if(effectiveLevel != lastLevel)
+			{
+				lastLevel = effectiveLevel;
+				lvlSign.increment();
+			}
+		}
+	}
+
+	private bool checkToUnlockButton() {
+		if (advStats.totalKills < minimumSpawnToShow) {
+			button.SetActive (false);
+			button.renderer.enabled = false;
+			return false;
+		} else if (!firstShown && minimumSpawnToShow > 0) {
+			Monster currMonster = monster.GetComponent<Monster>();
+			switch (currMonster.type) {
+			case Monster.MonsterType.skeleton:
+				PlayClip("SoundFX/Skeleton");
+				break;
+			case Monster.MonsterType.orc:
+				PlayClip("SoundFX/Orc");
+				break;
+			case Monster.MonsterType.dragon:
+				PlayClip("SoundFX/Dragon");
+				break;
+			case Monster.MonsterType.lich:
+				PlayClip("SoundFX/Lich");
+				break;
+			case Monster.MonsterType.kraken:
+				PlayClip("SoundFX/Kraken");
+				break;
+			}
+			firstShown = true;
+			button.renderer.enabled = true;
+			button.SetActive (true);
+		}
+		return true;
+	}
+	
+	private void downAction() {
+		lvlSign.increment();
+		timerOn = true;
+		lastLevel = 0;
+	}
+
+	private void upAction() {
 		lvlSign.hide();
-		Spawn (chargeLevel);
+		
+		Monster currMonster = monster.GetComponent<Monster>();
+		currMonster.setCharge(chargeLevel);	
+		if(!advStats.tooLowLevel(currMonster)) {
+			Spawn (chargeLevel);
+		}
 		chargeLevel = 0;
 		timeBetweenSwaps = 0;
 		maxSwapTime = 0.5f;
 		firstRed = false;
 		timerOn = false;
 		spriter.color = Color.white;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
-		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-		if (advStats.totalKills < minimumSpawnToShow) {
-			button.SetActive (false);
-			button.renderer.enabled = false;
-			return;
-		} else if (!firstShown && minimumSpawnToShow > 0) {
-			PlayClip("SoundFX/Kraken");
-			firstShown = true;
-			button.renderer.enabled = true;
-			button.SetActive (true);
-		}
-
-		if(Input.GetKeyDown(keyboardButton)){
-            lvlSign.increment();
-			timerOn = true;
-            lastLevel = 0;
-        }
-        
-		if (timerOn) {
-			chargeLevel += Time.deltaTime;
-			flashingColors();	
-            
-            int effectiveLevel = Mathf.FloorToInt(chargeLevel);
-            if(effectiveLevel != lastLevel)
-            {
-                lastLevel = effectiveLevel;
-                lvlSign.increment();
-            }
-		}
-		
-		if (Input.GetKeyUp (keyboardButton)) {
-            lvlSign.hide();
-
-			Monster currMonster = monster.GetComponent<Monster>();
-			currMonster.setCharge(chargeLevel);	
-			if(!advStats.tooLowLevel(currMonster)) {
-				Spawn (chargeLevel);
-			}
-			chargeLevel = 0;
-			timeBetweenSwaps = 0;
-			maxSwapTime = 0.5f;
-			firstRed = false;
-			timerOn = false;
-			spriter.color = Color.white;
-		}
 	}
 	
 	void Spawn(float charge){
@@ -108,9 +135,7 @@ public class SpawnButton : MonoBehaviour {
 	void flashingColors(){
 		
 		timeBetweenSwaps += Time.deltaTime;
-		
-		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
-		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+
 		Monster currMonster = monster.GetComponent<Monster>();
 		currMonster.setCharge(chargeLevel);	
 		

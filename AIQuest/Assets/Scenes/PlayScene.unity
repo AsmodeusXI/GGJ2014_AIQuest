@@ -769,7 +769,7 @@ MonoBehaviour:
   keyboardInput: e
   buttonInput: Fire3
   button: {fileID: 1656924353}
-  minimumSpawnToShow: 0
+  minimumSpawnToShow: 15
 --- !u!82 &1327741664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -973,7 +973,7 @@ MonoBehaviour:
   keyboardInput: w
   buttonInput: Fire2
   button: {fileID: 1261607777}
-  minimumSpawnToShow: 0
+  minimumSpawnToShow: 5
 --- !u!1 &1476567559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   keyboardInput: r
   buttonInput: Fire4
   button: {fileID: 1586453255}
-  minimumSpawnToShow: 0
+  minimumSpawnToShow: 30
 --- !u!82 &2145047279
 AudioSource:
   m_ObjectHideFlags: 0
