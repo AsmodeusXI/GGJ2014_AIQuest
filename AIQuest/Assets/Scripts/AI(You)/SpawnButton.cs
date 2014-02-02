@@ -12,6 +12,7 @@ public class SpawnButton : MonoBehaviour {
     public string keyboardInput;
 	public string buttonInput;
     public GameObject button;
+	public GameObject collideButton;
     private SpriteRenderer spriter;
     private bool buttonLit;
 	private bool firstRed;
@@ -20,6 +21,8 @@ public class SpawnButton : MonoBehaviour {
 	public int minimumSpawnToShow;
 	private bool firstShown;
 	private AdversaryStats advStats;
+	private RaycastHit hit;
+	private bool touched;
     
     KeyCode keyboardButton;
 
@@ -35,19 +38,27 @@ public class SpawnButton : MonoBehaviour {
 		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
     }
 
-    void OnMouseDown(){
-		downAction();
-	}
-	
-    void OnMouseUp(){
-		upAction();
-	}
+//    void OnMouseDown(){
+//		downAction();
+//	}
+//
+//    void OnMouseUp(){
+//		upAction();
+//	}
 	
 	// Update is called once per frame
 	void Update () {
 		bool returnFast = checkToUnlockButton ();
 		if (!returnFast) return;
 
+
+		if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) 
+		{
+			checkTouches();
+		} else {
+			checkMouseActions();
+		}
+		
 		if(Input.GetKeyDown(keyboardButton)){
 			downAction();
         }
@@ -59,6 +70,48 @@ public class SpawnButton : MonoBehaviour {
 		}
 	}
 
+	private void checkTouches() {
+		bool touchedThisTime = false;
+		for (var i = 0; i < Input.touchCount; ++i) {
+			Touch touch = Input.GetTouch (i);
+			Ray ray = Camera.main.ScreenPointToRay (touch.position);
+			if (Physics.Raycast (ray, out hit, 100.0f)) {
+					if (hit.collider.name == collideButton.name) {
+						touchedThisTime = true;
+						if(!touched) {
+							touched = true;
+							downAction ();
+						}
+					}
+			} 
+		}
+		if (!touchedThisTime && touched) {
+			upAction();
+			touched = false;
+		}
+
+	}
+
+	private void checkMouseActions() {
+		if (Input.GetMouseButtonDown(0)) {
+			Vector3 touchPos = Input.mousePosition;
+			Ray ray = Camera.main.ScreenPointToRay (touchPos);
+			if (Physics.Raycast (ray, out hit, 100.0f)) {
+				if (hit.collider.name == collideButton.name) {
+					downAction ();
+				}
+			}
+		} else if (Input.GetMouseButtonUp(0)) {
+			Vector3 touchPos = Input.mousePosition;
+			Ray ray = Camera.main.ScreenPointToRay (touchPos);
+			if (Physics.Raycast (ray, out hit, 100.0f)) {
+				if (hit.collider.name == collideButton.name) {
+					upAction ();
+				}
+			}
+		}
+	}
+	
 	private void checkChargingActions() {
 		if (timerOn) {
 			chargeLevel += Time.deltaTime;
@@ -109,7 +162,7 @@ public class SpawnButton : MonoBehaviour {
 		timerOn = true;
 		lastLevel = 0;
 	}
-
+	
 	private void upAction() {
 		lvlSign.hide();
 		

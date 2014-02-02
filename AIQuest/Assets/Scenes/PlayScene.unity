@@ -306,6 +306,7 @@ MonoBehaviour:
   keyboardInput: q
   buttonInput: Fire1
   button: {fileID: 1488547696}
+  collideButton: {fileID: 930196449}
   minimumSpawnToShow: 0
 --- !u!64 &930196451
 MeshCollider:
@@ -387,8 +388,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 930196449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.8714571, y: -4, z: 7.30000019}
-  m_LocalScale: {x: 2.27898169, y: .632849514, z: 1}
+  m_LocalPosition: {x: -5.09000015, y: -4.26999998, z: 8}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &955668794
@@ -730,7 +731,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1261607777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.79999995, y: -4.26999998, z: 7.86755562}
+  m_LocalPosition: {x: -1.79999995, y: -4.26999998, z: 8}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -769,6 +770,7 @@ MonoBehaviour:
   keyboardInput: e
   buttonInput: Fire3
   button: {fileID: 1656924353}
+  collideButton: {fileID: 1327741662}
   minimumSpawnToShow: 15
 --- !u!82 &1327741664
 AudioSource:
@@ -850,8 +852,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1327741662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .674084544, y: -4, z: 7.30000019}
-  m_LocalScale: {x: 3.35486245, y: .941715658, z: .941715658}
+  m_LocalPosition: {x: 1.52999997, y: -4.26999998, z: 8}
+  m_LocalScale: {x: 3, y: 3, z: .941715658}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1353438284
@@ -953,8 +955,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1353438284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.83103955, y: -4, z: 7.30000019}
-  m_LocalScale: {x: 3.34687471, y: .962499917, z: 1}
+  m_LocalPosition: {x: -1.83103955, y: -4.26999998, z: 8}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1353438289
@@ -973,6 +975,7 @@ MonoBehaviour:
   keyboardInput: w
   buttonInput: Fire2
   button: {fileID: 1261607777}
+  collideButton: {fileID: 1353438284}
   minimumSpawnToShow: 5
 --- !u!1 &1476567559
 GameObject:
@@ -1084,7 +1087,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1488547696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.09000015, y: -4.26999998, z: 7.81497478}
+  m_LocalPosition: {x: -5.09000015, y: -4.26999998, z: 8}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1134,7 +1137,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503438987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.05000019, y: 3.83999991, z: 7.99282742}
+  m_LocalPosition: {x: -5.05000019, y: 3.83999991, z: 8}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1330,7 +1333,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1586453255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88000011, y: -4.26999998, z: 7.99282742}
+  m_LocalPosition: {x: 4.88000011, y: -4.26999998, z: 8}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1380,7 +1383,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656924353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52999997, y: -4.26999998, z: 7.86148691}
+  m_LocalPosition: {x: 1.52999997, y: -4.26999998, z: 8}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1652,6 +1655,7 @@ MonoBehaviour:
   keyboardInput: t
   buttonInput: Fire4
   button: {fileID: 1503438987}
+  collideButton: {fileID: 2133354308}
   minimumSpawnToShow: 50
 --- !u!64 &2133354311
 MeshCollider:
@@ -1680,8 +1684,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133354308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.88999987, y: 3.83999991, z: 8}
-  m_LocalScale: {x: 2.96004629, y: .986682236, z: .986682236}
+  m_LocalPosition: {x: -5.05000019, y: 3.83999991, z: 8}
+  m_LocalScale: {x: 3, y: 3, z: .986682236}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &2145047277
@@ -1719,6 +1723,7 @@ MonoBehaviour:
   keyboardInput: r
   buttonInput: Fire4
   button: {fileID: 1586453255}
+  collideButton: {fileID: 2145047277}
   minimumSpawnToShow: 30
 --- !u!82 &2145047279
 AudioSource:
@@ -1800,7 +1805,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2145047277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.36386204, y: -4, z: 7.30000019}
-  m_LocalScale: {x: 2.96004629, y: .986682236, z: .986682236}
+  m_LocalPosition: {x: 4.88000011, y: -4.26999998, z: 8}
+  m_LocalScale: {x: 3, y: 3, z: .986682236}
   m_Children: []
   m_Father: {fileID: 0}
