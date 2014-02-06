@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SocialPlatforms;
 
 public class Scoring : MonoBehaviour {
 
@@ -17,7 +18,7 @@ public class Scoring : MonoBehaviour {
 		setScoreText(orcScore, "Orc Spawns", "int");
 		setScoreText(dragonScore, "Dragon Spawns", "int");
 		setScoreText(lichScore, "Lich Spawns", "int");
-		setScoreText(timeScore, "Happy Time", "float");
+		setScoreText(timeScore, "Zone Time", "float");
 	}
 	
 	// Update is called once per frame
@@ -30,9 +31,18 @@ public class Scoring : MonoBehaviour {
 		scoreText.fontSize = 40;
 		if(returnType.Equals("int")) {
 			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString();
+			ReportScore(PlayerPrefs.GetInt(ppKey), ppKey);
 		} else if (returnType.Equals ("float")) {
 			decimal decCast = (decimal) PlayerPrefs.GetFloat(ppKey);
 			scoreText.text = decCast.ToString("n2");
+			ReportScore(PlayerPrefs.GetInt(ppKey), ppKey);
 		}
+	}
+
+	void ReportScore (long score, string leaderboardID) {
+		Debug.Log ("Reporting score " + score + " on leaderboard " + leaderboardID);
+		Social.ReportScore (score, leaderboardID, success => {
+			Debug.Log(success ? "Reported score successfully" : "Failed to report score");
+		});
 	}
 }

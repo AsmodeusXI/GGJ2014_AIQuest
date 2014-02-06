@@ -14,6 +14,7 @@ public class SpawnButton : MonoBehaviour {
     public GameObject button;
 	public GameObject collideButton;
     private SpriteRenderer spriter;
+	private SpriteRenderer lvlSpriter;
     private bool buttonLit;
 	private bool firstRed;
     private float timeBetweenSwaps;
@@ -34,6 +35,8 @@ public class SpawnButton : MonoBehaviour {
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
         lvlSign = lvlIndicator.GetComponent<MonsterLevelIndicator>();
+		lvlSpriter = (SpriteRenderer)lvlIndicator.GetComponent<SpriteRenderer> ();
+		lvlSpriter.color = Color.clear;
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
     }
@@ -147,7 +150,7 @@ public class SpawnButton : MonoBehaviour {
 				PlayClip("SoundFX/Lich");
 				break;
 			case Monster.MonsterType.kraken:
-				PlayClip("SoundFX/Kraken");
+				PlayClip("SoundFX/Kraken2");
 				break;
 			}
 			firstShown = true;
@@ -177,6 +180,7 @@ public class SpawnButton : MonoBehaviour {
 		firstRed = false;
 		timerOn = false;
 		spriter.color = Color.white;
+		lvlSpriter.color = Color.clear;
 	}
 	
 	void Spawn(float charge){
@@ -197,6 +201,7 @@ public class SpawnButton : MonoBehaviour {
 				firstRed = true;
 				maxSwapTime = 0.5f;
 				spriter.color = Color.red;
+				lvlSpriter.color = Color.white;
 				switch (currMonster.type) {
 				case Monster.MonsterType.skeleton:
 					PlayClip("SoundFX/Skeleton");

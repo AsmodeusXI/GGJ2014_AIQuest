@@ -33,7 +33,6 @@ public class OnStartExecute : MonoBehaviour
 			text = "Tap Screen to skip";
 		}
 
-		//TODO REPLACE PH WITH STORY IMAGE
 		if(story1)
 		{
 			GUI.DrawTexture( screenSize, slide1, ScaleMode.StretchToFill);
@@ -60,6 +59,9 @@ public class OnStartExecute : MonoBehaviour
 			GUI.color = thisColor;
 			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
 			StartCoroutine (WaitAndChange (7, 3));
+			if (audio.volume > 0) {
+				audio.volume -= Time.deltaTime/75;
+			}
 		}
 	}
 

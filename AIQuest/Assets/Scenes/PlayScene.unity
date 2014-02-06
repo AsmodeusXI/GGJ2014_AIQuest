@@ -1128,7 +1128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: d2244965c1f06164fbe97534e0caa515, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 801cc53803b25462ea6b9cb3b0731375, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1503438989
 Transform:
@@ -1209,8 +1209,11 @@ MonoBehaviour:
   engagedSprite: {fileID: 21300000, guid: 95018aa92987cd34f853ee7a1179a5a6, type: 3}
   boredSprite: {fileID: 21300000, guid: 6c1d346c7a3bec842b9ac09116e60909, type: 3}
   enjoyingSprite: {fileID: 21300000, guid: 59ac29958410ac4499f8dd8bc79e5821, type: 3}
-  euphoriaSprite: {fileID: 21300000, guid: 4751656a899496b4cae8ad3150c03a18, type: 3}
+  euphoriaSprite: {fileID: 21300000, guid: a560d973a59664d65958ad3f46fb5719, type: 3}
+  euphoriaAlternateSprite: {fileID: 21300000, guid: 4751656a899496b4cae8ad3150c03a18,
+    type: 3}
   melancholySprite: {fileID: 21300000, guid: 61490f6843c7c23468f78bfae5e9bb86, type: 3}
+  scaredSprite: {fileID: 21300000, guid: 5435be7da1f8e4014869f14176026a44, type: 3}
   rageSprite: {fileID: 21300000, guid: 39908935f91ee1b46b7bf532b2abf146, type: 3}
   quitSprite: {fileID: 21300000, guid: 9cf4034bcc546ee4a80032e5de7f074c, type: 3}
   asleepSprite: {fileID: 21300000, guid: ab87b7f52be4373498c676dba87f2c46, type: 3}
@@ -1420,6 +1423,8 @@ MonoBehaviour:
   shake_decay: 0
   shake_intensity: 0
   camera: {fileID: 1178142756}
+  monsterMode: 0
+  monsterModeType: 0
 --- !u!4 &1739573438
 Transform:
   m_ObjectHideFlags: 0
@@ -1439,7 +1444,7 @@ AudioSource:
   m_GameObject: {fileID: 1739573436}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 0d70b003b26fb4809a2f0c8c1780d129, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a38561b9b22114702a1f3f94e927219b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .25
   m_Pitch: 1

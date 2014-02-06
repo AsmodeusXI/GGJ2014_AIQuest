@@ -24,9 +24,13 @@ public class AdversaryStats : MonoBehaviour {
 	public float shake_decay;
 	public float shake_intensity;
 	public Transform camera;
+	public bool monsterMode;
+	public Monster.MonsterType monsterModeType;
 
 
 	void Start() {
+		monsterMode = true;
+		monsterModeType = Monster.MonsterType.skeleton;
 		originPosition = camera.position;
 		originRotation = camera.rotation;
 		shake_decay = 0.002f;
@@ -114,11 +118,19 @@ public class AdversaryStats : MonoBehaviour {
 		incrementMonsterKills (monster);
 		totalKills++;
 		yourLvl = Math.Max (1, totalKills / 50);
-		Debug.Log ("total spawned: " + totalKills);
+//		Debug.Log ("total spawned: " + totalKills);
 	}
 
 	public bool tooLowLevel(Monster monster) {
-		return (monsterKills(monster) + monsterQueued(monster) > monster.getLevel() * 10);
+//		if (monsterMode) {
+//				if (monster.type == monsterModeType) {
+//					return false;
+//				} else {
+//					return true;
+//				}
+//		} else {
+			return (monsterKills (monster) + monsterQueued (monster) > monster.getLevel () * 10);
+//		}
 	}
 
 	private int monsterKills(Monster monster) {

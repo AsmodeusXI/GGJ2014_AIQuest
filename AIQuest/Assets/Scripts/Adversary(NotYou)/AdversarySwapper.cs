@@ -16,7 +16,9 @@ public class AdversarySwapper : MonoBehaviour {
 	public Sprite boredSprite;
 	public Sprite enjoyingSprite;
 	public Sprite euphoriaSprite;
+	public Sprite euphoriaAlternateSprite;
 	public Sprite melancholySprite;
+	public Sprite scaredSprite;
 	public Sprite rageSprite;
 	public Sprite quitSprite;
 	public Sprite asleepSprite;
@@ -33,15 +35,15 @@ public class AdversarySwapper : MonoBehaviour {
 		
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		spriter.sprite = engagedSprite;
-		PlayerPrefs.SetFloat("Happy Time", timeValue);
+		PlayerPrefs.SetFloat("Zone Time", timeValue);
 		
 	}
 	
 	private void resetHappyTime() {
 		timerOn = false;
-		float currentHappyRecord = PlayerPrefs.GetFloat("Happy Time");
+		float currentHappyRecord = PlayerPrefs.GetFloat("Zone Time");
 		if (timeValue > currentHappyRecord) {
-			PlayerPrefs.SetFloat("Happy Time", timeValue);
+			PlayerPrefs.SetFloat("Zone Time", timeValue);
 		}
 		timeValue = 0;
 	}
@@ -56,7 +58,7 @@ public class AdversarySwapper : MonoBehaviour {
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		
 		if (currentMood >= perturbedVal && currentMood < rageVal) {
-			spriter.sprite = perturbedSprite;
+			spriter.sprite = scaredSprite;
 			resetHappyTime();
 		} else if (currentMood <= boredVal && currentMood > melancholyVal) {
 			spriter.sprite = boredSprite;
