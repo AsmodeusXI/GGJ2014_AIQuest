@@ -26,10 +26,11 @@ public class AdversaryStats : MonoBehaviour {
 	public Transform camera;
 	public bool monsterMode;
 	public Monster.MonsterType monsterModeType;
+	private float monsterModeTimer;
 
 
 	void Start() {
-		monsterMode = true;
+		monsterMode = false;
 		monsterModeType = Monster.MonsterType.skeleton;
 		originPosition = camera.position;
 		originRotation = camera.rotation;
@@ -40,27 +41,63 @@ public class AdversaryStats : MonoBehaviour {
 	void Update () {
 		if (gameOver) return;
 		if (shake_intensity > 0){
-			camera.position = originPosition + UnityEngine.Random.insideUnitSphere * shake_intensity;
-			camera.rotation = new Quaternion(
-				originRotation.x + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
-				originRotation.y + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
-				originRotation.z + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
-				originRotation.w + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f);
-			shake_intensity -= shake_decay;
-			if (shake_intensity <= 0) {
-				camera.position = originPosition;
-				camera.rotation = originRotation;
-			}
+			shakeScreen();
 		}
 		timeBetweenSpawns += Time.deltaTime;
 
-//		Debug.Log ("mood: " + mood + " relative: " + getRelativeMood() + " max: " + (100 * yourLvl));
+		if (totalKills > 115) {
+			checkMonsterMode();
+		}
+		
 		if (mood <= 0 || mood >= (100 * yourLvl)) {
 			gameOver = true;
 			goToGameOver ();
 		}
 		mood = (mood - ((4f*(0.5f+ timeBetweenSpawns)) * (Time.deltaTime)));
 		checkMusic();
+	}
+
+	void checkMonsterMode() {
+		if (monsterModeTimer <= 0 && !monsterMode) {
+			monsterModeTimer = UnityEngine.Random.Range (10 / yourLvl, 30 / yourLvl);
+			monsterMode = true;
+			float rannum = UnityEngine.Random.Range(0f, 1f) * 4;
+			monsterModeType = (Monster.MonsterType)(System.Math.Round(rannum));
+//			playClipForMonsterType(monsterModeType);
+		} else {
+			monsterModeTimer -= Time.deltaTime;
+		}
+
+	}
+
+//	void playClipForMonsterModeType(Monster.MonsterType monsterType) {
+//		switch (monsterType) {
+//		case Monster.MonsterType.skeleton:
+//
+//		case Monster.MonsterType.orc:
+//
+//		case Monster.MonsterType.dragon:
+//
+//		case Monster.MonsterType.lich:
+//
+//		case Monster.MonsterType.kraken:
+//
+//		}
+//		return 0;
+//	}
+
+	void shakeScreen() {
+		camera.position = originPosition + UnityEngine.Random.insideUnitSphere * shake_intensity;
+		camera.rotation = new Quaternion(
+			originRotation.x + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
+			originRotation.y + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
+			originRotation.z + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f,
+			originRotation.w + UnityEngine.Random.Range (-shake_intensity,shake_intensity) * .2f);
+		shake_intensity -= shake_decay;
+		if (shake_intensity <= 0) {
+			camera.position = originPosition;
+			camera.rotation = originRotation;
+		}
 	}
 
 	void shake(int intensity){
@@ -91,6 +128,7 @@ public class AdversaryStats : MonoBehaviour {
 		PlayerPrefs.SetInt("Orc Spawns", orcKills);
 		PlayerPrefs.SetInt("Dragon Spawns", dragonKills);
 		PlayerPrefs.SetInt("Lich Spawns", lichKills);
+		PlayerPrefs.SetInt("Kraken Spawns", krakenKills);
 		StartCoroutine(Wait (3));
 	}
 	
@@ -110,27 +148,33 @@ public class AdversaryStats : MonoBehaviour {
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(Monster monster) {
 		if (gameOver) return;
+		if (monsterMode) {
+			if (monster.type == monsterModeType) {
+				monsterMode = false;
+				return;
+			}
+		}
+
 		timeBetweenSpawns = 0;
 		checkMusic();
-		if (tooLowLevel (monster)) return;
+		if (tooLowLevel (monster)) return;	
 		shake ((((int)monster.type + 1) * monster.getLevel()) * 3);
 		mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
 		incrementMonsterKills (monster);
 		totalKills++;
 		yourLvl = Math.Max (1, totalKills / 50);
-//		Debug.Log ("total spawned: " + totalKills);
 	}
 
 	public bool tooLowLevel(Monster monster) {
-//		if (monsterMode) {
-//				if (monster.type == monsterModeType) {
-//					return false;
-//				} else {
-//					return true;
-//				}
-//		} else {
+		if (monsterMode) {
+				if (monster.type == monsterModeType) {
+					return false;
+				} else {
+					return true;
+				}
+		} else {
 			return (monsterKills (monster) + monsterQueued (monster) > monster.getLevel () * 10);
-//		}
+		}
 	}
 
 	private int monsterKills(Monster monster) {

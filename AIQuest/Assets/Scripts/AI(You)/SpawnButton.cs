@@ -41,18 +41,13 @@ public class SpawnButton : MonoBehaviour {
 		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
     }
 
-//    void OnMouseDown(){
-//		downAction();
-//	}
-//
-//    void OnMouseUp(){
-//		upAction();
-//	}
-	
 	// Update is called once per frame
 	void Update () {
 		bool returnFast = checkToUnlockButton ();
 		if (!returnFast) return;
+		Monster currMonster = monster.GetComponent<Monster> ();
+		checkMonsterMode ();
+		if (advStats.monsterMode && currMonster.type != advStats.monsterModeType) return;
 
 
 		if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) 
@@ -70,6 +65,26 @@ public class SpawnButton : MonoBehaviour {
 		
 		if (Input.GetKeyUp (keyboardButton)) {
 			upAction ();
+		}
+	}
+
+	private void checkMonsterMode() {
+		if (advStats.monsterMode) {
+			Monster currMonster = monster.GetComponent<Monster> ();
+			if (currMonster.type == advStats.monsterModeType) {
+				spriter.color = Color.red;
+			} else {
+				lvlSign.hide();
+				chargeLevel = 0;
+				timeBetweenSwaps = 0;
+				maxSwapTime = 0.5f;
+				firstRed = false;
+				timerOn = false;
+				lvlSpriter.color = Color.clear;
+				spriter.color = Color.clear;
+			}
+		} else if (!timerOn) {
+			spriter.color = Color.white;
 		}
 	}
 
