@@ -79,7 +79,7 @@ public class AdversarySwapper : MonoBehaviour {
 		timerOn = false;
 		float currentHappyRecord = PlayerPrefs.GetFloat("Zone Time");
 		if (timeValue > currentHappyRecord) {
-			PlayerPrefs.SetFloat("Zone Time", timeValue);
+			PlayerPrefs.SetFloat("Zone.Time", timeValue);
 		}
 		timeValue = 0;
 	}
