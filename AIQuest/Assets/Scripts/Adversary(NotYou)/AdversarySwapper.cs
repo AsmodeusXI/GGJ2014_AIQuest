@@ -10,18 +10,19 @@ public class AdversarySwapper : MonoBehaviour {
 	private int boredVal = 35;
 	private int melancholyVal = 15;
 	private int asleepVal = 0;
-	
-	public Sprite perturbedSprite;
-	public Sprite engagedSprite;
-	public Sprite boredSprite;
-	public Sprite enjoyingSprite;
-	public Sprite euphoriaSprite;
-	public Sprite euphoriaAlternateSprite;
-	public Sprite melancholySprite;
-	public Sprite scaredSprite;
-	public Sprite rageSprite;
-	public Sprite quitSprite;
-	public Sprite asleepSprite;
+
+	private int spriteSwitch;
+	private Sprite perturbedSprite;
+	private Sprite zone1Sprite;
+	private Sprite bored2Sprite;
+	private Sprite enjoyingSprite;
+	private Sprite zone2Sprite;
+	private Sprite euphoriaAlternateSprite;
+	private Sprite bored1Sprite;
+	private Sprite rage1Sprite;
+	private Sprite rage2Sprite;
+	private Sprite rageQuitSprite;
+	private Sprite boredQuitSprite;
     public AdversarySoundPlayer adversaryPlayer;
 	
 	private bool timerOn = false;
@@ -32,11 +33,46 @@ public class AdversarySwapper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+		setupImages();
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
-		spriter.sprite = engagedSprite;
+		spriter.sprite = zone1Sprite;
 		PlayerPrefs.SetFloat("Zone Time", timeValue);
 		
+	}
+
+	void setupImages() {
+		spriteSwitch = PlayerPrefs.GetInt("Adversary");
+		if (spriteSwitch == 0) {
+			Debug.Log("John " + spriteSwitch);
+//			perturbedSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryPerturbed");
+//			euphoriaAlternateSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
+			boredQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitBored");
+			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryMellow");
+			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryBored");
+			zone1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEngaged");
+			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria");
+			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryScared");
+			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryRage");
+			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitRage");
+		} else {
+			Debug.Log("Jane" + spriteSwitch);
+//			perturbedSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Perturbed");
+//			euphoriaAlternateSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
+			boredQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2BoredQuit");
+			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Bored");
+			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Mellow");
+			zone1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Enjoyment");
+			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
+			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Perturbed");
+			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Rage");
+			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2RageQuit");
+
+		}
+		spriteSwitch = spriteSwitch > 0 ? 0 : 1;
+		PlayerPrefs.SetInt ("Adversary", spriteSwitch);
+		PlayerPrefs.Save ();
+		Debug.Log ("Prefs " + PlayerPrefs.GetInt ("Adversary"));
 	}
 	
 	private void resetHappyTime() {
@@ -58,31 +94,31 @@ public class AdversarySwapper : MonoBehaviour {
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		
 		if (currentMood >= perturbedVal && currentMood < rageVal) {
-			spriter.sprite = scaredSprite;
+			spriter.sprite = rage1Sprite;
 			resetHappyTime();
 		} else if (currentMood <= boredVal && currentMood > melancholyVal) {
-			spriter.sprite = boredSprite;
+			spriter.sprite = bored2Sprite;
 			resetHappyTime();
 		} else if (currentMood > boredVal && currentMood < perturbedVal) {
 			if(!timerOn) {
-				spriter.sprite = engagedSprite;
+				spriter.sprite = zone1Sprite;
 				timerOn = true;
 			} else {
 				timeValue += Time.deltaTime;
 				if(timeValue > 7 && timeValue <= 18) {
 					spriter.sprite = enjoyingSprite;
 				} else if (timeValue > 18) {
-					spriter.sprite = euphoriaSprite;
+					spriter.sprite = zone2Sprite;
 				}
 			}
 		} else if (currentMood >= rageVal && currentMood < quitVal) {
-			spriter.sprite = rageSprite;
+			spriter.sprite = rage2Sprite;
 			resetHappyTime();
 		} else if (currentMood <= melancholyVal && currentMood > asleepVal) {
-			spriter.sprite = melancholySprite;
+			spriter.sprite = bored1Sprite;
 			resetHappyTime();
 		} else if (currentMood >= quitVal) {
-			spriter.sprite = quitSprite;
+			spriter.sprite = rageQuitSprite;
             if (!playedYell)
             {
                 playedYell = true;
@@ -90,7 +126,7 @@ public class AdversarySwapper : MonoBehaviour {
             }
 			resetHappyTime();
 		} else if (currentMood <= asleepVal) {
-			spriter.sprite = asleepSprite;
+			spriter.sprite = boredQuitSprite;
             if(!playedSnore)
             {
                 playedSnore = true;
