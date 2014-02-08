@@ -49,6 +49,7 @@ public class OnGameExecute : MonoBehaviour
 		Texture creditTex = (Texture)Resources.Load ("ButtonImages/creditsbutton");
 		Texture tutorialTex = (Texture)Resources.Load ("ButtonImages/tutorialbutton");
 		Texture exitTex = (Texture)Resources.Load ("ButtonImages/exitbutton");
+		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
 
 		Rect windowRect = new Rect(Screen.width/2-100, Screen.height/2-60, 200, 120);
 		GUI.DrawTexture (new Rect(0,0,Screen.width,Screen.height), backgroundTex);
@@ -84,9 +85,14 @@ public class OnGameExecute : MonoBehaviour
 		}
 
 		//GUI enabled causes button to disable/enable
-		if (GUI.Button (new Rect (Screen.width * .06f, Screen.height * .85f, Screen.width * .15f, Screen.height * .07f), exitTex, buttonStyle)) 
-		{
-			Application.Quit();
+		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
+			if (GUI.Button (new Rect (Screen.width * .06f, Screen.height * .85f, Screen.width * .15f, Screen.height * .07f), gcTex, buttonStyle))  {
+				Social.ShowLeaderboardUI ();
+			}
+		} else {
+			if (GUI.Button (new Rect (Screen.width * .06f, Screen.height * .85f, Screen.width * .15f, Screen.height * .07f), exitTex, buttonStyle))  {
+				Application.Quit();
+			}
 		}
 	}
 }

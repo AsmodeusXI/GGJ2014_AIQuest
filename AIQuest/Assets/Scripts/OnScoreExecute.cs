@@ -10,6 +10,7 @@ public class OnScoreExecute : MonoBehaviour {
 	void OnGUI() {
 	
 		GUIStyle buttonStyle = new GUIStyle ();
+		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
 		Texture exitTex = (Texture)Resources.Load ("ButtonImages/exitbutton");
 		Texture replayTex = (Texture)Resources.Load ("ButtonImages/replay");
 		Texture menuTex = (Texture)Resources.Load ("ButtonImages/menubutton");
@@ -26,20 +27,30 @@ public class OnScoreExecute : MonoBehaviour {
 		
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = menuEnabled;
-		if (GUI.Button (new Rect (Screen.width * .65f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), menuTex, buttonStyle)) 
-		{
-			replayEnabled = false;
-			menuEnabled = false;
-			exitEnabled = false;
-			AutoFade.LoadLevel("OnGameLaunchScene",0,.5f,Color.black);
+
+		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
+			if (GUI.Button (new Rect (Screen.width * .65f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), menuTex, buttonStyle)) {
+					replayEnabled = false;
+					menuEnabled = false;
+					exitEnabled = false;
+					AutoFade.LoadLevel ("OnGameLaunchScene", 0, .5f, Color.black);
+			}
+		} else {
+			if (GUI.Button (new Rect (Screen.width * .65f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), menuTex, buttonStyle)) {	
+				Application.Quit();
+			}
 		}
 		
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = exitEnabled;
-		if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), exitTex, buttonStyle)) 
-		{
-			Application.Quit ();
+		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
+			if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), gcTex, buttonStyle)) {
+					Social.ShowLeaderboardUI ();
+			}
+		} else {
+			if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), exitTex, buttonStyle)) {
+				Application.Quit();
+			}
 		}
-	
 	}
 }

@@ -11,7 +11,7 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 0
   companyName: alrdev
-  productName: Artful Intelligence
+  productName: Artful
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1024
@@ -73,7 +73,7 @@ PlayerSettings:
     16:10: 1
     16:9: 0
     Others: 0
-  iPhoneBundleIdentifier: com.alrdev.ProductName
+  iPhoneBundleIdentifier: com.alrdev.Artful
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   productGUID: a5094c75679a9bc4da50efa25bf68647

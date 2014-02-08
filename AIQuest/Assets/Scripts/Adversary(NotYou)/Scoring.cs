@@ -13,15 +13,15 @@ public class Scoring : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		setScoreText(totalScore, "Total.Spawns", "int");
-		setScoreText(skeletonScore, "Skeleton.Spawns", "int");
-		setScoreText(orcScore, "Orc.Spawns", "int");
-		setScoreText(dragonScore, "Dragon.Spawns", "int");
-		setScoreText(lichScore, "Lich.Spawns", "int");
-		setScoreText(timeScore, "Zone.Time", "float");
+		setScoreText(totalScore, "Artful.Total.Spawns", "int");
+		setScoreText(skeletonScore, "Artful.Skeleton.Spawns", "int");
+		setScoreText(orcScore, "Artful.Orc.Spawns", "int");
+		setScoreText(dragonScore, "Artful.Dragon.Spawns", "int");
+		setScoreText(lichScore, "Artful.Lich.Spawns", "int");
+		setScoreText(timeScore, "Artful.Zone.Time", "float");
 
 		//Until Kraken
-		ReportScore(PlayerPrefs.GetInt("Kraken.Spawns"), "Kraken.Spawns");
+		ReportScore(PlayerPrefs.GetInt("Artful.Kraken.Spawns"), "Artful.Kraken.Spawns");
 	}
 	
 	// Update is called once per frame

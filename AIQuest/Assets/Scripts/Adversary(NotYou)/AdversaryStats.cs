@@ -123,12 +123,12 @@ public class AdversaryStats : MonoBehaviour {
 	}
 	//goes to new scene where the game could be restarted or quit out of
 	public void goToGameOver() {
-		PlayerPrefs.SetInt("Total.Spawns", totalKills);
-		PlayerPrefs.SetInt("Skeleton.Spawns", skeletonKills);
-		PlayerPrefs.SetInt("Orc.Spawns", orcKills);
-		PlayerPrefs.SetInt("Dragon.Spawns", dragonKills);
-		PlayerPrefs.SetInt("Lich.Spawns", lichKills);
-		PlayerPrefs.SetInt("Kraken.Spawns", krakenKills);
+		PlayerPrefs.SetInt("Artful.Total.Spawns", totalKills);
+		PlayerPrefs.SetInt("Artful.Skeleton.Spawns", skeletonKills);
+		PlayerPrefs.SetInt("Artful.Orc.Spawns", orcKills);
+		PlayerPrefs.SetInt("Artful.Dragon.Spawns", dragonKills);
+		PlayerPrefs.SetInt("Artful.Lich.Spawns", lichKills);
+		PlayerPrefs.SetInt("Artful.Kraken.Spawns", krakenKills);
 		StartCoroutine(Wait (3));
 	}
 	

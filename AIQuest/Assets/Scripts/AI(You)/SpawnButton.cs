@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -165,6 +165,9 @@ public class SpawnButton : MonoBehaviour {
 				PlayClip("SoundFX/Lich");
 				break;
 			case Monster.MonsterType.kraken:
+				Social.ReportProgress("Artful.Kraken.Unleashed",100.0, success => {
+					Debug.Log(success ? "Reported kraken achievement successfully" : "Failed to report achievement");
+				});
 				PlayClip("SoundFX/Kraken2");
 				break;
 			}

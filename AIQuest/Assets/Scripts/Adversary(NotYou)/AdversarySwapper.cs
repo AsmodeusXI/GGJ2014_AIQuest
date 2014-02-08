@@ -33,7 +33,7 @@ public class AdversarySwapper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		PlayerPrefs.SetFloat("Artful.Zone.Time", 0);
 		setupImages();
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		spriter.sprite = zone1Sprite;
@@ -72,14 +72,13 @@ public class AdversarySwapper : MonoBehaviour {
 		spriteSwitch = spriteSwitch > 0 ? 0 : 1;
 		PlayerPrefs.SetInt ("Adversary", spriteSwitch);
 		PlayerPrefs.Save ();
-		Debug.Log ("Prefs " + PlayerPrefs.GetInt ("Adversary"));
 	}
 	
 	private void resetHappyTime() {
 		timerOn = false;
-		float currentHappyRecord = PlayerPrefs.GetFloat("Zone Time");
+		float currentHappyRecord = PlayerPrefs.GetFloat("Artful.Zone.Time");
 		if (timeValue > currentHappyRecord) {
-			PlayerPrefs.SetFloat("Zone.Time", timeValue);
+			PlayerPrefs.SetFloat("Artful.Zone.Time", timeValue);
 		}
 		timeValue = 0;
 	}
@@ -106,7 +105,7 @@ public class AdversarySwapper : MonoBehaviour {
 			} else {
 				timeValue += Time.deltaTime;
 				if(timeValue > 7 && timeValue <= 18) {
-					spriter.sprite = enjoyingSprite;
+					spriter.sprite = zone1Sprite;
 				} else if (timeValue > 18) {
 					spriter.sprite = zone2Sprite;
 				}
