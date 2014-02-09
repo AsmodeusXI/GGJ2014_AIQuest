@@ -17,6 +17,7 @@ public class AdversaryStats : MonoBehaviour {
 	private int dragonsInQ;
 	private int lichInQ;
 	private int krakenInQ;
+	private int inQAtMonsterTimeStart;
 	private bool gameOver;
 	private float timeBetweenSpawns;
 	private Vector3 originPosition;
@@ -25,6 +26,10 @@ public class AdversaryStats : MonoBehaviour {
 	public float shake_intensity;
 	public Transform camera;
 	public bool monsterMode;
+	public GameObject mmIndicator;
+	private MonsterLevelIndicator mmSign;
+	private SpriteRenderer mmSpriter;
+	private int lastLevel;
 	public Monster.MonsterType monsterModeType;
 	private float monsterModeTimer;
 
@@ -35,6 +40,11 @@ public class AdversaryStats : MonoBehaviour {
 		originPosition = camera.position;
 		originRotation = camera.rotation;
 		shake_decay = 0.002f;
+
+		monsterModeTimer = Math.Max(4, UnityEngine.Random.Range (4 / yourLvl, 4 / yourLvl));
+		mmSign = mmIndicator.GetComponent<MonsterLevelIndicator>();
+		mmSpriter = (SpriteRenderer)mmIndicator.GetComponent<SpriteRenderer> ();
+		mmSpriter.color = Color.white;
 	}
  
 	// Update is called once per frame
@@ -45,7 +55,7 @@ public class AdversaryStats : MonoBehaviour {
 		}
 		timeBetweenSpawns += Time.deltaTime;
 
-		if (totalKills > 115) {
+		if (totalKills > 55) {
 			checkMonsterMode();
 		}
 		
@@ -53,21 +63,37 @@ public class AdversaryStats : MonoBehaviour {
 			gameOver = true;
 			goToGameOver ();
 		}
-		mood = (mood - ((4f*(0.5f+ timeBetweenSpawns)) * (Time.deltaTime)));
+		if (totalKills > 0) {
+			mood = (mood - ((4f * (0.5f + timeBetweenSpawns)) * (Time.deltaTime)));
+		}
 		checkMusic();
 	}
 
 	void checkMonsterMode() {
 		if (monsterModeTimer <= 0 && !monsterMode) {
-			monsterModeTimer = UnityEngine.Random.Range (10 / yourLvl, 30 / yourLvl);
-			monsterMode = true;
-			float rannum = UnityEngine.Random.Range(0f, 1f) * 4;
-			monsterModeType = (Monster.MonsterType)(System.Math.Round(rannum));
-//			playClipForMonsterType(monsterModeType);
-		} else {
+				monsterModeTimer = Math.Max(4, UnityEngine.Random.Range (4 / yourLvl, 4 / yourLvl));
+				monsterMode = true;
+				float rannum = UnityEngine.Random.Range(0f, 1f) * Math.Min(yourLvl, 4);
+				monsterModeType = (Monster.MonsterType)(System.Math.Round(rannum));
+				inQAtMonsterTimeStart = monsterTypeQueued(monsterModeType);
+	//			playClipForMonsterType(monsterModeType);
+				mmSign.hide();
+		} else if (!monsterMode) {
+			if (monsterModeTimer < 3) {
+				mmSignCheck();
+			}
 			monsterModeTimer -= Time.deltaTime;
 		}
 
+	}
+
+	private void mmSignCheck() {
+		int effectiveLevel = Mathf.FloorToInt(monsterModeTimer);
+		if(effectiveLevel != lastLevel)
+		{
+			lastLevel = effectiveLevel;
+			mmSign.increment();
+		}
 	}
 
 //	void playClipForMonsterModeType(Monster.MonsterType monsterType) {
@@ -149,15 +175,15 @@ public class AdversaryStats : MonoBehaviour {
 	public void monsterAffects(Monster monster) {
 		if (gameOver) return;
 		if (monsterMode) {
-			if (monster.type == monsterModeType) {
+			if (monster.type == monsterModeType && inQAtMonsterTimeStart <=0) {
 				monsterMode = false;
-				return;
+			} else {
+				inQAtMonsterTimeStart--;
 			}
 		}
 
 		timeBetweenSpawns = 0;
 		checkMusic();
-		if (tooLowLevel (monster)) return;	
 		shake ((((int)monster.type + 1) * monster.getLevel()) * 3);
 		mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
 		incrementMonsterKills (monster);
@@ -194,7 +220,11 @@ public class AdversaryStats : MonoBehaviour {
 	}
 	
 	private int monsterQueued(Monster monster) {
-		switch (monster.type) {
+		return monsterTypeQueued (monster.type);
+	}
+
+	private int monsterTypeQueued(Monster.MonsterType monsterType) {
+		switch (monsterType) {
 		case Monster.MonsterType.skeleton:
 			return skeletonsInQ;
 		case Monster.MonsterType.orc:

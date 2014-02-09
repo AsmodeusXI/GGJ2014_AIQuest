@@ -6,9 +6,14 @@ public class OnScoreExecute : MonoBehaviour {
 	private bool exitEnabled = true;
 	private bool replayEnabled = true;
 	private bool menuEnabled = true;
+//	private ADBannerView banner = null;
 	
 	void OnGUI() {
 	
+//		banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+//		ADBannerView.onBannerWasClicked += OnBannerClicked;
+//		ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+
 		GUIStyle buttonStyle = new GUIStyle ();
 		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
 		Texture exitTex = (Texture)Resources.Load ("ButtonImages/exitbutton");
@@ -53,4 +58,14 @@ public class OnScoreExecute : MonoBehaviour {
 			}
 		}
 	}
+
+//	void OnBannerClicked()
+//	{
+//		Debug.Log("Clicked!\n");
+//	}
+//	void OnBannerLoaded()
+//	{
+//		Debug.Log("Loaded!\n");
+//		banner.visible = true;
+//	}
 }

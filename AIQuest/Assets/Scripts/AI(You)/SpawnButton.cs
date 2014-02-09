@@ -74,14 +74,9 @@ public class SpawnButton : MonoBehaviour {
 			if (currMonster.type == advStats.monsterModeType) {
 				spriter.color = Color.red;
 			} else {
-				lvlSign.hide();
-				chargeLevel = 0;
 				timeBetweenSwaps = 0;
 				maxSwapTime = 0.5f;
-				firstRed = false;
-				timerOn = false;
-				lvlSpriter.color = Color.clear;
-				spriter.color = Color.clear;
+				spriter.color = Color.grey;
 			}
 		} else if (!timerOn) {
 			spriter.color = Color.white;

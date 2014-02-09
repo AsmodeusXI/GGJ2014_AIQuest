@@ -10,7 +10,7 @@ class MonsterLevelIndicator : MonoBehaviour
     public float popScale = 1.3f;
 
     private SpriteRenderer thisRenderer;
-
+	
     private int index = -1;
     private float timerProgress = 0;
     private float currentScale;
