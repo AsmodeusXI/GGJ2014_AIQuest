@@ -33,12 +33,23 @@ public class Scoring : MonoBehaviour {
 		GUIText scoreText = (GUIText)scoreArea.GetComponent<GUIText>();
 		scoreText.fontSize = 40;
 		if(returnType.Equals("int")) {
-			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString();
-			ReportScore(PlayerPrefs.GetInt(ppKey), ppKey);
+			bool isMax = checkMaxScore(PlayerPrefs.GetInt(ppKey), ppKey);
+			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString() + (isMax ? "*" : "");
 		} else if (returnType.Equals ("float")) {
+			bool isMax = checkMaxScore(Mathf.FloorToInt(PlayerPrefs.GetFloat(ppKey)), ppKey);
 			decimal decCast = (decimal) PlayerPrefs.GetFloat(ppKey);
-			scoreText.text = decCast.ToString("n2");
-			ReportScore(PlayerPrefs.GetInt(ppKey), ppKey);
+			scoreText.text = decCast.ToString("n2") + (isMax ? "*" : "");
+		}
+	}
+
+	bool checkMaxScore(int currentScore, string ppKey) {
+		int maxScore = PlayerPrefs.GetInt(ppKey + ".Max");
+		if (currentScore > maxScore) {
+			PlayerPrefs.SetInt(ppKey + ".Max", currentScore);
+			ReportScore(currentScore, ppKey);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
