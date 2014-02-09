@@ -51,7 +51,7 @@ public class AdversarySwapper : MonoBehaviour {
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryMellow");
 			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryBored");
 			zone1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEngaged");
-			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria");
+			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryScared");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryRage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitRage");
