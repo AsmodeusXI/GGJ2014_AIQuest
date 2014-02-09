@@ -15,7 +15,7 @@ public class AdversarySwapper : MonoBehaviour {
 	private Sprite perturbedSprite;
 	private Sprite zone1Sprite;
 	private Sprite bored2Sprite;
-	private Sprite enjoyingSprite;
+	private Sprite zone3Sprite;
 	private Sprite zone2Sprite;
 	private Sprite euphoriaAlternateSprite;
 	private Sprite bored1Sprite;
@@ -37,7 +37,6 @@ public class AdversarySwapper : MonoBehaviour {
 		setupImages();
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		spriter.sprite = zone1Sprite;
-		PlayerPrefs.SetFloat("Zone Time", timeValue);
 		
 	}
 
@@ -51,7 +50,8 @@ public class AdversarySwapper : MonoBehaviour {
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryMellow");
 			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryBored");
 			zone1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEngaged");
-			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
+			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEnjoyment");
+			zone3Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryScared");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryRage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitRage");
@@ -63,7 +63,8 @@ public class AdversarySwapper : MonoBehaviour {
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Bored");
 			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Mellow");
 			zone1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Enjoyment");
-			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
+			zone2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Enjoyment");
+			zone3Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Perturbed");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Rage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2RageQuit");
@@ -88,6 +89,7 @@ public class AdversarySwapper : MonoBehaviour {
 	
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+		if (advStats.totalKills == 0) return;
 		float currentMood = advStats.getRelativeMood();
 		
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
@@ -105,9 +107,9 @@ public class AdversarySwapper : MonoBehaviour {
 			} else {
 				timeValue += Time.deltaTime;
 				if(timeValue > 7 && timeValue <= 18) {
-					spriter.sprite = zone1Sprite;
-				} else if (timeValue > 18) {
 					spriter.sprite = zone2Sprite;
+				} else if (timeValue > 18) {
+					spriter.sprite = zone3Sprite;
 				}
 			}
 		} else if (currentMood >= rageVal && currentMood < quitVal) {
