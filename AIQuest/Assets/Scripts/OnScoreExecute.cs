@@ -6,13 +6,15 @@ public class OnScoreExecute : MonoBehaviour {
 	private bool exitEnabled = true;
 	private bool replayEnabled = true;
 	private bool menuEnabled = true;
-//	private ADBannerView banner = null;
+	private ADBannerView banner = null;
 	
 	void OnGUI() {
 	
-//		banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
-//		ADBannerView.onBannerWasClicked += OnBannerClicked;
-//		ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+			ADBannerView.onBannerWasClicked += OnBannerClicked;
+			ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+		}
 
 		GUIStyle buttonStyle = new GUIStyle ();
 		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
@@ -27,23 +29,25 @@ public class OnScoreExecute : MonoBehaviour {
 			replayEnabled = false;
 			menuEnabled = false;
 			exitEnabled = false;
+			if (banner != null) {
+				banner.visible = false;
+				banner = null;
+			}
 			AutoFade.LoadLevel("PlayScene",2,1,Color.black);
 		}
 		
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = menuEnabled;
 
-		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
-			if (GUI.Button (new Rect (Screen.width * .65f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), menuTex, buttonStyle)) {
-					replayEnabled = false;
-					menuEnabled = false;
-					exitEnabled = false;
-					AutoFade.LoadLevel ("OnGameLaunchScene", 0, .5f, Color.black);
-			}
-		} else {
-			if (GUI.Button (new Rect (Screen.width * .65f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), menuTex, buttonStyle)) {	
-				Application.Quit();
-			}
+		if (GUI.Button (new Rect (Screen.width * .65f, Screen.height * .9f, Screen.width * .14f, Screen.height * .14f), menuTex, buttonStyle)) {
+				replayEnabled = false;
+				menuEnabled = false;
+				exitEnabled = false;
+				if (banner != null) {
+					banner.visible = false;
+					banner = null;
+				}
+				AutoFade.LoadLevel ("OnGameLaunchScene", 0, .5f, Color.black);
 		}
 		
 		//GUI enabled cause button to disable/enable
@@ -59,13 +63,13 @@ public class OnScoreExecute : MonoBehaviour {
 		}
 	}
 
-//	void OnBannerClicked()
-//	{
-//		Debug.Log("Clicked!\n");
-//	}
-//	void OnBannerLoaded()
-//	{
-//		Debug.Log("Loaded!\n");
-//		banner.visible = true;
-//	}
+	void OnBannerClicked()
+	{
+		Debug.Log("Clicked!\n");
+	}
+	void OnBannerLoaded()
+	{
+		Debug.Log("Loaded!\n");
+		banner.visible = true;
+	}
 }
