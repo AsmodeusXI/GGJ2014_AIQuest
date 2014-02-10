@@ -55,7 +55,7 @@ public class AdversaryStats : MonoBehaviour {
 		}
 		timeBetweenSpawns += Time.deltaTime;
 
-		if (totalKills > 55) {
+		if (totalKills > 115) {
 			checkMonsterMode();
 		}
 		
@@ -64,7 +64,7 @@ public class AdversaryStats : MonoBehaviour {
 			goToGameOver ();
 		}
 		if (totalKills > 0) {
-			mood = (mood - ((4f * (0.5f + timeBetweenSpawns)) * (Time.deltaTime)));
+			mood = mood - (((4f * (0.5f + timeBetweenSpawns)) * (Time.deltaTime)) * (monsterMode ? 2f : 1f));
 		}
 		checkMusic();
 	}
@@ -128,6 +128,7 @@ public class AdversaryStats : MonoBehaviour {
 
 	void shake(int intensity){
 		shake_intensity += intensity * 0.002f;
+		//MAX INTENSITY LEADERBOARD
 	}
 
 	public void checkMusic() {
