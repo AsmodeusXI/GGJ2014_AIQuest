@@ -24,6 +24,12 @@ public class SpawnButton : MonoBehaviour {
 	private AdversaryStats advStats;
 	private RaycastHit hit;
 	private bool touched;
+	public float endY;
+	public float endX;
+
+	public float percentPerSecond =.25f;
+	
+	private float percentComplete = 0;
     
     KeyCode keyboardButton;
 
@@ -144,7 +150,7 @@ public class SpawnButton : MonoBehaviour {
 			button.SetActive (false);
 			button.renderer.enabled = false;
 			return false;
-		} else if (!firstShown && minimumSpawnToShow > 0) {
+		} else if (!firstShown) {
 			Monster currMonster = monster.GetComponent<Monster>();
 			switch (currMonster.type) {
 			case Monster.MonsterType.skeleton:
@@ -169,6 +175,27 @@ public class SpawnButton : MonoBehaviour {
 			firstShown = true;
 			button.renderer.enabled = true;
 			button.SetActive (true);
+		}
+		if (firstShown) {
+			if (button.transform.position.y != endY) {
+				Debug.Log ("moving button");
+				percentComplete += Time.deltaTime * percentPerSecond;
+				Vector3 anchor = button.transform.position;
+				Vector3 goal = new Vector3();
+				goal.x = button.transform.position.x;
+				goal.y = endY;
+				goal.z = button.transform.position.z;
+				button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
+			}
+			if (button.transform.position.x != endX) {
+				percentComplete += Time.deltaTime * percentPerSecond;
+				Vector3 anchor = button.transform.position;
+				Vector3 goal = new Vector3();
+				goal.x = endX;
+				goal.y = button.transform.position.y;
+				goal.z = button.transform.position.z;
+				button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
+			}
 		}
 		return true;
 	}

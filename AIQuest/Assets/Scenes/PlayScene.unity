@@ -308,6 +308,9 @@ MonoBehaviour:
   button: {fileID: 1488547696}
   collideButton: {fileID: 930196449}
   minimumSpawnToShow: 0
+  endY: -4.69000006
+  endX: -5.09000015
+  percentPerSecond: .00999999978
 --- !u!64 &930196451
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -388,7 +391,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 930196449}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.09000015, y: -4.26999998, z: 8}
+  m_LocalPosition: {x: -5.09000015, y: -4.69000006, z: 8}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -681,7 +684,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1190740506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.05000019, y: 1.97000003, z: 7.81497478}
+  m_LocalPosition: {x: -5.90999985, y: 1.07000005, z: 7.81497478}
   m_LocalScale: {x: .865101933, y: 1.01978374, z: 1.11757076}
   m_Children: []
   m_Father: {fileID: 0}
@@ -722,7 +725,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 53100402a86b4495c9441538adc06b1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a503cf98f7c3a424f8052dc854c23775, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1261607779
 Transform:
@@ -731,8 +734,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1261607777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.79999995, y: -4.26999998, z: 8}
-  m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
+  m_LocalPosition: {x: -1.79999995, y: -6, z: 8}
+  m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1327741662
@@ -772,6 +775,9 @@ MonoBehaviour:
   button: {fileID: 1656924353}
   collideButton: {fileID: 1327741662}
   minimumSpawnToShow: 15
+  endY: -4.69000006
+  endX: 1.52999997
+  percentPerSecond: .00999999978
 --- !u!82 &1327741664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -852,7 +858,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1327741662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52999997, y: -4.26999998, z: 8}
+  m_LocalPosition: {x: 1.52999997, y: -4.69000006, z: 8}
   m_LocalScale: {x: 3, y: 3, z: .941715658}
   m_Children: []
   m_Father: {fileID: 0}
@@ -955,7 +961,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1353438284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.83103955, y: -4.26999998, z: 8}
+  m_LocalPosition: {x: -1.83103955, y: -4.69000006, z: 8}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -977,6 +983,9 @@ MonoBehaviour:
   button: {fileID: 1261607777}
   collideButton: {fileID: 1353438284}
   minimumSpawnToShow: 5
+  endY: -4.69000006
+  endX: -1.83104002
+  percentPerSecond: .00999999978
 --- !u!1 &1476567559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1087,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: e5abfc99582c344b9be6d43ec647da68, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5fc2af706c427734a948ef3305eff9a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1488547698
 Transform:
@@ -1087,8 +1096,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1488547696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.09000015, y: -4.26999998, z: 8}
-  m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
+  m_LocalPosition: {x: -5.09000015, y: -6, z: 8}
+  m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1503438987
@@ -1128,7 +1137,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 801cc53803b25462ea6b9cb3b0731375, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b20a70e121f54ae8971f9ee980b5ad7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1503438989
 Transform:
@@ -1137,7 +1146,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1503438987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.05000019, y: .720000029, z: 8}
+  m_LocalPosition: {x: -11.2399998, y: -1.47000003, z: 8}
   m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1317,7 +1326,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: d2244965c1f06164fbe97534e0caa515, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ea1152680852644981c36c6e416861d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1586453257
 Transform:
@@ -1326,8 +1335,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1586453255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88000011, y: -4.26999998, z: 8}
-  m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
+  m_LocalPosition: {x: 4.88000011, y: -6, z: 8}
+  m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1611780428
@@ -1435,7 +1444,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 4a12a02135a574e24b577e87e44a22e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efc733678b74fb44d81aa29c31a5c520, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1656924355
 Transform:
@@ -1444,8 +1453,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656924353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.52999997, y: -4.26999998, z: 8}
-  m_LocalScale: {x: .800000012, y: .800000012, z: .800000012}
+  m_LocalPosition: {x: 1.52999997, y: -6, z: 8}
+  m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1739573436
@@ -1721,6 +1730,9 @@ MonoBehaviour:
   button: {fileID: 1503438987}
   collideButton: {fileID: 2133354308}
   minimumSpawnToShow: 50
+  endY: -1.47000003
+  endX: -6.51000023
+  percentPerSecond: .00999999978
 --- !u!64 &2133354311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1748,7 +1760,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133354308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.05000019, y: .720000029, z: 8}
+  m_LocalPosition: {x: -6.42000008, y: -1.47000003, z: 8}
   m_LocalScale: {x: 3, y: 3, z: .986682236}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1789,6 +1801,9 @@ MonoBehaviour:
   button: {fileID: 1586453255}
   collideButton: {fileID: 2145047277}
   minimumSpawnToShow: 30
+  endY: -4.69000006
+  endX: 4.88000011
+  percentPerSecond: .00999999978
 --- !u!82 &2145047279
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1869,7 +1884,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2145047277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.88000011, y: -4.26999998, z: 8}
+  m_LocalPosition: {x: 4.88000011, y: -4.69000006, z: 8}
   m_LocalScale: {x: 3, y: 3, z: .986682236}
   m_Children: []
   m_Father: {fileID: 0}
