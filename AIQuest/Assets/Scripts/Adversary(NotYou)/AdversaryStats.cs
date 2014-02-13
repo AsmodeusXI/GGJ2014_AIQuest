@@ -12,6 +12,7 @@ public class AdversaryStats : MonoBehaviour {
 	private int lichKills = 0;
 	private int dragonKills = 0;
 	private int krakenKills = 0;
+	private int maxIntensity = 0;
 	private int skeletonsInQ;
 	private int orcsInQ;
 	private int dragonsInQ;
@@ -130,7 +131,10 @@ public class AdversaryStats : MonoBehaviour {
 
 	void shake(int intensity){
 		shake_intensity += intensity * 0.002f;
-		//MAX INTENSITY LEADERBOARD
+		if (shake_intensity * 100 > maxIntensity) {
+			Debug.Log ("intensity " + shake_intensity*100);
+			maxIntensity = Mathf.FloorToInt(shake_intensity * 100);
+		}
 	}
 
 	public void checkMusic() {
@@ -158,6 +162,7 @@ public class AdversaryStats : MonoBehaviour {
 		PlayerPrefs.SetInt("Artful.Dragon.Spawns", dragonKills);
 		PlayerPrefs.SetInt("Artful.Lich.Spawns", lichKills);
 		PlayerPrefs.SetInt("Artful.Kraken.Spawns", krakenKills);
+		PlayerPrefs.SetInt("Artful.Max.Intensity", maxIntensity);
 		StartCoroutine(Wait (3));
 	}
 	

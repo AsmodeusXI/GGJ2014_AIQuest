@@ -310,7 +310,6 @@ MonoBehaviour:
   minimumSpawnToShow: 0
   endY: -4.69000006
   endX: -5.09000015
-  percentPerSecond: .00999999978
 --- !u!64 &930196451
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -684,7 +683,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1190740506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.42999983, y: 2.1500001, z: 7.81497478}
+  m_LocalPosition: {x: -6.15999985, y: 2.1500001, z: 7.81497478}
   m_LocalScale: {x: .865101933, y: 1.01978374, z: 1.11757076}
   m_Children: []
   m_Father: {fileID: 0}
@@ -777,7 +776,6 @@ MonoBehaviour:
   minimumSpawnToShow: 15
   endY: -4.69000006
   endX: 1.52999997
-  percentPerSecond: .00999999978
 --- !u!82 &1327741664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -985,7 +983,6 @@ MonoBehaviour:
   minimumSpawnToShow: 5
   endY: -4.69000006
   endX: -1.83104002
-  percentPerSecond: .00999999978
 --- !u!1 &1476567559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +1729,6 @@ MonoBehaviour:
   minimumSpawnToShow: 50
   endY: 0
   endX: -6.5
-  percentPerSecond: .00999999978
 --- !u!64 &2133354311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1803,7 +1799,6 @@ MonoBehaviour:
   minimumSpawnToShow: 30
   endY: -4.69000006
   endX: 4.88000011
-  percentPerSecond: .00999999978
 --- !u!82 &2145047279
 AudioSource:
   m_ObjectHideFlags: 0

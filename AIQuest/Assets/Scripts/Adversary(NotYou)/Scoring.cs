@@ -22,6 +22,7 @@ public class Scoring : MonoBehaviour {
 
 		//Until Kraken
 		ReportScore(PlayerPrefs.GetInt("Artful.Kraken.Spawns"), "Artful.Kraken.Spawns");
+		ReportScore(PlayerPrefs.GetInt("Artful.Max.Intensity"), "Artful.Max.Intensity");
 	}
 	
 	// Update is called once per frame
@@ -36,7 +37,7 @@ public class Scoring : MonoBehaviour {
 			bool isMax = checkMaxScore(PlayerPrefs.GetInt(ppKey), ppKey);
 			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString() + (isMax ? "*" : "");
 		} else if (returnType.Equals ("float")) {
-			bool isMax = checkMaxScore(Mathf.FloorToInt(PlayerPrefs.GetFloat(ppKey)), ppKey);
+			bool isMax = checkMaxScore(Mathf.FloorToInt(PlayerPrefs.GetFloat(ppKey))*100, ppKey);
 			decimal decCast = (decimal) PlayerPrefs.GetFloat(ppKey);
 			scoreText.text = decCast.ToString("n2") + (isMax ? "*" : "");
 		}

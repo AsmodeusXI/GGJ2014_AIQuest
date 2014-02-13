@@ -26,8 +26,6 @@ public class SpawnButton : MonoBehaviour {
 	private bool touched;
 	public float endY;
 	public float endX;
-
-	public float percentPerSecond =.25f;
 	
 	private float percentComplete = 0;
     
@@ -178,17 +176,15 @@ public class SpawnButton : MonoBehaviour {
 		}
 		if (firstShown) {
 			if (button.transform.position.y != endY) {
-				Debug.Log ("moving button");
-				percentComplete += Time.deltaTime * percentPerSecond;
+				percentComplete += 0.001f;
 				Vector3 anchor = button.transform.position;
 				Vector3 goal = new Vector3();
 				goal.x = button.transform.position.x;
 				goal.y = endY;
 				goal.z = button.transform.position.z;
 				button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
-			}
-			if (button.transform.position.x != endX) {
-				percentComplete += Time.deltaTime * percentPerSecond;
+			} else 	if (button.transform.position.x != endX) {
+				percentComplete += 0.001f;
 				Vector3 anchor = button.transform.position;
 				Vector3 goal = new Vector3();
 				goal.x = endX;
