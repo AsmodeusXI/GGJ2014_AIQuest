@@ -36,28 +36,28 @@ public class OnStartExecute : MonoBehaviour
 		if(story1)
 		{
 			GUI.DrawTexture( screenSize, slide1, ScaleMode.StretchToFill);
-			Color thisColor = GUI.color;
-			thisColor.a = 0.2f;
+			Color thisColor = Color.white;
+			thisColor.a = 0.5f;
 			GUI.color = thisColor;
-			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
+			GUI.Label( new Rect(45,Screen.height-50,250,120), text);
 			StartCoroutine (WaitAndChange (6, 1));
 		}
 		if(story2)
 		{
 			GUI.DrawTexture( screenSize, slide2, ScaleMode.StretchToFill);
-			Color thisColor = GUI.color;
-			thisColor.a = 0.2f;
+			Color thisColor = Color.white;
+			thisColor.a = 0.5f;
 			GUI.color = thisColor;
-			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
+			GUI.Label( new Rect(45,Screen.height-50,250,120), text);
 			StartCoroutine (WaitAndChange (6, 2));
 		}
 		if(story3)
 		{
 			GUI.DrawTexture( screenSize, slide3, ScaleMode.StretchToFill);
-			Color thisColor = GUI.color;
-			thisColor.a = 0.2f;
-			GUI.color = thisColor;
-			GUI.Label( new Rect(Screen.width/2/2/2/2,Screen.height-100,150,50), text);
+//			Color thisColor = Color.white;
+//			thisColor.a = 0.5f;
+//			GUI.color = thisColor;
+//			GUI.Label( new Rect(45,Screen.height-50,250,120), text);
 			StartCoroutine (WaitAndChange (7, 3));
 			if (audio.volume > 0) {
 				audio.volume -= Time.deltaTime/75;

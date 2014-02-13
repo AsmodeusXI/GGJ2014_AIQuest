@@ -163,7 +163,7 @@ public class SpawnButton : MonoBehaviour {
 				Social.ReportProgress("Artful.Kraken.Unleashed",100.0, success => {
 					Debug.Log(success ? "Reported kraken achievement successfully" : "Failed to report achievement");
 				});
-				PlayClip("SoundFX/Kraken2");
+				PlayClip("SoundFX/Kraken");
 				break;
 			}
 			firstShown = true;

@@ -7,14 +7,24 @@ public class OnScoreExecute : MonoBehaviour {
 	private bool replayEnabled = true;
 	private bool menuEnabled = true;
 	private ADBannerView banner = null;
-	
-	void OnGUI() {
-	
+
+	void Start () {
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
 			ADBannerView.onBannerWasClicked += OnBannerClicked;
 			ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
 		}
+	}
+
+	void OnDestroy() {
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+						ADBannerView.onBannerWasClicked -= OnBannerClicked;
+						ADBannerView.onBannerWasLoaded -= OnBannerLoaded;
+						banner.visible = false;
+				}
+	}
+	
+	void OnGUI() {
 
 		GUIStyle buttonStyle = new GUIStyle ();
 		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
@@ -29,10 +39,7 @@ public class OnScoreExecute : MonoBehaviour {
 			replayEnabled = false;
 			menuEnabled = false;
 			exitEnabled = false;
-			if (banner != null) {
-				banner.visible = false;
-				banner = null;
-			}
+			if (Application.platform == RuntimePlatform.IPhonePlayer) {banner.visible = false;}
 			AutoFade.LoadLevel("PlayScene",2,1,Color.black);
 		}
 		
@@ -43,10 +50,7 @@ public class OnScoreExecute : MonoBehaviour {
 				replayEnabled = false;
 				menuEnabled = false;
 				exitEnabled = false;
-				if (banner != null) {
-					banner.visible = false;
-					banner = null;
-				}
+				if (Application.platform == RuntimePlatform.IPhonePlayer) {banner.visible = false;}
 				AutoFade.LoadLevel ("OnGameLaunchScene", 0, .5f, Color.black);
 		}
 		

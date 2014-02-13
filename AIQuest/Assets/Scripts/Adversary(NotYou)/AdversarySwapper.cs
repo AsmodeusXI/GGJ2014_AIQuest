@@ -122,8 +122,12 @@ public class AdversarySwapper : MonoBehaviour {
 			spriter.sprite = rageQuitSprite;
             if (!playedYell)
             {
-                playedYell = true;
+				playedYell = true;
+				if (spriteSwitch == 1) {
                 adversaryPlayer.play(1);
+				} else {
+				adversaryPlayer.play(3);
+				}
             }
 			resetHappyTime();
 		} else if (currentMood <= asleepVal) {
@@ -131,7 +135,11 @@ public class AdversarySwapper : MonoBehaviour {
             if(!playedSnore)
             {
                 playedSnore = true;
-                adversaryPlayer.play(0);
+				if (spriteSwitch == 1) {
+					adversaryPlayer.play(0);
+				} else {
+					adversaryPlayer.play(2);
+				}
             }
 			resetHappyTime();
 		}
