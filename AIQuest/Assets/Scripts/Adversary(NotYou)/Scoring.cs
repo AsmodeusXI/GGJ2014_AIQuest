@@ -21,8 +21,8 @@ public class Scoring : MonoBehaviour {
 		setScoreText(timeScore, "Artful.Zone.Time", "float");
 
 		//Until Kraken
-		ReportScore(PlayerPrefs.GetInt("Artful.Kraken.Spawns"), "Artful.Kraken.Spawns");
-		ReportScore(PlayerPrefs.GetInt("Artful.Max.Intensity"), "Artful.Max.Intensity");
+		checkMaxScore(PlayerPrefs.GetInt ("Artful.Kraken.Spawns"), "Artful.Kraken.Spawns");
+		checkMaxScore(PlayerPrefs.GetInt("Artful.Max.Intensity"), "Artful.Max.Intensity");
 	}
 	
 	// Update is called once per frame

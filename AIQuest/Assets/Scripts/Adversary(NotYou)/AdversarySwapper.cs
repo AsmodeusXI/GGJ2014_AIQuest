@@ -43,9 +43,6 @@ public class AdversarySwapper : MonoBehaviour {
 	void setupImages() {
 		spriteSwitch = PlayerPrefs.GetInt("Adversary");
 		if (spriteSwitch == 0) {
-			Debug.Log("John " + spriteSwitch);
-//			perturbedSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryPerturbed");
-//			euphoriaAlternateSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
 			boredQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitBored");
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryMellow");
 			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryBored");
@@ -56,9 +53,6 @@ public class AdversarySwapper : MonoBehaviour {
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryRage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitRage");
 		} else {
-			Debug.Log("Jane" + spriteSwitch);
-//			perturbedSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Perturbed");
-//			euphoriaAlternateSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
 			boredQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2BoredQuit");
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Bored");
 			bored1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Mellow");

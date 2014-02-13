@@ -132,8 +132,12 @@ public class AdversaryStats : MonoBehaviour {
 	void shake(int intensity){
 		shake_intensity += intensity * 0.002f;
 		if (shake_intensity * 100 > maxIntensity) {
-			Debug.Log ("intensity " + shake_intensity*100);
 			maxIntensity = Mathf.FloorToInt(shake_intensity * 100);
+			if (maxIntensity > 100) {
+				Social.ReportProgress("Artful.Max.Intensity",100.0, success => {
+					Debug.Log(success ? "Reported Boss Battle achievement successfully" : "Failed to report achievement");
+				});
+			}
 		}
 	}
 

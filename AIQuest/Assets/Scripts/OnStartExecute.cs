@@ -37,7 +37,7 @@ public class OnStartExecute : MonoBehaviour
 		{
 			GUI.DrawTexture( screenSize, slide1, ScaleMode.StretchToFill);
 			Color thisColor = Color.white;
-			thisColor.a = 0.5f;
+			thisColor.a = 1f;
 			GUI.color = thisColor;
 			GUI.Label( new Rect(45,Screen.height-50,250,120), text);
 			StartCoroutine (WaitAndChange (6, 1));
@@ -46,7 +46,7 @@ public class OnStartExecute : MonoBehaviour
 		{
 			GUI.DrawTexture( screenSize, slide2, ScaleMode.StretchToFill);
 			Color thisColor = Color.white;
-			thisColor.a = 0.5f;
+			thisColor.a = 1f;
 			GUI.color = thisColor;
 			GUI.Label( new Rect(45,Screen.height-50,250,120), text);
 			StartCoroutine (WaitAndChange (6, 2));
