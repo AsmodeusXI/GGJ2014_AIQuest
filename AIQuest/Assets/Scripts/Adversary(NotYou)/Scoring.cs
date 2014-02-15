@@ -9,7 +9,9 @@ public class Scoring : MonoBehaviour {
 	public GameObject orcScore;
 	public GameObject dragonScore;
 	public GameObject lichScore;
+	public GameObject krakenScore;
 	public GameObject timeScore;
+	public GameObject powerScore;
 
 	// Use this for initialization
 	void Start () {
@@ -19,10 +21,9 @@ public class Scoring : MonoBehaviour {
 		setScoreText(dragonScore, "Artful.Dragon.Spawns", "int");
 		setScoreText(lichScore, "Artful.Lich.Spawns", "int");
 		setScoreText(timeScore, "Artful.Zone.Time", "float");
+		setScoreText(krakenScore, "Artful.Kraken.Spawns", "int");
+		setScoreText(powerScore, "Artful.Max.Intensity", "int");
 
-		//Until Kraken
-		checkMaxScore(PlayerPrefs.GetInt ("Artful.Kraken.Spawns"), "Artful.Kraken.Spawns");
-		checkMaxScore(PlayerPrefs.GetInt("Artful.Max.Intensity"), "Artful.Max.Intensity");
 	}
 	
 	// Update is called once per frame
@@ -32,7 +33,6 @@ public class Scoring : MonoBehaviour {
 	
 	private void setScoreText(GameObject scoreArea, string ppKey, string returnType) {
 		GUIText scoreText = (GUIText)scoreArea.GetComponent<GUIText>();
-		scoreText.fontSize = 40;
 		if(returnType.Equals("int")) {
 			bool isMax = checkMaxScore(PlayerPrefs.GetInt(ppKey), ppKey);
 			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString() + (isMax ? "*" : "");
