@@ -50,17 +50,17 @@ public class AdversaryStats : MonoBehaviour {
  
 	// Update is called once per frame
 	void Update () {
-		if (gameOver) return;
 		if (shake_intensity > 0){
 			shakeScreen();
 		}
+		if (gameOver) return;
 		timeBetweenSpawns += Time.deltaTime;
 
 		if (totalKills > 115) {
 			checkMonsterMode();
 		}
 		
-		if (mood <= 0 || mood >= (100 * yourLvl)) {
+		if (mood <= 0) {
 			gameOver = true;
 			goToGameOver ();
 		}
@@ -129,9 +129,9 @@ public class AdversaryStats : MonoBehaviour {
 		}
 	}
 
-	void shake(int intensity){
+	void shake(int intensity, bool affectMax){
 		shake_intensity += intensity * 0.002f;
-		if (shake_intensity * 100 > maxIntensity) {
+		if (shake_intensity * 100 > maxIntensity && affectMax) {
 			maxIntensity = Mathf.FloorToInt(shake_intensity * 100);
 			if (maxIntensity > 100) {
 				Social.ReportProgress("Artful.Max.Intensity",100.0, success => {
@@ -186,6 +186,14 @@ public class AdversaryStats : MonoBehaviour {
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(Monster monster) {
 		if (gameOver) return;
+		float nextMood = mood + (((int)monster.type + 1) * monster.getLevel()) * 3;
+		if (nextMood >= (100 * yourLvl)) {
+			mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
+			shake ((((int)monster.type + 1) * monster.getLevel()) * 3, false);
+			gameOver = true;
+			goToGameOver ();
+			return;
+		}
 		if (monsterMode) {
 			if (monster.type == monsterModeType && inQAtMonsterTimeStart <=0) {
 				monsterMode = false;
@@ -196,7 +204,7 @@ public class AdversaryStats : MonoBehaviour {
 
 		timeBetweenSpawns = 0;
 		checkMusic();
-		shake ((((int)monster.type + 1) * monster.getLevel()) * 3);
+		shake ((((int)monster.type + 1) * monster.getLevel()) * 3, true);
 		mood += (((int)monster.type + 1) * monster.getLevel()) * 3;
 		incrementMonsterKills (monster);
 		totalKills++;
