@@ -11,7 +11,7 @@ public class AdversarySwapper : MonoBehaviour {
 	private int melancholyVal = 15;
 	private int asleepVal = 0;
 
-	private int spriteSwitch;
+	public int spriteSwitch;
 	private Sprite perturbedSprite;
 	private Sprite zone1Sprite;
 	private Sprite bored2Sprite;

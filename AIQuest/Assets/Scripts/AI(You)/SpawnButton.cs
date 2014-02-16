@@ -27,6 +27,8 @@ public class SpawnButton : MonoBehaviour {
 	public float endY;
 	public float endX;
 	
+	public AudioSource audio2;
+	
 	private float percentComplete = 0;
     
     KeyCode keyboardButton;
@@ -149,25 +151,46 @@ public class SpawnButton : MonoBehaviour {
 			button.renderer.enabled = false;
 			return false;
 		} else if (!firstShown) {
+			bool spriteSwitch = PlayerPrefs.GetInt("Adversary") == 0;
 			Monster currMonster = monster.GetComponent<Monster>();
 			switch (currMonster.type) {
 			case Monster.MonsterType.skeleton:
-				PlayClip("SoundFX/Skeleton");
+				if (spriteSwitch) {
+					PlayClipAudio2("Speech/Jane/JaneSkele1");
+				} else {
+					PlayClipAudio2("Speech/John/JohnSkele1");
+				}
 				break;
 			case Monster.MonsterType.orc:
-				PlayClip("SoundFX/Orc");
+				if (spriteSwitch) {
+					PlayClipAudio2("Speech/Jane/JaneOrc1");
+				} else {
+					PlayClipAudio2("Speech/John/JohnOrc1");
+				}
 				break;
 			case Monster.MonsterType.dragon:
-				PlayClip("SoundFX/Dragon");
+				if (spriteSwitch) {
+					PlayClipAudio2("Speech/Jane/JaneDragon1");
+				} else {
+					PlayClipAudio2("Speech/John/JohnDragon1");
+				}
 				break;
 			case Monster.MonsterType.lich:
-				PlayClip("SoundFX/Lich");
+				if (spriteSwitch) {
+					PlayClipAudio2("Speech/Jane/JaneLich1");
+				} else {
+					PlayClipAudio2("Speech/John/JohnLich1");
+				}
 				break;
 			case Monster.MonsterType.kraken:
 				Social.ReportProgress("Artful.Kraken.Unleashed",100.0, success => {
 					Debug.Log(success ? "Reported kraken achievement successfully" : "Failed to report achievement");
 				});
-				PlayClip("SoundFX/Kraken");
+				if (spriteSwitch) {
+					PlayClip("Speech/Jane/JaneKraken1");
+				} else {
+					PlayClip("Speech/John/JohnKraken1");
+				}
 				break;
 			}
 			firstShown = true;
@@ -290,5 +313,13 @@ public class SpawnButton : MonoBehaviour {
 		audio.clip = null;
 		audio.clip = Resources.Load(clipName)as AudioClip;
 		audio.Play();
+	}
+
+	public void PlayClipAudio2(string clipName) {
+		audio2.Stop();
+		audio2.Pause();
+		audio2.clip = null;
+		audio2.clip = Resources.Load(clipName)as AudioClip;
+		audio2.Play();
 	}
 }
