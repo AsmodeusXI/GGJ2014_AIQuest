@@ -7,6 +7,7 @@ public class OnScoreExecute : MonoBehaviour {
 	private bool replayEnabled = true;
 	private bool menuEnabled = true;
 	private ADBannerView banner = null;
+	public Font buttonFont;
 
 	void Start () {
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
@@ -26,15 +27,14 @@ public class OnScoreExecute : MonoBehaviour {
 	
 	void OnGUI() {
 
-		GUIStyle buttonStyle = new GUIStyle ();
-		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
-		Texture exitTex = (Texture)Resources.Load ("ButtonImages/exitbutton");
-		Texture replayTex = (Texture)Resources.Load ("ButtonImages/replay");
-		Texture menuTex = (Texture)Resources.Load ("ButtonImages/menubutton");
+		GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
+		buttonStyle.font = buttonFont;
+		buttonStyle.fontSize = 30;
+		GUI.color = new Color(90f/255f, 220f/255f, 214f/255f, 1f);
 		
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = replayEnabled;
-		if (GUI.Button (new Rect (Screen.width * .02f, Screen.height * .9f,Screen.width * .22f,Screen.height * .22f), replayTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .02f, Screen.height * .9f,Screen.width * .22f,Screen.height * .075f), "replay", buttonStyle)) 
 		{
 			replayEnabled = false;
 			menuEnabled = false;
@@ -46,7 +46,7 @@ public class OnScoreExecute : MonoBehaviour {
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = menuEnabled;
 
-		if (GUI.Button (new Rect (Screen.width * .75f, Screen.height * .9f, Screen.width * .22f, Screen.height * .22f), menuTex, buttonStyle)) {
+		if (GUI.Button (new Rect (Screen.width * .75f, Screen.height * .9f, Screen.width * .22f, Screen.height * .075f), "menu", buttonStyle)) {
 				replayEnabled = false;
 				menuEnabled = false;
 				exitEnabled = false;
@@ -57,11 +57,11 @@ public class OnScoreExecute : MonoBehaviour {
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = exitEnabled;
 		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
-			if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .22f, Screen.height * .22f), gcTex, buttonStyle)) {
+			if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .22f, Screen.height * .075f), "scores", buttonStyle)) {
 					Social.ShowLeaderboardUI ();
 			}
 		} else {
-			if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .22f, Screen.height * .22f), exitTex, buttonStyle)) {
+			if (GUI.Button (new Rect (Screen.width * .39f, Screen.height * .9f, Screen.width * .22f, Screen.height * .075f), "exit", buttonStyle)) {
 				Application.Quit();
 			}
 		}

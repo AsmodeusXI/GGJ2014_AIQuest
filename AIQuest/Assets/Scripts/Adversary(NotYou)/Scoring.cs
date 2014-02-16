@@ -39,7 +39,7 @@ public class Scoring : MonoBehaviour {
 		} else if (returnType.Equals ("float")) {
 			bool isMax = checkMaxScore(Mathf.FloorToInt(PlayerPrefs.GetFloat(ppKey))*100, ppKey);
 			decimal decCast = (decimal) PlayerPrefs.GetFloat(ppKey);
-			scoreText.text = decCast.ToString("n2") + (isMax ? "*" : "");
+			scoreText.text = decCast.ToString("n1") + (isMax ? "*" : "");
 		}
 	}
 
