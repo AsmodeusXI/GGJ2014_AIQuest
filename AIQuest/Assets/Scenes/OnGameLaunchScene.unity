@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e89eb35d66fd9640939e6dc2d5c7ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonFont: {fileID: 12800000, guid: 57ffc8782e2d346e299a588854ebae51, type: 3}
+  buttonSkin: {fileID: 0}
 --- !u!81 &815403364
 AudioListener:
   m_ObjectHideFlags: 0

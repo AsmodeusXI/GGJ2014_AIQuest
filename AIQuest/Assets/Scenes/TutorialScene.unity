@@ -166,3 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bc7b96065a9ea479e8864e5b61998a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonFont: {fileID: 12800000, guid: 57ffc8782e2d346e299a588854ebae51, type: 3}

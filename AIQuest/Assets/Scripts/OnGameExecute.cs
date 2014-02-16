@@ -7,6 +7,8 @@ public class OnGameExecute : MonoBehaviour
 	private bool startEnabled = true;
 	private bool creditsEnabled = true;
 	private bool tutorialEnabled = true;
+	public Font buttonFont;
+	public GUISkin buttonSkin;
 
 	void Start() {
 		Social.localUser.Authenticate (ProcessAuthentication);
@@ -43,20 +45,17 @@ public class OnGameExecute : MonoBehaviour
 	{
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
 		Texture backgroundTex = (Texture)Resources.Load ("FullScreenImages/main_screen");
-		GUIStyle buttonStyle = new GUIStyle ();
-		buttonStyle.border = new RectOffset (0, 0, 0, 0);
-		Texture startTex = (Texture)Resources.Load ("ButtonImages/startbutton");
-		Texture creditTex = (Texture)Resources.Load ("ButtonImages/creditsbutton");
-		Texture tutorialTex = (Texture)Resources.Load ("ButtonImages/tutorialbutton");
-		Texture exitTex = (Texture)Resources.Load ("ButtonImages/exitbutton");
-		Texture gcTex = (Texture)Resources.Load ("ButtonImages/gcbutton");
+		GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
+		buttonStyle.font = buttonFont;
+		buttonStyle.fontSize = 30;
 
-		Rect windowRect = new Rect(Screen.width/2-100, Screen.height/2-60, 200, 120);
 		GUI.DrawTexture (new Rect(0,0,Screen.width,Screen.height), backgroundTex);
 
+		GUI.color = new Color(90f/255f, 220f/255f, 214f/255f, 1f);
+		GUI.backgroundColor = new Color(33f/255f, 65f/255f, 156f/255f, 1f);
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = startEnabled;
-		if (GUI.Button (new Rect (Screen.width * .68f, Screen.height * .785f,Screen.width * .3f,Screen.height * .3f), startTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .715f, Screen.height * .8f,Screen.width * .2f,Screen.height * .1f), "Start", buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -66,7 +65,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = creditsEnabled;
-		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .5f, Screen.width * .2f, Screen.height * .13f), creditTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .5f, Screen.width * .2f, Screen.height * .1f), "Credits", buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -76,7 +75,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = tutorialEnabled;
-		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .65f,  Screen.width * .2f, Screen.height * .13f), tutorialTex, buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .65f,  Screen.width * .2f, Screen.height * .1f), "Tutorial", buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -86,11 +85,11 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
-			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .8f, Screen.width * .2f, Screen.height * .13f), gcTex, buttonStyle))  {
+			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .8f, Screen.width * .2f, Screen.height * .1f), "Scores", buttonStyle))  {
 				Social.ShowLeaderboardUI ();
 			}
 		} else {
-			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .8f, Screen.width * .2f, Screen.height * .13f), exitTex, buttonStyle))  {
+			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .8f, Screen.width * .2f, Screen.height * .1f), "Exit", buttonStyle))  {
 				Application.Quit();
 			}
 		}
