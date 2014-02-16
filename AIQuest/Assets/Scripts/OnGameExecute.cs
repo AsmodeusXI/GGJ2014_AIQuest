@@ -9,9 +9,23 @@ public class OnGameExecute : MonoBehaviour
 	private bool tutorialEnabled = true;
 	public Font buttonFont;
 	public GUISkin buttonSkin;
+	private ADBannerView banner = null;
 
 	void Start() {
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+			ADBannerView.onBannerWasClicked += OnBannerClicked;
+			ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+		}
 		Social.localUser.Authenticate (ProcessAuthentication);
+	}
+
+	void OnDestroy() {
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			ADBannerView.onBannerWasClicked -= OnBannerClicked;
+			ADBannerView.onBannerWasLoaded -= OnBannerLoaded;
+			banner.visible = false;
+		}
 	}
 	
 	void ProcessAuthentication (bool success) {
@@ -60,6 +74,7 @@ public class OnGameExecute : MonoBehaviour
 			startEnabled = false;
 			creditsEnabled = false;
 			tutorialEnabled = false;
+			if (Application.platform == RuntimePlatform.IPhonePlayer) {banner.visible = false;}
 			AutoFade.LoadLevel("StartScene",2,1,Color.black);
 		}
 
@@ -93,5 +108,15 @@ public class OnGameExecute : MonoBehaviour
 				Application.Quit();
 			}
 		}
+	}
+
+	void OnBannerClicked()
+	{
+		Debug.Log("Clicked!\n");
+	}
+	void OnBannerLoaded()
+	{
+		Debug.Log("Loaded!\n");
+		banner.visible = true;
 	}
 }

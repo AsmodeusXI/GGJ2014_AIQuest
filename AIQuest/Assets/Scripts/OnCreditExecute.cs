@@ -4,6 +4,24 @@ using System.Collections;
 public class OnCreditExecute : MonoBehaviour
 {
 	public Font buttonFont;
+	private ADBannerView banner;
+
+	void Start() {
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+			ADBannerView.onBannerWasClicked += OnBannerClicked;
+			ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
+		}
+		}
+
+	void OnDestroy() {
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			ADBannerView.onBannerWasClicked -= OnBannerClicked;
+			ADBannerView.onBannerWasLoaded -= OnBannerLoaded;
+			banner.visible = false;
+		}
+	}
+
 	void OnGUI()
 	{
 		Texture backgroundTex = (Texture)Resources.Load ("FullScreenImages/credits");
@@ -18,8 +36,19 @@ public class OnCreditExecute : MonoBehaviour
 		GUI.backgroundColor = new Color(33f/255f, 65f/255f, 156f/255f, 1f);
 		if (GUI.Button(new Rect(Screen.width * .725f, Screen.height * .9f, Screen.width * .15f, Screen.height * .07f), "back", buttonStyle)) 
 		{
+			if (Application.platform == RuntimePlatform.IPhonePlayer) {banner.visible = false;}
 			AutoFade.LoadLevel("OnGameLaunchScene",0,.5f,Color.black);
 		}
+	}
+
+	void OnBannerClicked()
+	{
+		Debug.Log("Clicked!\n");
+	}
+	void OnBannerLoaded()
+	{
+		Debug.Log("Loaded!\n");
+		banner.visible = true;
 	}
 }
 
