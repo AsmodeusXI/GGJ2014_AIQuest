@@ -13,7 +13,7 @@ public class OnGameExecute : MonoBehaviour
 
 	void Start() {
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
-			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Top);
+			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Bottom);
 			ADBannerView.onBannerWasClicked += OnBannerClicked;
 			ADBannerView.onBannerWasLoaded  += OnBannerLoaded;
 		}
