@@ -155,24 +155,27 @@ public class SpawnButton : MonoBehaviour {
 			Monster currMonster = monster.GetComponent<Monster>();
 			switch (currMonster.type) {
 			case Monster.MonsterType.skeleton:
+				int clipNumberSkele = UnityEngine.Random.Range(1,4);
 				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneSkele1");
+					PlayClipAudio2("Speech/Jane/JaneSkele" + clipNumberSkele);
 				} else {
-					PlayClipAudio2("Speech/John/JohnSkele1");
+					PlayClipAudio2("Speech/John/JohnSkele" + clipNumberSkele);
 				}
 				break;
 			case Monster.MonsterType.orc:
+				int clipNumberOrc = UnityEngine.Random.Range(1,4);
 				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneOrc1");
+					PlayClipAudio2("Speech/Jane/JaneOrc" + clipNumberOrc);
 				} else {
-					PlayClipAudio2("Speech/John/JohnOrc1");
+					PlayClipAudio2("Speech/John/JohnOrc" + clipNumberOrc);
 				}
 				break;
 			case Monster.MonsterType.dragon:
+				int clipNumberDragon = UnityEngine.Random.Range(1,4);
 				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneDragon1");
+					PlayClipAudio2("Speech/Jane/JaneDragon" + clipNumberDragon);
 				} else {
-					PlayClipAudio2("Speech/John/JohnDragon1");
+					PlayClipAudio2("Speech/John/JohnDragon" + clipNumberDragon);
 				}
 				break;
 			case Monster.MonsterType.lich:
