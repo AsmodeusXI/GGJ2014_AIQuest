@@ -1526,6 +1526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteIndicators:
+  - {fileID: 21300000, guid: 013976b26b479564a87b772fb577f297, type: 3}
+  - {fileID: 21300000, guid: e096c7cbaaa3e6a48848edd14ecb859d, type: 3}
   - {fileID: 21300000, guid: 11d591e6a84a4014680e65ebab16e8e4, type: 3}
   - {fileID: 21300000, guid: 1b7841d865df6634dbd61a0febd7621a, type: 3}
   - {fileID: 21300000, guid: c10814dd878b5904aa640742bce5b206, type: 3}

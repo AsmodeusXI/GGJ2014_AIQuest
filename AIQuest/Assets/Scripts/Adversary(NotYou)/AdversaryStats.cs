@@ -82,7 +82,7 @@ public class AdversaryStats : MonoBehaviour {
 	//			playClipForMonsterType(monsterModeType);
 				mmSign.hide();
 		} else if (!monsterMode) {
-			if (monsterModeTimer < 3) {
+			if (monsterModeTimer < 5) {
 				mmSignCheck();
 			}
 			monsterModeTimer -= Time.deltaTime;
