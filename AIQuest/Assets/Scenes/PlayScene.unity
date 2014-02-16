@@ -829,7 +829,7 @@ MonoBehaviour:
   buttonInput: Fire3
   button: {fileID: 1656924353}
   collideButton: {fileID: 1327741662}
-  minimumSpawnToShow: 15
+  minimumSpawnToShow: 30
   endY: -4.69000006
   endX: 1.52999997
   audio2: {fileID: 1327741668}
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   buttonInput: Fire2
   button: {fileID: 1261607777}
   collideButton: {fileID: 1353438284}
-  minimumSpawnToShow: 5
+  minimumSpawnToShow: 15
   endY: -4.69000006
   endX: -1.83104002
   audio2: {fileID: 1353438290}
@@ -1404,7 +1404,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: .5
+  m_Volume: .74000001
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1424,11 +1424,6 @@ AudioSource:
       value: .988700569
       inSlope: .0707699955
       outSlope: .0707699955
-      tangentMode: 0
-    - time: 1
-      value: 1
-      inSlope: .240112931
-      outSlope: .240112931
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -1893,7 +1888,7 @@ MonoBehaviour:
   buttonInput: Fire4
   button: {fileID: 1503438987}
   collideButton: {fileID: 2133354308}
-  minimumSpawnToShow: 50
+  minimumSpawnToShow: 60
   endY: 0
   endX: -6.5
   audio2: {fileID: 2133354314}
@@ -2018,7 +2013,7 @@ MonoBehaviour:
   buttonInput: Fire4
   button: {fileID: 1586453255}
   collideButton: {fileID: 2145047277}
-  minimumSpawnToShow: 30
+  minimumSpawnToShow: 45
   endY: -4.69000006
   endX: 4.88000011
   audio2: {fileID: 2145047283}
