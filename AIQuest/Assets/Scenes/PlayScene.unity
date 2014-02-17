@@ -829,7 +829,7 @@ MonoBehaviour:
   buttonInput: Fire3
   button: {fileID: 1656924353}
   collideButton: {fileID: 1327741662}
-  minimumSpawnToShow: 30
+  minimumSpawnToShow: 21
   endY: -4.69000006
   endX: 1.52999997
   audio2: {fileID: 1327741668}
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   buttonInput: Fire2
   button: {fileID: 1261607777}
   collideButton: {fileID: 1353438284}
-  minimumSpawnToShow: 15
+  minimumSpawnToShow: 9
   endY: -4.69000006
   endX: -1.83104002
   audio2: {fileID: 1353438290}

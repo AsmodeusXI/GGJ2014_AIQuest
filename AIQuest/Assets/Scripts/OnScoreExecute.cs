@@ -31,7 +31,7 @@ public class OnScoreExecute : MonoBehaviour {
 		buttonStyle.font = buttonFont;
 		buttonStyle.fontSize = 30;
 		GUI.color = new Color(90f/255f, 220f/255f, 214f/255f, 1f);
-		GUI.backgroundColor = new Color(33f/255f, 65f/255f, 156f/255f, 1f);
+		GUI.backgroundColor = Color.white;
 		
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = replayEnabled;

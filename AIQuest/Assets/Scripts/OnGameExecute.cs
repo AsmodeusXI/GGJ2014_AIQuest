@@ -66,10 +66,10 @@ public class OnGameExecute : MonoBehaviour
 		GUI.DrawTexture (new Rect(0,0,Screen.width,Screen.height), backgroundTex);
 
 		GUI.color = new Color(90f/255f, 220f/255f, 214f/255f, 1f);
-		GUI.backgroundColor = new Color(33f/255f, 65f/255f, 156f/255f, 1f);
+		GUI.backgroundColor = Color.white;
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = startEnabled;
-		if (GUI.Button (new Rect (Screen.width * .715f, Screen.height * .8f,Screen.width * .2f,Screen.height * .1f), "Start", buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .715f, Screen.height * .78f,Screen.width * .2f,Screen.height * .1f), "Start", buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -80,7 +80,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = creditsEnabled;
-		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .5f, Screen.width * .2f, Screen.height * .1f), "Credits", buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .48f, Screen.width * .2f, Screen.height * .1f), "Credits", buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -90,7 +90,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = tutorialEnabled;
-		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .65f,  Screen.width * .2f, Screen.height * .1f), "Tutorial", buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .63f,  Screen.width * .2f, Screen.height * .1f), "Tutorial", buttonStyle)) 
 		{
 			startEnabled = false;
 			creditsEnabled = false;
@@ -100,11 +100,11 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
-			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .8f, Screen.width * .2f, Screen.height * .1f), "Scores", buttonStyle))  {
+			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .78f, Screen.width * .2f, Screen.height * .1f), "Scores", buttonStyle))  {
 				Social.ShowLeaderboardUI ();
 			}
 		} else {
-			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .8f, Screen.width * .2f, Screen.height * .1f), "Exit", buttonStyle))  {
+			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .78f, Screen.width * .2f, Screen.height * .1f), "Exit", buttonStyle))  {
 				Application.Quit();
 			}
 		}
