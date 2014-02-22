@@ -54,9 +54,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3e3b71c6f1145e7b4c812cb9d95547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
   fun: 2
   level: 1
+  type: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 5fc2af706c427734a948ef3305eff9a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb6a15ef52126403d953d9c978d78b72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

@@ -49,8 +49,8 @@ public class SpawnButton : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		bool returnFast = checkToUnlockButton ();
-		if (!returnFast) return;
+		bool locked = checkToUnlockButton ();
+		if (!locked || advStats.gameOver) return;
 		Monster currMonster = monster.GetComponent<Monster> ();
 		checkMonsterMode ();
 		if (advStats.monsterMode && currMonster.type != advStats.monsterModeType) return;

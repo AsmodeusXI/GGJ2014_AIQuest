@@ -19,7 +19,7 @@ public class AdversaryStats : MonoBehaviour {
 	private int lichInQ;
 	private int krakenInQ;
 	private int inQAtMonsterTimeStart;
-	private bool gameOver;
+	public bool gameOver;
 	private float timeBetweenSpawns;
 	private Vector3 originPosition;
 	private Quaternion originRotation;
