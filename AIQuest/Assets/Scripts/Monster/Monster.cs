@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour
 	public float fun;
 	public int level;
 	public MonsterType type;
-	private float charge;
+	public float charge;
 	
 
 	public void Start() {}

@@ -26,10 +26,12 @@ public class SpawnButton : MonoBehaviour {
 	private bool touched;
 	public float endY;
 	public float endX;
+	private float endScale = 1.25f;
 	
 	public AudioSource audio2;
 	
 	private float percentComplete = 0;
+	private float percentScaleComplete = 0;
     
     KeyCode keyboardButton;
 
@@ -133,6 +135,7 @@ public class SpawnButton : MonoBehaviour {
 	
 	private void checkChargingActions() {
 		if (timerOn) {
+			animateButtonScale();
 			chargeLevel += Time.deltaTime;
 			flashingColors();	
 			
@@ -151,75 +154,95 @@ public class SpawnButton : MonoBehaviour {
 			button.renderer.enabled = false;
 			return false;
 		} else if (!firstShown) {
-			bool spriteSwitch = PlayerPrefs.GetInt("Adversary") == 0;
-			Monster currMonster = monster.GetComponent<Monster>();
-			switch (currMonster.type) {
-			case Monster.MonsterType.skeleton:
-				int clipNumberSkele = UnityEngine.Random.Range(1,4);
-				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneSkele" + clipNumberSkele);
-				} else {
-					PlayClipAudio2("Speech/John/JohnSkele" + clipNumberSkele);
-				}
-				break;
-			case Monster.MonsterType.orc:
-				int clipNumberOrc = UnityEngine.Random.Range(1,4);
-				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneOrc" + clipNumberOrc);
-				} else {
-					PlayClipAudio2("Speech/John/JohnOrc" + clipNumberOrc);
-				}
-				break;
-			case Monster.MonsterType.dragon:
-				int clipNumberDragon = UnityEngine.Random.Range(1,4);
-				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneDragon" + clipNumberDragon);
-				} else {
-					PlayClipAudio2("Speech/John/JohnDragon" + clipNumberDragon);
-				}
-				break;
-			case Monster.MonsterType.lich:
-				if (spriteSwitch) {
-					PlayClipAudio2("Speech/Jane/JaneLich1");
-				} else {
-					PlayClipAudio2("Speech/John/JohnLich1");
-				}
-				break;
-			case Monster.MonsterType.kraken:
-				Social.ReportProgress("Artful.Kraken.Unleashed",100.0, success => {
-					Debug.Log(success ? "Reported kraken achievement successfully" : "Failed to report achievement");
-				});
-				if (spriteSwitch) {
-					PlayClip("Speech/Jane/JaneKraken1");
-				} else {
-					PlayClip("Speech/John/JohnKraken1");
-				}
-				break;
-			}
-			firstShown = true;
-			button.renderer.enabled = true;
-			button.SetActive (true);
+			firstTimeUnlocked();
 		}
 		if (firstShown) {
-			if (button.transform.position.y != endY) {
-				percentComplete += 0.001f;
-				Vector3 anchor = button.transform.position;
-				Vector3 goal = new Vector3();
-				goal.x = button.transform.position.x;
-				goal.y = endY;
-				goal.z = button.transform.position.z;
-				button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
-			} else 	if (button.transform.position.x != endX) {
-				percentComplete += 0.001f;
-				Vector3 anchor = button.transform.position;
-				Vector3 goal = new Vector3();
-				goal.x = endX;
-				goal.y = button.transform.position.y;
-				goal.z = button.transform.position.z;
-				button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
-			}
+			animateButtonOnscreen();
 		}
 		return true;
+	}
+
+	private void animateButtonScale() {
+		if (button.transform.localScale.x != endScale) {
+			percentScaleComplete += 0.001f;
+			Vector3 anchor = button.transform.localScale;
+			Vector3 goal = new Vector3();
+			goal.x = 1 + chargeLevel;
+			goal.y = 1 + chargeLevel;
+			goal.z = button.transform.position.z;
+			button.transform.localScale = Vector3.Lerp(anchor, goal, percentComplete);
+		} 
+	}
+
+	private void animateButtonOnscreen() {
+		if (button.transform.position.y != endY) {
+			percentComplete += 0.001f;
+			Vector3 anchor = button.transform.position;
+			Vector3 goal = new Vector3();
+			goal.x = button.transform.position.x;
+			goal.y = endY;
+			goal.z = button.transform.position.z;
+			button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
+		} else 	if (button.transform.position.x != endX) {
+			percentComplete += 0.001f;
+			Vector3 anchor = button.transform.position;
+			Vector3 goal = new Vector3();
+			goal.x = endX;
+			goal.y = button.transform.position.y;
+			goal.z = button.transform.position.z;
+			button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
+		}
+	}
+
+	private void firstTimeUnlocked() {
+		bool spriteSwitch = PlayerPrefs.GetInt("Adversary") == 0;
+		Monster currMonster = monster.GetComponent<Monster>();
+		switch (currMonster.type) {
+		case Monster.MonsterType.skeleton:
+			int clipNumberSkele = UnityEngine.Random.Range(1,4);
+			if (spriteSwitch) {
+				PlayClipAudio2("Speech/Jane/JaneSkele" + clipNumberSkele);
+			} else {
+				PlayClipAudio2("Speech/John/JohnSkele" + clipNumberSkele);
+			}
+			break;
+		case Monster.MonsterType.orc:
+			int clipNumberOrc = UnityEngine.Random.Range(1,4);
+			if (spriteSwitch) {
+				PlayClipAudio2("Speech/Jane/JaneOrc" + clipNumberOrc);
+			} else {
+				PlayClipAudio2("Speech/John/JohnOrc" + clipNumberOrc);
+			}
+			break;
+		case Monster.MonsterType.dragon:
+			int clipNumberDragon = UnityEngine.Random.Range(1,4);
+			if (spriteSwitch) {
+				PlayClipAudio2("Speech/Jane/JaneDragon" + clipNumberDragon);
+			} else {
+				PlayClipAudio2("Speech/John/JohnDragon" + clipNumberDragon);
+			}
+			break;
+		case Monster.MonsterType.lich:
+			if (spriteSwitch) {
+				PlayClipAudio2("Speech/Jane/JaneLich1");
+			} else {
+				PlayClipAudio2("Speech/John/JohnLich1");
+			}
+			break;
+		case Monster.MonsterType.kraken:
+			Social.ReportProgress("Artful.Kraken.Unleashed",100.0, success => {
+				Debug.Log(success ? "Reported kraken achievement successfully" : "Failed to report achievement");
+			});
+			if (spriteSwitch) {
+				PlayClip("Speech/Jane/JaneKraken1");
+			} else {
+				PlayClip("Speech/John/JohnKraken1");
+			}
+			break;
+		}
+		firstShown = true;
+		button.renderer.enabled = true;
+		button.SetActive (true);
 	}
 	
 	private void downAction() {
@@ -243,6 +266,8 @@ public class SpawnButton : MonoBehaviour {
 		timerOn = false;
 		spriter.color = Color.white;
 		lvlSpriter.color = Color.clear;
+		button.transform.localScale = new Vector3 (1, 1, 1);
+		percentScaleComplete = 0;
 	}
 	
 	void Spawn(float charge){
