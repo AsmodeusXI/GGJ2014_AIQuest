@@ -37,7 +37,7 @@ public class Scoring : MonoBehaviour {
 			bool isMax = checkMaxScore(PlayerPrefs.GetInt(ppKey), ppKey);
 			scoreText.text = PlayerPrefs.GetInt(ppKey).ToString() + (isMax ? "*" : "");
 		} else if (returnType.Equals ("float")) {
-			bool isMax = checkMaxScore(Mathf.FloorToInt(PlayerPrefs.GetFloat(ppKey))*100, ppKey);
+			bool isMax = checkMaxScore(Mathf.FloorToInt(PlayerPrefs.GetFloat(ppKey)), ppKey);
 			decimal decCast = (decimal) PlayerPrefs.GetFloat(ppKey);
 			scoreText.text = decCast.ToString("n1") + (isMax ? "*" : "");
 		}
@@ -50,6 +50,10 @@ public class Scoring : MonoBehaviour {
 			ReportScore(currentScore, ppKey);
 			return true;
 		} else {
+			int retry = PlayerPrefs.GetInt("Retry." + ppKey);
+			if (retry > 0) {
+				ReportScore(maxScore, ppKey);
+			}
 			return false;
 		}
 	}
@@ -57,7 +61,11 @@ public class Scoring : MonoBehaviour {
 	void ReportScore (long score, string leaderboardID) {
 		Debug.Log ("Reporting score " + score + " on leaderboard " + leaderboardID);
 		Social.ReportScore (score, leaderboardID, success => {
-			Debug.Log(success ? "Reported score successfully" : "Failed to report score");
+			if (success) {
+				PlayerPrefs.SetInt("Retry." + leaderboardID, 0);
+			} else {
+				PlayerPrefs.SetInt("Retry." + leaderboardID, 1);
+			}
 		});
 	}
 }
