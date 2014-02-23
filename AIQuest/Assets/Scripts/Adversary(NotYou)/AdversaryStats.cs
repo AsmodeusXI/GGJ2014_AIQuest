@@ -27,12 +27,17 @@ public class AdversaryStats : MonoBehaviour {
 	public float shake_intensity;
 	public Transform camera;
 	public bool monsterMode;
+	public int monsterModeSpawned;
+	private float monsterModeTimeLimit = 3;
 	public GameObject mmIndicator;
+	public GameObject mmLabel;
+	private GUIText mmText;
 	private MonsterLevelIndicator mmSign;
 	private SpriteRenderer mmSpriter;
 	private int lastLevel;
 	public Monster.MonsterType monsterModeType;
 	private float monsterModeTimer;
+	private Color mmColor;
 
 
 	void Start() {
@@ -46,6 +51,9 @@ public class AdversaryStats : MonoBehaviour {
 		mmSign = mmIndicator.GetComponent<MonsterLevelIndicator>();
 		mmSpriter = (SpriteRenderer)mmIndicator.GetComponent<SpriteRenderer> ();
 		mmSpriter.color = Color.white;
+		mmText = (GUIText)mmLabel.GetComponent<GUIText> ();
+		mmColor = mmText.color;
+		mmText.color = Color.clear;
 	}
  
 	// Update is called once per frame
@@ -74,18 +82,25 @@ public class AdversaryStats : MonoBehaviour {
 
 	void checkMonsterMode() {
 		if (monsterModeTimer <= 0 && !monsterMode) {
-				monsterModeTimer = Math.Max(4, UnityEngine.Random.Range (4 / yourLvl, 4 / yourLvl));
+				mmText.color = Color.clear;
+				monsterModeTimer = Math.Max(10, UnityEngine.Random.Range (4 / yourLvl, 4 / yourLvl));
 				monsterMode = true;
-				float rannum = UnityEngine.Random.Range(0f, 1f) * Math.Min(yourLvl, 4);
-				monsterModeType = (Monster.MonsterType)(System.Math.Round(rannum));
 				inQAtMonsterTimeStart = monsterTypeQueued(monsterModeType);
 	//			playClipForMonsterType(monsterModeType);
 				mmSign.hide();
 		} else if (!monsterMode) {
 			if (monsterModeTimer < 5) {
+				mmText.text = stringForMonsterType(monsterModeType) + " FRENZY IN:";
+				mmText.color = mmColor;
 				mmSignCheck();
 			}
 			monsterModeTimer -= Time.deltaTime;
+		} else {
+			monsterModeTimeLimit -= Time.deltaTime;
+			if (monsterModeTimeLimit < 0) {
+				monsterModeSpawned = 0;
+				monsterModeTimeLimit = 3;
+			}
 		}
 
 	}
@@ -196,7 +211,13 @@ public class AdversaryStats : MonoBehaviour {
 		}
 		if (monsterMode) {
 			if (monster.type == monsterModeType && inQAtMonsterTimeStart <=0) {
-				monsterMode = false;
+				if (monsterModeSpawned > 10) {
+					monsterModeSpawned = 0;
+					monsterMode = false;
+					float rannum = UnityEngine.Random.Range(0f, 1f) * Math.Min(yourLvl, 4);
+					monsterModeType = (Monster.MonsterType)(System.Math.Round(rannum));
+				}
+				monsterModeSpawned++;
 			} else {
 				inQAtMonsterTimeStart--;
 			}
@@ -317,5 +338,21 @@ public class AdversaryStats : MonoBehaviour {
 			krakenInQ--;
 			break;
 		}
+	}
+
+	private string stringForMonsterType(Monster.MonsterType monsterType) {
+		switch (monsterType) {
+		case Monster.MonsterType.skeleton:
+			return "Skeleton";
+		case Monster.MonsterType.orc:
+			return "Orc";
+		case Monster.MonsterType.dragon:
+			return "Dragon";
+		case Monster.MonsterType.lich:
+			return "Lich";
+		case Monster.MonsterType.kraken:
+			return "Kraken";
+		}
+		return "";
 	}
 }

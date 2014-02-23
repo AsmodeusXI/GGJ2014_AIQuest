@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 class MonsterLevelIndicator : MonoBehaviour
 {
-    public List<Sprite> spriteIndicators;
+    public List<Sprite> spriteIndicators = null;
     public float durationPop = .5f;
     public float popScale = 1.3f;
 

@@ -13,6 +13,7 @@ public class MonsterMovement : MonoBehaviour {
     private Vector3 anchor;
 
     private Vector3 goal;
+	private Vector3 tempGoal;
     private Transform me;
 	private Monster monster;
 	private float startScale;
@@ -28,6 +29,11 @@ public class MonsterMovement : MonoBehaviour {
         anchor = this.gameObject.transform.position;
 
         goal = GameObject.FindGameObjectWithTag("MonsterTarget").transform.position;
+
+		tempGoal = goal;
+		tempGoal.y = goal.y + Random.Range (-(anchor.y / 2), (anchor.y / 2));
+		tempGoal.x = goal.x + Random.Range (-(anchor.x / 2), (anchor.x / 2));
+		tempGoal.z = goal.z + Random.Range (-(anchor.z / 2), (anchor.z / 2));
         
 		Monster temp = gameObject.GetComponent<Monster>();
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
@@ -37,13 +43,7 @@ public class MonsterMovement : MonoBehaviour {
 
 	
 	void OnDestroy() {
-		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
-		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
-		if(advStats != null)
-		{
-			advStats.decrementMonsterQ(monster);
-			advStats.monsterAffects(monster);
-		}
+
 	}
 	
     public void Update()
@@ -51,13 +51,19 @@ public class MonsterMovement : MonoBehaviour {
         percentComplete += Time.deltaTime * percentPerSecond;
 		totalTime += Time.deltaTime;
 
-        me.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
+        me.transform.position = Vector3.Lerp(anchor, tempGoal, percentComplete);
         float scaleMe = Mathf.Lerp(startScale, 0, percentComplete);
         me.transform.localScale = new Vector3(scaleMe, scaleMe, scaleMe);
 
         if(totalTime >= onscreenTime)
         {
-			Debug.Log("P Complete:" + percentComplete);
+			GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+			AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+			if(advStats != null)
+			{
+				advStats.decrementMonsterQ(monster);
+				advStats.monsterAffects(monster);
+			}
             Destroy(gameObject);
         }
     }
