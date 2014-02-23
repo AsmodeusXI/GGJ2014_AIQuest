@@ -139,8 +139,8 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	private void checkChargingActions() {
+		animateButtonScale();
 		if (timerOn) {
-			animateButtonScale();
 			chargeLevel += Time.deltaTime;
 			flashingColors();	
 			
@@ -168,7 +168,11 @@ public class SpawnButton : MonoBehaviour {
 	}
 
 	private void animateButtonScale() {
-		percentScaleComplete += 0.001f;
+		if (chargeLevel > 0.01) {
+			percentScaleComplete += 0.001f;
+		} else {
+			percentScaleComplete += 0.01f;
+		}
 		Vector3 anchorScale = button.transform.localScale;
 		Vector3 goal = new Vector3();
 		goal.x = 1 + chargeLevel;
@@ -263,7 +267,6 @@ public class SpawnButton : MonoBehaviour {
 		timerOn = false;
 		spriter.color = Color.white;
 		lvlSpriter.color = Color.clear;
-		button.transform.localScale = new Vector3 (1, 1, 1);
 		percentScaleComplete = 0;
 	}
 	
