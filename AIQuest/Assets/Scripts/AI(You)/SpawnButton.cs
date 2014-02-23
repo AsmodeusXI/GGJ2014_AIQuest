@@ -24,13 +24,13 @@ public class SpawnButton : MonoBehaviour {
 	private AdversaryStats advStats;
 	private RaycastHit hit;
 	private bool touched;
-	public float endY;
-	public float endX;
-	private float endScale = 1.25f;
+	public Vector3 offscreenPosition;
+	public Vector3 onscreenPosition;
 	
 	public AudioSource audio2;
 	
-	private float percentComplete = 0;
+	private float percentCompleteOffscreen = 0;
+	private float percentCompleteOnscreen = 0;
 	private float percentScaleComplete = 0;
     
     KeyCode keyboardButton;
@@ -82,12 +82,17 @@ public class SpawnButton : MonoBehaviour {
 			if (currMonster.type == advStats.monsterModeType) {
 				spriter.color = Color.red;
 			} else {
+				button.transform.localScale = new Vector3(1,1,button.transform.position.z);
+				animateButtonOffscreen();
 				timeBetweenSwaps = 0;
 				maxSwapTime = 0.5f;
 				spriter.color = Color.grey;
+				percentCompleteOnscreen = 0;
 			}
 		} else if (!timerOn) {
 			spriter.color = Color.white;
+		} else {
+			percentCompleteOffscreen = 0;
 		}
 	}
 
@@ -156,41 +161,33 @@ public class SpawnButton : MonoBehaviour {
 		} else if (!firstShown) {
 			firstTimeUnlocked();
 		}
-		if (firstShown) {
+		if (firstShown && percentCompleteOnscreen < 100 && !advStats.monsterMode) {
 			animateButtonOnscreen();
 		}
 		return true;
 	}
 
 	private void animateButtonScale() {
-		if (button.transform.localScale.x != endScale) {
-			percentScaleComplete += 0.001f;
-			Vector3 anchor = button.transform.localScale;
-			Vector3 goal = new Vector3();
-			goal.x = 1 + chargeLevel;
-			goal.y = 1 + chargeLevel;
-			goal.z = button.transform.position.z;
-			button.transform.localScale = Vector3.Lerp(anchor, goal, percentComplete);
-		} 
+		percentScaleComplete += 0.001f;
+		Vector3 anchorScale = button.transform.localScale;
+		Vector3 goal = new Vector3();
+		goal.x = 1 + chargeLevel;
+		goal.y = 1 + chargeLevel;
+		goal.z = button.transform.position.z;
+		button.transform.localScale = Vector3.Lerp(anchorScale, goal, percentScaleComplete);
 	}
 
 	private void animateButtonOnscreen() {
-		if (button.transform.position.y != endY) {
-			percentComplete += 0.001f;
-			Vector3 anchor = button.transform.position;
-			Vector3 goal = new Vector3();
-			goal.x = button.transform.position.x;
-			goal.y = endY;
-			goal.z = button.transform.position.z;
-			button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
-		} else 	if (button.transform.position.x != endX) {
-			percentComplete += 0.001f;
-			Vector3 anchor = button.transform.position;
-			Vector3 goal = new Vector3();
-			goal.x = endX;
-			goal.y = button.transform.position.y;
-			goal.z = button.transform.position.z;
-			button.transform.position = Vector3.Lerp(anchor, goal, percentComplete);
+		if (percentCompleteOnscreen < 100) {
+			percentCompleteOnscreen += Time.deltaTime * 0.4f;
+			button.transform.position = Vector3.Lerp(offscreenPosition, onscreenPosition, percentCompleteOnscreen);
+		}
+	}
+
+	private void animateButtonOffscreen() {
+		if (percentCompleteOffscreen < 100) {
+			percentCompleteOffscreen += Time.deltaTime * 0.4f;
+			button.transform.position = Vector3.Lerp (onscreenPosition, offscreenPosition, percentCompleteOffscreen);
 		}
 	}
 

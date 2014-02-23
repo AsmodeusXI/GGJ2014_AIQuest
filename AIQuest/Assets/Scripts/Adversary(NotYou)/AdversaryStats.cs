@@ -71,7 +71,7 @@ public class AdversaryStats : MonoBehaviour {
 			goToGameOver ();
 		}
 		if (totalKills > 0) {
-			mood = mood - (((4f * (0.5f + timeBetweenSpawns)) * (Time.deltaTime)) * (monsterMode ? 3f : 1f));
+			mood = mood - (((4f * (0.5f + timeBetweenSpawns)) * (Time.deltaTime)) * (monsterMode ? 1f : 1f));
 		} else {
 			mood = mood - ((0.5f + timeBetweenSpawns) * Time.deltaTime);
 		}
