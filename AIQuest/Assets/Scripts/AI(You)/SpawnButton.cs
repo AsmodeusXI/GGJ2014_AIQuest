@@ -20,7 +20,8 @@ public class SpawnButton : MonoBehaviour {
     private float timeBetweenSwaps;
     private float maxSwapTime = 0.5f;
 	public int minimumSpawnToShow;
-	private bool firstShown;
+	private bool firstShownPlayer1;
+	private bool firstShownPlayer2;
 	private AdversaryStats advStats;
 	private RaycastHit hit;
 	private bool touched;
@@ -36,10 +37,8 @@ public class SpawnButton : MonoBehaviour {
     KeyCode keyboardButton;
 
     private int lastLevel;
-
-    private Transform buttonPosition;
+	
 	void Start () {
-        buttonPosition = GetComponent<Transform>();    
         keyboardButton = (KeyCode)Enum.Parse(typeof(KeyCode), keyboardInput.ToUpper());
         spriter = (SpriteRenderer) button.GetComponent<SpriteRenderer>();
         lvlSign = lvlIndicator.GetComponent<MonsterLevelIndicator>();
@@ -52,7 +51,7 @@ public class SpawnButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		bool locked = checkToUnlockButton ();
-		if (!locked || advStats.gameOver) return;
+		if (!locked || advStats.gameOverPlayer1) return;
 		Monster currMonster = monster.GetComponent<Monster> ();
 		checkMonsterMode ();
 		if (advStats.monsterMode && currMonster.type != advStats.monsterModeType) return;
@@ -154,15 +153,38 @@ public class SpawnButton : MonoBehaviour {
 	}
 
 	private bool checkToUnlockButton() {
-		if (advStats.totalKills < minimumSpawnToShow) {
-			button.SetActive (false);
-			button.renderer.enabled = false;
-			return false;
-		} else if (!firstShown) {
-			firstTimeUnlocked();
-		}
-		if (firstShown && percentCompleteOnscreen < 100 && !advStats.monsterMode) {
-			animateButtonOnscreen();
+		if (advStats.getCurrentPlayer () == 0) {
+			if (advStats.totalPlayer1Kills < minimumSpawnToShow) {
+				if (button.transform.position != offscreenPosition) {
+					animateButtonOffscreen ();
+				}
+				percentCompleteOnscreen = 0;
+				return false;
+			} else if (!firstShownPlayer1) {
+					percentCompleteOffscreen = 0;
+					firstTimeUnlocked ();
+					firstShownPlayer1 = true;
+			}
+			if (firstShownPlayer1 && percentCompleteOnscreen < 100 && !advStats.monsterMode) {
+				percentCompleteOffscreen = 0;
+				animateButtonOnscreen ();
+			}
+		} else {
+			if (advStats.totalPlayer2Kills < minimumSpawnToShow) {
+				if (button.transform.position != offscreenPosition) {
+					animateButtonOffscreen ();
+				}
+				percentCompleteOnscreen = 0;
+				return false;
+			} else if (!firstShownPlayer2) {
+				percentCompleteOffscreen = 0;
+				firstTimeUnlocked ();
+				firstShownPlayer2 = true;
+			}
+			if (firstShownPlayer2 && percentCompleteOnscreen < 100 && !advStats.monsterMode) {
+				percentCompleteOffscreen = 0;
+				animateButtonOnscreen ();
+			}
 		}
 		return true;
 	}
@@ -183,14 +205,14 @@ public class SpawnButton : MonoBehaviour {
 
 	private void animateButtonOnscreen() {
 		if (percentCompleteOnscreen < 100) {
-			percentCompleteOnscreen += Time.deltaTime * 0.4f;
+			percentCompleteOnscreen += Time.deltaTime * 1.5f;
 			button.transform.position = Vector3.Lerp(offscreenPosition, onscreenPosition, percentCompleteOnscreen);
 		}
 	}
 
 	private void animateButtonOffscreen() {
 		if (percentCompleteOffscreen < 100) {
-			percentCompleteOffscreen += Time.deltaTime * 0.4f;
+			percentCompleteOffscreen += Time.deltaTime * 1.5f;
 			button.transform.position = Vector3.Lerp (onscreenPosition, offscreenPosition, percentCompleteOffscreen);
 		}
 	}
@@ -241,7 +263,6 @@ public class SpawnButton : MonoBehaviour {
 			}
 			break;
 		}
-		firstShown = true;
 		button.renderer.enabled = true;
 		button.SetActive (true);
 	}
@@ -257,6 +278,7 @@ public class SpawnButton : MonoBehaviour {
 		
 		Monster currMonster = monster.GetComponent<Monster>();
 		currMonster.setCharge(chargeLevel);	
+		currMonster.target = advStats.getCurrentPlayer();
 		if(!advStats.tooLowLevel(currMonster)) {
 			Spawn (chargeLevel);
 		}
@@ -271,7 +293,7 @@ public class SpawnButton : MonoBehaviour {
 	}
 	
 	void Spawn(float charge){
-		Transform temp = (Transform)Instantiate(monster, buttonPosition.position, Quaternion.identity);
+		Transform temp = (Transform)Instantiate(monster, button.transform.position, Quaternion.identity);
 		Monster currMonster = temp.GetComponent<Monster>();
 		currMonster.setCharge(charge);
 	}

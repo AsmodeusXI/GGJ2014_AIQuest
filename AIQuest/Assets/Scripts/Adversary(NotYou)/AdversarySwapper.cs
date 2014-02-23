@@ -12,6 +12,7 @@ public class AdversarySwapper : MonoBehaviour {
 	private int asleepVal = 0;
 
 	public int spriteSwitch;
+	public int player = 0;
 	private Sprite perturbedSprite;
 	private Sprite zone1Sprite;
 	private Sprite bored2Sprite;
@@ -29,10 +30,20 @@ public class AdversarySwapper : MonoBehaviour {
 	private float timeValue = 0;
     private bool playedSnore = false;
     private bool playedYell = false;
+	private AdversaryStats advStats;
+
+	private int numberOfPlayers;
 
 
 	// Use this for initialization
 	void Start () {
+		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
+		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+		numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
+		if (player > numberOfPlayers) {
+			Destroy(gameObject);
+			return;
+		} 
 		PlayerPrefs.SetFloat("Artful.Zone.Time", 0);
 		setupImages();
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
@@ -71,20 +82,18 @@ public class AdversarySwapper : MonoBehaviour {
 	
 	private void resetHappyTime() {
 		timerOn = false;
-		float currentHappyRecord = PlayerPrefs.GetFloat("Artful.Zone.Time");
+		string hardScore = numberOfPlayers == 0 ? "" : ".Hard";
+		float currentHappyRecord = PlayerPrefs.GetFloat("Artful.Zone.Time" + hardScore);
 		if (timeValue > currentHappyRecord) {
-			PlayerPrefs.SetFloat("Artful.Zone.Time", timeValue);
+			PlayerPrefs.SetFloat("Artful.Zone.Time" + hardScore, timeValue);
 		}
 		timeValue = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
-		AdversaryStats advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
 		if (advStats.totalKills == 0) return;
-		float currentMood = advStats.getRelativeMood();
+		float currentMood = advStats.getRelativeMood(player);
 		
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
 		

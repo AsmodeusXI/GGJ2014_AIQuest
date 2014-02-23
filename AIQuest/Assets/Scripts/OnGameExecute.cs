@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms;
 public class OnGameExecute : MonoBehaviour 
 {
 	private bool startEnabled = true;
+	private bool hardEnabled = true;
 	private bool creditsEnabled = true;
 	private bool tutorialEnabled = true;
 	public Font buttonFont;
@@ -12,6 +13,7 @@ public class OnGameExecute : MonoBehaviour
 	private ADBannerView banner = null;
 
 	void Start() {
+		PlayerPrefs.DeleteAll ();
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Bottom);
 			ADBannerView.onBannerWasClicked += OnBannerClicked;
@@ -72,10 +74,28 @@ public class OnGameExecute : MonoBehaviour
 		if (GUI.Button (new Rect (Screen.width * .715f, Screen.height * .78f,Screen.width * .2f,Screen.height * .1f), "Start", buttonStyle)) 
 		{
 			startEnabled = false;
+			hardEnabled = false;
 			creditsEnabled = false;
 			tutorialEnabled = false;
 			if (Application.platform == RuntimePlatform.IPhonePlayer) {banner.visible = false;}
+			PlayerPrefs.SetInt("NumberOfPlayers", 0);
 			AutoFade.LoadLevel("StartScene",2,1,Color.black);
+		}
+
+		//GUI enabled causes button to disable/enable
+		if (hardEnabled) {
+			GUI.enabled = hardEnabled;
+			if (GUI.Button (new Rect (Screen.width * .415f, Screen.height * .78f, Screen.width * .2f, Screen.height * .1f), "Hard", buttonStyle)) {
+				startEnabled = false;
+				hardEnabled = false;
+				creditsEnabled = false;
+				tutorialEnabled = false;
+				if (Application.platform == RuntimePlatform.IPhonePlayer) {
+						banner.visible = false;
+				}
+				PlayerPrefs.SetInt ("NumberOfPlayers", 1);
+				AutoFade.LoadLevel ("StartScene", 2, 1, Color.black);
+			}
 		}
 
 		//GUI enabled causes button to disable/enable
@@ -83,6 +103,7 @@ public class OnGameExecute : MonoBehaviour
 		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .48f, Screen.width * .2f, Screen.height * .1f), "Credits", buttonStyle)) 
 		{
 			startEnabled = false;
+			hardEnabled = false;
 			creditsEnabled = false;
 			tutorialEnabled =false;
 			Application.LoadLevel("CreditScene");
@@ -93,6 +114,7 @@ public class OnGameExecute : MonoBehaviour
 		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .63f,  Screen.width * .2f, Screen.height * .1f), "Tutorial", buttonStyle)) 
 		{
 			startEnabled = false;
+			hardEnabled = false;
 			creditsEnabled = false;
 			tutorialEnabled = false;
 			Application.LoadLevel("TutorialScene");

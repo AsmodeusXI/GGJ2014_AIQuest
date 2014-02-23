@@ -15,14 +15,16 @@ public class Scoring : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		setScoreText(totalScore, "Artful.Total.Spawns", "int");
-		setScoreText(skeletonScore, "Artful.Skeleton.Spawns", "int");
-		setScoreText(orcScore, "Artful.Orc.Spawns", "int");
-		setScoreText(dragonScore, "Artful.Dragon.Spawns", "int");
-		setScoreText(lichScore, "Artful.Lich.Spawns", "int");
-		setScoreText(timeScore, "Artful.Zone.Time", "float");
-		setScoreText(krakenScore, "Artful.Kraken.Spawns", "int");
-		setScoreText(powerScore, "Artful.Max.Intensity", "int");
+		int numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
+		string hardScore = numberOfPlayers == 0 ? "" : ".Hard";
+		setScoreText(totalScore, "Artful.Total.Spawns" + hardScore, "int");
+		setScoreText(skeletonScore, "Artful.Skeleton.Spawns" + hardScore, "int");
+		setScoreText(orcScore, "Artful.Orc.Spawns" + hardScore, "int");
+		setScoreText(dragonScore, "Artful.Dragon.Spawns" + hardScore, "int");
+		setScoreText(lichScore, "Artful.Lich.Spawns" + hardScore, "int");
+		setScoreText(timeScore, "Artful.Zone.Time" + hardScore, "float");
+		setScoreText(krakenScore, "Artful.Kraken.Spawns" + hardScore, "int");
+		setScoreText(powerScore, "Artful.Max.Intensity" + hardScore, "int");
 
 	}
 	

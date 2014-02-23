@@ -17,6 +17,7 @@ public class Monster : MonoBehaviour
 	public int level;
 	public MonsterType type;
 	public float charge;
+	public int target = 0;
 	
 
 	public void Start() {}
