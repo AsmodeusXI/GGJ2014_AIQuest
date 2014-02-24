@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-	public enum MonsterType {skeleton, orc, dragon, lich, kraken}
+	public enum MonsterType {skeleton, orc, dragon, lich, kraken, boss}
 	public float fun;
 	public int level;
 	public MonsterType type;

@@ -6,6 +6,8 @@ public class AdversaryStats : MonoBehaviour {
 
 	public int totalKills  = 0;
 	private int maxIntensity = 0;
+	private bool bossInQ = false;
+	public bool bossDefeated = false;
 
 	public int numberOfPlayers = 1;
 	public int currentTarget = 0;
@@ -113,7 +115,7 @@ public class AdversaryStats : MonoBehaviour {
 		if (shake_intensity > 0){
 			shakeScreen();
 		}
-		if (gameOverPlayer1) return;
+		if (gameOverPlayer1 || gameOverPlayer2 || bossDefeated) return;
 		timeBetweenPlayer1Spawns += Time.deltaTime;
 		timeBetweenPlayer2Spawns += Time.deltaTime;
 
@@ -124,7 +126,7 @@ public class AdversaryStats : MonoBehaviour {
 		if (moodPlayer1 <= 0 || moodPlayer2 <= 0) {
 			gameOverPlayer1 = true;
 			gameOverPlayer2 = true;
-			goToGameOver ();
+			goToGameOver (3);
 		}
 		if (totalKills > 0) {
 			moodPlayer1 = moodPlayer1 - (((4f * (0.5f + timeBetweenPlayer1Spawns)) * (Time.deltaTime)) * (monsterMode ? 3f : 1f));
@@ -263,7 +265,7 @@ public class AdversaryStats : MonoBehaviour {
 		audio.Play();
 	}
 	//goes to new scene where the game could be restarted or quit out of
-	public void goToGameOver() {
+	public void goToGameOver(int waitTime) {
 		string hardScore = numberOfPlayers == 0 ? "" : ".Hard";
 		PlayerPrefs.SetInt("Artful.Total.Spawns" + hardScore, totalKills);
 		PlayerPrefs.SetInt("Artful.Skeleton.Spawns" + hardScore, skeletonPlayer1Kills + skeletonPlayer2Kills);
@@ -272,7 +274,7 @@ public class AdversaryStats : MonoBehaviour {
 		PlayerPrefs.SetInt("Artful.Lich.Spawns" + hardScore, lichPlayer1Kills + lichPlayer2Kills);
 		PlayerPrefs.SetInt("Artful.Kraken.Spawns" + hardScore, krakenPlayer1Kills + krakenPlayer2Kills);
 		PlayerPrefs.SetInt("Artful.Max.Intensity", maxIntensity);
-		StartCoroutine(Wait (3));
+		StartCoroutine(Wait (waitTime));
 	}
 	
 	IEnumerator Wait(int seconds) {
@@ -302,14 +304,18 @@ public class AdversaryStats : MonoBehaviour {
 
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(Monster monster) {
-		if (gameOverPlayer1 || gameOverPlayer2) return;
+		if (monster.type == Monster.MonsterType.boss) {
+			finalBattle();
+			return;
+		}
+		if (gameOverPlayer1 || gameOverPlayer2 || bossDefeated) return;
 		if (monster.target == 0) {
 			float nextMood = moodPlayer1 + (((int)monster.type + 1) * monster.getLevel ()) * 3;
 			if (nextMood >= (100 * player1Lvl)) {
 				moodPlayer1 += (((int)monster.type + 1) * monster.getLevel ()) * 3;
 				shake ((((int)monster.type + 1) * monster.getLevel ()) * 3, false);
 				gameOverPlayer1 = true;
-				goToGameOver ();
+				goToGameOver (3);
 				return;
 			}
 		} else {
@@ -318,7 +324,7 @@ public class AdversaryStats : MonoBehaviour {
 				moodPlayer2 += (((int)monster.type + 1) * monster.getLevel ()) * 3;
 				shake ((((int)monster.type + 1) * monster.getLevel ()) * 3, false);
 				gameOverPlayer1 = true;
-				goToGameOver ();
+				goToGameOver (3);
 				return;
 			}
 		}
@@ -360,7 +366,22 @@ public class AdversaryStats : MonoBehaviour {
 		}
 	}
 
+	private void finalBattle () {
+		if ((35 < getRelativeMood (0) && getRelativeMood(0) < 65) && (35 < getRelativeMood (1) && getRelativeMood(1) < 65)) {
+			Debug.Log ("WIN!!!!!!");
+			bossDefeated = true;
+			PlayerPrefs.SetInt ("hardEnabled", 1);
+			goToGameOver(5);
+		} else {
+			moodPlayer1 = 120;
+			moodPlayer2 = 120;
+		}
+	}
+
 	public bool tooLowLevel(Monster monster) {
+		if (bossInQ) {
+			return true;
+		}
 		if (monsterMode) {
 				if (monster.type == monsterModeType) {
 					return false;
@@ -405,6 +426,7 @@ public class AdversaryStats : MonoBehaviour {
 	}
 	
 	public int monsterQueued(Monster monster) {
+
 		if (monster.target == 0) {
 			return monsterTypePlayer1Queued (monster.type);
 		} else {
@@ -493,6 +515,9 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	public void incrementMonsterQ(Monster monster) {
+		if (monster.type == Monster.MonsterType.boss) {
+			bossInQ = true;
+		}
 		if (monster.target == 0) {
 			incrementPlayer1MonsterQ(monster);
 		} else {

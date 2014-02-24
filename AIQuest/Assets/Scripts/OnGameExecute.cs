@@ -13,7 +13,8 @@ public class OnGameExecute : MonoBehaviour
 	private ADBannerView banner = null;
 
 	void Start() {
-		PlayerPrefs.DeleteAll ();
+//		PlayerPrefs.DeleteAll ();
+		hardEnabled = PlayerPrefs.GetInt ("hardEnabled") == 1;
 		if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			banner = new ADBannerView(ADBannerView.Type.Banner, ADBannerView.Layout.Bottom);
 			ADBannerView.onBannerWasClicked += OnBannerClicked;

@@ -27,6 +27,7 @@ public class SpawnButton : MonoBehaviour {
 	private bool touched;
 	public Vector3 offscreenPosition;
 	public Vector3 onscreenPosition;
+	public Vector3 originalScale;
 	
 	public AudioSource audio2;
 	
@@ -46,6 +47,7 @@ public class SpawnButton : MonoBehaviour {
 		lvlSpriter.color = Color.clear;
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+		originalScale = button.transform.localScale;
     }
 
 	// Update is called once per frame
@@ -81,7 +83,7 @@ public class SpawnButton : MonoBehaviour {
 			if (currMonster.type == advStats.monsterModeType) {
 				spriter.color = Color.red;
 			} else {
-				button.transform.localScale = new Vector3(1,1,button.transform.position.z);
+				button.transform.localScale = originalScale;
 				animateButtonOffscreen();
 				timeBetweenSwaps = 0;
 				maxSwapTime = 0.5f;
@@ -197,8 +199,8 @@ public class SpawnButton : MonoBehaviour {
 		}
 		Vector3 anchorScale = button.transform.localScale;
 		Vector3 goal = new Vector3();
-		goal.x = 1 + chargeLevel;
-		goal.y = 1 + chargeLevel;
+		goal.x = originalScale.x + chargeLevel;
+		goal.y = originalScale.y + chargeLevel;
 		goal.z = button.transform.position.z;
 		button.transform.localScale = Vector3.Lerp(anchorScale, goal, percentScaleComplete);
 	}

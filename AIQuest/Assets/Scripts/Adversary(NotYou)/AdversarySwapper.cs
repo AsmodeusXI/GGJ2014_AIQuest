@@ -24,6 +24,7 @@ public class AdversarySwapper : MonoBehaviour {
 	private Sprite rage2Sprite;
 	private Sprite rageQuitSprite;
 	private Sprite boredQuitSprite;
+	private Sprite winSprite;
     public AdversarySoundPlayer adversaryPlayer;
 	
 	private bool timerOn = false;
@@ -63,6 +64,7 @@ public class AdversarySwapper : MonoBehaviour {
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryScared");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryRage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitRage");
+			winSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
 		} else {
 			boredQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2BoredQuit");
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Bored");
@@ -73,7 +75,7 @@ public class AdversarySwapper : MonoBehaviour {
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Perturbed");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Rage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2RageQuit");
-
+			winSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
 		}
 		spriteSwitch = spriteSwitch > 0 ? 0 : 1;
 		PlayerPrefs.SetInt ("Adversary", spriteSwitch);
@@ -96,7 +98,12 @@ public class AdversarySwapper : MonoBehaviour {
 		float currentMood = advStats.getRelativeMood(player);
 		
 		SpriteRenderer spriter = (SpriteRenderer)gameObject.GetComponent<SpriteRenderer>();
-		
+
+		if (advStats.bossDefeated) {
+			spriter.sprite = winSprite;
+			return;
+		}
+
 		if (currentMood >= perturbedVal && currentMood < rageVal) {
 			spriter.sprite = rage1Sprite;
 			resetHappyTime();
