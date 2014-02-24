@@ -17,14 +17,20 @@ public class MonsterMovement : MonoBehaviour {
     private Transform me;
 	private Monster monster;
 	private float startScale;
+	private float endScale = 0;
     
 	// Use this for initialization
 	void Start () {
-		percentPerSecond = 1f/onscreenTime;
         me = this.gameObject.transform;
 		monster = gameObject.GetComponent<Monster>();
-		startScale = 1 + monster.charge;
-		me.transform.localScale = new Vector3 (startScale, startScale, startScale);
+		if (monster.type == Monster.MonsterType.boss) {
+			onscreenTime = 4f;
+			endScale = 1;
+		} else {
+			startScale = 1 + monster.charge;
+			me.transform.localScale = new Vector3 (startScale, startScale, startScale);
+		}
+		percentPerSecond = 1f/onscreenTime;
 
         anchor = this.gameObject.transform.position;
 
@@ -52,9 +58,11 @@ public class MonsterMovement : MonoBehaviour {
 		totalTime += Time.deltaTime;
 
         me.transform.position = Vector3.Lerp(anchor, tempGoal, percentComplete);
-        float scaleMe = Mathf.Lerp(startScale, 0, percentComplete);
-        me.transform.localScale = new Vector3(scaleMe, scaleMe, scaleMe);
 
+		if (monster.type != Monster.MonsterType.boss) { 
+	        float scaleMe = Mathf.Lerp(startScale, endScale, percentComplete);
+	        me.transform.localScale = new Vector3(scaleMe, scaleMe, scaleMe);
+		}
         if(totalTime >= onscreenTime)
         {
 			GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");

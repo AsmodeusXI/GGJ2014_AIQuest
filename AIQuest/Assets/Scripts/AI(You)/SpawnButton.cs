@@ -52,6 +52,14 @@ public class SpawnButton : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (advStats.bossInQ) {
+			if (button.transform.position != offscreenPosition) {
+				animateButtonOffscreen ();
+			} else {
+				spriter.color = Color.clear;
+			}
+			return;
+		}
 		bool locked = checkToUnlockButton ();
 		if (!locked || advStats.gameOverPlayer1) return;
 		Monster currMonster = monster.GetComponent<Monster> ();
@@ -159,7 +167,7 @@ public class SpawnButton : MonoBehaviour {
 			if (advStats.totalPlayer1Kills < minimumSpawnToShow) {
 				if (button.transform.position != offscreenPosition) {
 					animateButtonOffscreen ();
-				}
+				} 
 				percentCompleteOnscreen = 0;
 				return false;
 			} else if (!firstShownPlayer1) {
@@ -214,6 +222,7 @@ public class SpawnButton : MonoBehaviour {
 
 	private void animateButtonOffscreen() {
 		if (percentCompleteOffscreen < 100) {
+			button.renderer.enabled = true;
 			percentCompleteOffscreen += Time.deltaTime * 1.5f;
 			button.transform.position = Vector3.Lerp (onscreenPosition, offscreenPosition, percentCompleteOffscreen);
 		}
@@ -296,6 +305,7 @@ public class SpawnButton : MonoBehaviour {
 	
 	void Spawn(float charge){
 		Transform temp = (Transform)Instantiate(monster, button.transform.position, Quaternion.identity);
+		temp.localScale = button.transform.localScale;
 		Monster currMonster = temp.GetComponent<Monster>();
 		currMonster.setCharge(charge);
 	}

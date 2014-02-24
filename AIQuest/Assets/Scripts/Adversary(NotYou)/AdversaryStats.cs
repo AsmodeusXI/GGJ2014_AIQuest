@@ -6,7 +6,7 @@ public class AdversaryStats : MonoBehaviour {
 
 	public int totalKills  = 0;
 	private int maxIntensity = 0;
-	private bool bossInQ = false;
+	public bool bossInQ = false;
 	public bool bossDefeated = false;
 
 	public int numberOfPlayers = 1;
@@ -371,10 +371,14 @@ public class AdversaryStats : MonoBehaviour {
 			Debug.Log ("WIN!!!!!!");
 			bossDefeated = true;
 			PlayerPrefs.SetInt ("hardEnabled", 1);
-			goToGameOver(5);
+			shake(300, false);
+			goToGameOver(10);
 		} else {
-			moodPlayer1 = 120;
-			moodPlayer2 = 120;
+			moodPlayer1 = 200 * player1Lvl;
+			moodPlayer2 = 200 * player2Lvl;
+			gameOverPlayer1 = true;
+			gameOverPlayer2 = true;
+			goToGameOver(3);
 		}
 	}
 
