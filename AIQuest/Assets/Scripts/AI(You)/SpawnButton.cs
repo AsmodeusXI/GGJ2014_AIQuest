@@ -28,6 +28,7 @@ public class SpawnButton : MonoBehaviour {
 	public Vector3 offscreenPosition;
 	public Vector3 onscreenPosition;
 	public Vector3 originalScale;
+	public AdversarySoundPlayer audioPlayer;
 	
 	public AudioSource audio2;
 	
@@ -229,51 +230,9 @@ public class SpawnButton : MonoBehaviour {
 	}
 
 	private void firstTimeUnlocked() {
-		bool spriteSwitch = PlayerPrefs.GetInt("Adversary") == 0;
+		bool spriteSwitch = advStats.numberOfPlayers > 1 ? advStats.getCurrentPlayer() == 1 : PlayerPrefs.GetInt("Adversary") == 0;
 		Monster currMonster = monster.GetComponent<Monster>();
-		switch (currMonster.type) {
-		case Monster.MonsterType.skeleton:
-			int clipNumberSkele = UnityEngine.Random.Range(1,4);
-			if (spriteSwitch) {
-				PlayClipAudio2("Speech/Jane/JaneSkele" + clipNumberSkele);
-			} else {
-				PlayClipAudio2("Speech/John/JohnSkele" + clipNumberSkele);
-			}
-			break;
-		case Monster.MonsterType.orc:
-			int clipNumberOrc = UnityEngine.Random.Range(1,4);
-			if (spriteSwitch) {
-				PlayClipAudio2("Speech/Jane/JaneOrc" + clipNumberOrc);
-			} else {
-				PlayClipAudio2("Speech/John/JohnOrc" + clipNumberOrc);
-			}
-			break;
-		case Monster.MonsterType.dragon:
-			int clipNumberDragon = UnityEngine.Random.Range(1,4);
-			if (spriteSwitch) {
-				PlayClipAudio2("Speech/Jane/JaneDragon" + clipNumberDragon);
-			} else {
-				PlayClipAudio2("Speech/John/JohnDragon" + clipNumberDragon);
-			}
-			break;
-		case Monster.MonsterType.lich:
-			if (spriteSwitch) {
-				PlayClipAudio2("Speech/Jane/JaneLich1");
-			} else {
-				PlayClipAudio2("Speech/John/JohnLich1");
-			}
-			break;
-		case Monster.MonsterType.kraken:
-			Social.ReportProgress("Artful.Kraken.Unleashed",100.0, success => {
-				Debug.Log(success ? "Reported kraken achievement successfully" : "Failed to report achievement");
-			});
-			if (spriteSwitch) {
-				PlayClip("Speech/Jane/JaneKraken1");
-			} else {
-				PlayClip("Speech/John/JohnKraken1");
-			}
-			break;
-		}
+		audioPlayer.playMonsterUnlocked (currMonster, spriteSwitch);
 		button.renderer.enabled = true;
 		button.SetActive (true);
 	}
