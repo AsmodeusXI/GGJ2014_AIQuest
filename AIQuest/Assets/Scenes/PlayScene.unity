@@ -1142,7 +1142,7 @@ GUIText:
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4292728441
+    rgba: 4278190273
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!4 &1081010370
@@ -2321,6 +2321,7 @@ MonoBehaviour:
   totalKills: 0
   bossInQ: 0
   bossDefeated: 0
+  monstedModeMin: 115
   numberOfPlayers: 1
   currentTarget: 0
   totalPlayer1Kills: 0

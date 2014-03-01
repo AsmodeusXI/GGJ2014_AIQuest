@@ -8,6 +8,7 @@ public class AdversaryStats : MonoBehaviour {
 	private int maxIntensity = 0;
 	public bool bossInQ = false;
 	public bool bossDefeated = false;
+	public int monstedModeMin = 115;
 
 	public int numberOfPlayers = 1;
 	public int currentTarget = 0;
@@ -100,6 +101,7 @@ public class AdversaryStats : MonoBehaviour {
 		mmText.color = Color.clear;
 		a1Text.color = numberOfPlayers == 0 ? Color.clear : mmColor;
 		a2Text.color = Color.clear;
+
 	}
  
 	// Update is called once per frame
@@ -119,7 +121,7 @@ public class AdversaryStats : MonoBehaviour {
 		timeBetweenPlayer1Spawns += Time.deltaTime;
 		timeBetweenPlayer2Spawns += Time.deltaTime;
 
-		if (totalKills > 115) {
+		if (totalKills > monstedModeMin) {
 			checkMonsterMode();
 		}
 		
@@ -355,14 +357,16 @@ public class AdversaryStats : MonoBehaviour {
 			timeBetweenPlayer2Spawns = 0;
 			moodPlayer2 += (((int)monster.type + 1) * monster.getLevel ()) * 3;
 		}
+		if (!monsterMode) {
 		incrementMonsterKills (monster);
-		totalKills++;
-		if (monster.target == 0) {
-			totalPlayer1Kills++;
-			player1Lvl = Math.Max (1, totalPlayer1Kills / 50);
-		} else {
-			totalPlayer2Kills++;
-			player2Lvl = Math.Max (1, totalPlayer2Kills / 50);
+			totalKills++;
+			if (monster.target == 0) {
+				totalPlayer1Kills++;
+				player1Lvl = Math.Max (1, totalPlayer1Kills / 50);
+			} else {
+				totalPlayer2Kills++;
+				player2Lvl = Math.Max (1, totalPlayer2Kills / 50);
+			}
 		}
 	}
 
