@@ -230,7 +230,10 @@ public class SpawnButton : MonoBehaviour {
 	}
 
 	private void firstTimeUnlocked() {
-		bool spriteSwitch = advStats.numberOfPlayers > 1 ? advStats.getCurrentPlayer() == 1 : PlayerPrefs.GetInt("Adversary") == 0;
+		bool firstPlayerIsJohn = PlayerPrefs.GetInt ("Adversary") == 0;
+		bool currentTargetIsJohn = firstPlayerIsJohn ? advStats.getCurrentPlayer () > 0 : advStats.getCurrentPlayer () == 0;
+		bool twoPlayer = advStats.numberOfPlayers > 0;
+		bool spriteSwitch = twoPlayer ? currentTargetIsJohn : firstPlayerIsJohn;
 		Monster currMonster = monster.GetComponent<Monster>();
 		audioPlayer.playMonsterUnlocked (currMonster, spriteSwitch);
 		button.renderer.enabled = true;

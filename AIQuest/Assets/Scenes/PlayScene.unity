@@ -514,6 +514,7 @@ MonoBehaviour:
   offscreenPosition: {x: -1.24000001, y: 6.5, z: 6}
   onscreenPosition: {x: -1.24000001, y: 4.23000002, z: 6}
   originalScale: {x: 0, y: 0, z: 0}
+  audioPlayer: {fileID: 1380945387}
   audio2: {fileID: 359701714}
 --- !u!64 &359701717
 MeshCollider:
@@ -754,6 +755,7 @@ MonoBehaviour:
   offscreenPosition: {x: -5.09000015, y: -8, z: 10}
   onscreenPosition: {x: -5.09000015, y: -4.69000006, z: 10}
   originalScale: {x: 0, y: 0, z: 0}
+  audioPlayer: {fileID: 1380945387}
   audio2: {fileID: 930196455}
 --- !u!64 &930196451
 MeshCollider:
@@ -1396,6 +1398,7 @@ MonoBehaviour:
   offscreenPosition: {x: 1.52999997, y: -8, z: 8}
   onscreenPosition: {x: 1.52999997, y: -4.69000006, z: 8}
   originalScale: {x: 0, y: 0, z: 0}
+  audioPlayer: {fileID: 1380945387}
   audio2: {fileID: 1327741668}
 --- !u!82 &1327741664
 AudioSource:
@@ -1659,6 +1662,7 @@ MonoBehaviour:
   offscreenPosition: {x: -1.79999995, y: -8, z: 9}
   onscreenPosition: {x: -1.79999995, y: -4.69000006, z: 9}
   originalScale: {x: 0, y: 0, z: 0}
+  audioPlayer: {fileID: 1380945387}
   audio2: {fileID: 1353438290}
 --- !u!82 &1353438290
 AudioSource:
@@ -2693,6 +2697,7 @@ MonoBehaviour:
   offscreenPosition: {x: -11.3500004, y: 0, z: 6}
   onscreenPosition: {x: -6.5, y: 0, z: 6}
   originalScale: {x: 0, y: 0, z: 0}
+  audioPlayer: {fileID: 1380945387}
   audio2: {fileID: 2133354314}
 --- !u!64 &2133354311
 MeshCollider:
@@ -2819,6 +2824,7 @@ MonoBehaviour:
   offscreenPosition: {x: 4.88000011, y: -8, z: 7}
   onscreenPosition: {x: 4.88000011, y: -4.69000006, z: 7}
   originalScale: {x: 0, y: 0, z: 0}
+  audioPlayer: {fileID: 1380945387}
   audio2: {fileID: 2145047283}
 --- !u!82 &2145047279
 AudioSource:
