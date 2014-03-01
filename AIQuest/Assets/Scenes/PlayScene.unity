@@ -675,7 +675,7 @@ MonoBehaviour:
   advObject: {fileID: 1739573436}
   advStats: {fileID: 1739573437}
   bossApproachText: {fileID: 464991581}
-  BossLevel: 20
+  BossLevel: 250
 --- !u!132 &464991581
 GUIText:
   m_ObjectHideFlags: 0
