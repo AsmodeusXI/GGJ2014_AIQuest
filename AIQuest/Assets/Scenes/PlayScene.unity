@@ -506,7 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvlIndicator: {fileID: 200200055}
   monster: {fileID: 400000, guid: ec3c5e90bfada4eeb8a35220bfb8f625, type: 2}
-  keyboardInput: y
+  keyboardInput: t
   buttonInput: Fire5
   button: {fileID: 2117929215}
   collideButton: {fileID: 359701712}
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvlIndicator: {fileID: 1190740506}
   monster: {fileID: 400000, guid: a1303cb20177f430caf7a364ccfd6576, type: 2}
-  keyboardInput: t
+  keyboardInput: y
   buttonInput: Fire4
   button: {fileID: 1503438987}
   collideButton: {fileID: 2133354308}
