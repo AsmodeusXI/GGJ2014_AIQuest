@@ -306,7 +306,7 @@ public class AdversaryStats : MonoBehaviour {
 
 	// Describes how a monster harms/improves the player when affecteds
 	public void monsterAffects(Monster monster) {
-		if (monster.type == Monster.MonsterType.boss) {
+		if (monster.type == Monster.MonsterType.kraken) {
 			finalBattle();
 			return;
 		}
@@ -523,7 +523,7 @@ public class AdversaryStats : MonoBehaviour {
 	}
 
 	public void incrementMonsterQ(Monster monster) {
-		if (monster.type == Monster.MonsterType.boss) {
+		if (monster.type == Monster.MonsterType.kraken) {
 			bossInQ = true;
 		}
 		if (monster.target == 0) {

@@ -64,7 +64,7 @@ public class AdversarySwapper : MonoBehaviour {
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryScared");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryRage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/John/quitRage");
-			winSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryEuphoria2");
+			winSprite = Resources.Load<Sprite> ("AdversaryImages/John/adversaryWin");
 		} else {
 			boredQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2BoredQuit");
 			bored2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Bored");
@@ -75,7 +75,7 @@ public class AdversarySwapper : MonoBehaviour {
 			rage1Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Perturbed");
 			rage2Sprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Rage");
 			rageQuitSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2RageQuit");
-			winSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Euphoria");
+			winSprite = Resources.Load<Sprite> ("AdversaryImages/Jane/adversary2Win");
 		}
 		spriteSwitch = spriteSwitch > 0 ? 0 : 1;
 		PlayerPrefs.SetInt ("Adversary", spriteSwitch);

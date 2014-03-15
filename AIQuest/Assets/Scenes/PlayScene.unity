@@ -510,7 +510,7 @@ MonoBehaviour:
   buttonInput: Fire5
   button: {fileID: 2117929215}
   collideButton: {fileID: 359701712}
-  minimumSpawnToShow: 250
+  minimumSpawnToShow: 50
   offscreenPosition: {x: -1.24000001, y: 6.5, z: 6}
   onscreenPosition: {x: -1.24000001, y: 4.23000002, z: 6}
   originalScale: {x: 0, y: 0, z: 0}
@@ -675,7 +675,7 @@ MonoBehaviour:
   advObject: {fileID: 1739573436}
   advStats: {fileID: 1739573437}
   bossApproachText: {fileID: 464991581}
-  BossLevel: 250
+  BossLevel: 200
 --- !u!132 &464991581
 GUIText:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ MonoBehaviour:
   buttonInput: Fire2
   button: {fileID: 1261607777}
   collideButton: {fileID: 1353438284}
-  minimumSpawnToShow: 9
+  minimumSpawnToShow: 5
   offscreenPosition: {x: -1.79999995, y: -8, z: 9}
   onscreenPosition: {x: -1.79999995, y: -4.69000006, z: 9}
   originalScale: {x: 0, y: 0, z: 0}
@@ -1958,7 +1958,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: a1a37b89b5de34ca4915107a20f8ef39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c40db86e7c592492ba11c48fbf053916, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1476567561
 Transform:
@@ -1967,8 +1967,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1476567559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.25, y: .600000024, z: 9.07999992}
-  m_LocalScale: {x: -.127964407, y: .127964199, z: 1}
+  m_LocalPosition: {x: 6.55999994, y: .600000024, z: 9.07999992}
+  m_LocalScale: {x: -.300000012, y: .300000012, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1488547696
@@ -2588,6 +2588,7 @@ MonoBehaviour:
   maxPos: 3.5999999
   meter1: {fileID: 2063918212}
   meter2: {fileID: 1476567559}
+  spriteSwitch: 0
 --- !u!212 &2063918214
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2609,7 +2610,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: a1a37b89b5de34ca4915107a20f8ef39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a389559d5434d4c03b847d7a66e739df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &2063918215
 Transform:
@@ -2618,8 +2619,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2063918212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.42000008, y: .600000024, z: 9.07999992}
-  m_LocalScale: {x: .127964363, y: .127964228, z: 1}
+  m_LocalPosition: {x: 5.07000017, y: .600000024, z: 9.07999992}
+  m_LocalScale: {x: .300000012, y: .300000012, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &2117929215
@@ -2762,7 +2763,7 @@ MonoBehaviour:
   buttonInput: Fire4
   button: {fileID: 1503438987}
   collideButton: {fileID: 2133354308}
-  minimumSpawnToShow: 60
+  minimumSpawnToShow: 1000
   offscreenPosition: {x: -11.3500004, y: 0, z: 6}
   onscreenPosition: {x: -6.5, y: 0, z: 6}
   originalScale: {x: 0, y: 0, z: 0}
@@ -2889,7 +2890,7 @@ MonoBehaviour:
   buttonInput: Fire4
   button: {fileID: 1586453255}
   collideButton: {fileID: 2145047277}
-  minimumSpawnToShow: 45
+  minimumSpawnToShow: 60
   offscreenPosition: {x: 4.88000011, y: -8, z: 7}
   onscreenPosition: {x: 4.88000011, y: -4.69000006, z: 7}
   originalScale: {x: 0, y: 0, z: 0}

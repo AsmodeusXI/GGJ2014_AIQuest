@@ -8,7 +8,7 @@ public class BossApproach : MonoBehaviour {
 	public GUIText bossApproachText;
 	private Color textColor;
 	private float TimeToSwitch;
-	public int BossLevel = 250;
+	public int BossLevel = 200;
 
 	// Use this for initialization
 	void Start () {

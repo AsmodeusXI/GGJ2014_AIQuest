@@ -59,7 +59,7 @@ public class MonsterMovement : MonoBehaviour {
 
         me.transform.position = Vector3.Lerp(anchor, tempGoal, percentComplete);
 
-		if (monster.type != Monster.MonsterType.boss) { 
+		if (monster.type != Monster.MonsterType.kraken) { 
 	        float scaleMe = Mathf.Lerp(startScale, endScale, percentComplete);
 	        me.transform.localScale = new Vector3(scaleMe, scaleMe, scaleMe);
 		}

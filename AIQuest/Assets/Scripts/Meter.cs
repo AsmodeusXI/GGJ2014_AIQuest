@@ -9,14 +9,28 @@ public class Meter : MonoBehaviour {
 	public GameObject meter1;
 	public GameObject meter2;
 	private AdversaryStats advStats;
+	private Sprite johnIndicator;
+	private Sprite janeIndicator;
+	public int spriteSwitch;
 	
 	// Use this for initialization
 	void Start () {
 		GameObject adversaryObj = GameObject.FindGameObjectWithTag("Adversary");
 		advStats = (AdversaryStats) adversaryObj.GetComponent<AdversaryStats>();
+
 		int numberOfPlayers = PlayerPrefs.GetInt("NumberOfPlayers");
 		if (numberOfPlayers == 0) {
 			meter2.renderer.enabled = false;
+			spriteSwitch = PlayerPrefs.GetInt("Adversary");
+			SpriteRenderer spriter = (SpriteRenderer)meter1.GetComponent<SpriteRenderer>();
+			spriter.sprite = spriteSwitch != 0 ? Resources.Load<Sprite> ("AdversaryImages/John/johnIndicator") : Resources.Load<Sprite> ("AdversaryImages/Jane/janeIndicator");
+		} else {		
+			spriteSwitch = PlayerPrefs.GetInt("Adversary");
+			SpriteRenderer spriter = (SpriteRenderer)meter1.GetComponent<SpriteRenderer>();
+			spriter.sprite = spriteSwitch == 0 ? Resources.Load<Sprite> ("AdversaryImages/John/johnIndicator") : Resources.Load<Sprite> ("AdversaryImages/Jane/janeIndicator");
+			
+			spriter = (SpriteRenderer)meter2.GetComponent<SpriteRenderer>();
+			spriter.sprite = spriteSwitch != 0 ? Resources.Load<Sprite> ("AdversaryImages/John/johnIndicator") : Resources.Load<Sprite> ("AdversaryImages/Jane/janeIndicator");
 		}
 	}
 	
