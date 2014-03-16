@@ -510,7 +510,7 @@ MonoBehaviour:
   buttonInput: Fire5
   button: {fileID: 2117929215}
   collideButton: {fileID: 359701712}
-  minimumSpawnToShow: 50
+  minimumSpawnToShow: 200
   offscreenPosition: {x: -1.24000001, y: 6.5, z: 6}
   onscreenPosition: {x: -1.24000001, y: 4.23000002, z: 6}
   originalScale: {x: 0, y: 0, z: 0}
@@ -2389,7 +2389,7 @@ MonoBehaviour:
   totalKills: 0
   bossInQ: 0
   bossDefeated: 0
-  monstedModeMin: 115
+  monstedModeMin: 75
   numberOfPlayers: 1
   currentTarget: 0
   totalPlayer1Kills: 0
@@ -2890,7 +2890,7 @@ MonoBehaviour:
   buttonInput: Fire4
   button: {fileID: 1586453255}
   collideButton: {fileID: 2145047277}
-  minimumSpawnToShow: 60
+  minimumSpawnToShow: 50
   offscreenPosition: {x: 4.88000011, y: -8, z: 7}
   onscreenPosition: {x: 4.88000011, y: -4.69000006, z: 7}
   originalScale: {x: 0, y: 0, z: 0}
