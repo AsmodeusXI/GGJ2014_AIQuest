@@ -121,7 +121,7 @@ public class AdversaryStats : MonoBehaviour {
 		timeBetweenPlayer1Spawns += Time.deltaTime;
 		timeBetweenPlayer2Spawns += Time.deltaTime;
 
-		if (totalKills > monstedModeMin) {
+		if (totalKills > monstedModeMin && totalKills < 200) {
 			checkMonsterMode();
 		}
 		
@@ -337,7 +337,7 @@ public class AdversaryStats : MonoBehaviour {
 					monsterModeSpawned = 0;
 					monsterModeTimeLimit = 3;
 					monsterMode = false;
-					float rannum = UnityEngine.Random.Range(0f, 1f) * Math.Min(player1Lvl, 4);
+					float rannum = UnityEngine.Random.Range(0f, 1f) * Math.Min(player1Lvl, 3);
 					monsterModeType = (Monster.MonsterType)(System.Math.Round(rannum));
 				}
 			} else {
@@ -372,7 +372,6 @@ public class AdversaryStats : MonoBehaviour {
 
 	private void finalBattle () {
 		if ((35 < getRelativeMood (0) && getRelativeMood(0) < 65) && (35 < getRelativeMood (1) && getRelativeMood(1) < 65)) {
-			Debug.Log ("WIN!!!!!!");
 			bossDefeated = true;
 			PlayerPrefs.SetInt ("hardEnabled", 1);
 			shake(300, false);
@@ -382,7 +381,8 @@ public class AdversaryStats : MonoBehaviour {
 			moodPlayer2 = 200 * player2Lvl;
 			gameOverPlayer1 = true;
 			gameOverPlayer2 = true;
-			goToGameOver(3);
+			shake(300, false);
+			goToGameOver(5);
 		}
 	}
 

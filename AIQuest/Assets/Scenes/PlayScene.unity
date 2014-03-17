@@ -106,7 +106,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 57ffc8782e2d346e299a588854ebae51, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 24
+  m_FontSize: 36
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 30448932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .75, y: .889999986, z: 0}
+  m_LocalPosition: {x: .75, y: .860000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1206,7 +1206,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 57ffc8782e2d346e299a588854ebae51, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 24
+  m_FontSize: 36
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
@@ -1220,7 +1220,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081010368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .720000029, y: .889999986, z: 0}
+  m_LocalPosition: {x: .720000029, y: .860000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2389,7 +2389,7 @@ MonoBehaviour:
   totalKills: 0
   bossInQ: 0
   bossDefeated: 0
-  monstedModeMin: 75
+  monstedModeMin: 85
   numberOfPlayers: 1
   currentTarget: 0
   totalPlayer1Kills: 0
