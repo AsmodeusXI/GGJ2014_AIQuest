@@ -72,7 +72,7 @@ public class OnGameExecute : MonoBehaviour
 		GUI.backgroundColor = Color.white;
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = startEnabled;
-		if (GUI.Button (new Rect (Screen.width * .715f, Screen.height * .78f,Screen.width * .2f,Screen.height * .1f), "Start", buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .715f, Screen.height * .76f,Screen.width * .2f,Screen.height * .1f), "Start", buttonStyle)) 
 		{
 			startEnabled = false;
 			hardEnabled = false;
@@ -86,7 +86,7 @@ public class OnGameExecute : MonoBehaviour
 		//GUI enabled causes button to disable/enable
 		if (hardEnabled) {
 			GUI.enabled = hardEnabled;
-			if (GUI.Button (new Rect (Screen.width * .415f, Screen.height * .78f, Screen.width * .2f, Screen.height * .1f), "Hard", buttonStyle)) {
+			if (GUI.Button (new Rect (Screen.width * .415f, Screen.height * .76f, Screen.width * .2f, Screen.height * .1f), "Hard", buttonStyle)) {
 				startEnabled = false;
 				hardEnabled = false;
 				creditsEnabled = false;
@@ -101,7 +101,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		GUI.enabled = creditsEnabled;
-		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .48f, Screen.width * .2f, Screen.height * .1f), "Credits", buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .46f, Screen.width * .2f, Screen.height * .1f), "Credits", buttonStyle)) 
 		{
 			startEnabled = false;
 			hardEnabled = false;
@@ -112,7 +112,7 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled cause button to disable/enable
 		GUI.enabled = tutorialEnabled;
-		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .63f,  Screen.width * .2f, Screen.height * .1f), "Tutorial", buttonStyle)) 
+		if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .61f,  Screen.width * .2f, Screen.height * .1f), "Tutorial", buttonStyle)) 
 		{
 			startEnabled = false;
 			hardEnabled = false;
@@ -123,11 +123,11 @@ public class OnGameExecute : MonoBehaviour
 
 		//GUI enabled causes button to disable/enable
 		if ((Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android)) {
-			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .78f, Screen.width * .2f, Screen.height * .1f), "Scores", buttonStyle))  {
+			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .76f, Screen.width * .2f, Screen.height * .1f), "Scores", buttonStyle))  {
 				Social.ShowLeaderboardUI ();
 			}
 		} else {
-			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .78f, Screen.width * .2f, Screen.height * .1f), "Exit", buttonStyle))  {
+			if (GUI.Button (new Rect (Screen.width * .05f, Screen.height * .76f, Screen.width * .2f, Screen.height * .1f), "Exit", buttonStyle))  {
 				Application.Quit();
 			}
 		}
